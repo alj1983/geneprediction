@@ -1,0 +1,1574 @@
+BLASTP 2.2.28+
+
+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro A.
+Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J.
+Lipman (1997), "Gapped BLAST and PSI-BLAST: a new generation of
+protein database search programs", Nucleic Acids Res. 25:3389-3402.
+
+
+Reference for composition-based statistics: Alejandro A. Schaffer,
+L. Aravind, Thomas L. Madden, Sergei Shavirin, John L. Spouge, Yuri
+I. Wolf, Eugene V. Koonin, and Stephen F. Altschul (2001),
+"Improving the accuracy of PSI-BLAST protein database searches with
+composition-based statistics and other refinements", Nucleic Acids
+Res. 29:2994-3005.
+
+
+
+Database: nr_arthropoda
+           1,123,327 sequences; 441,210,899 total letters
+
+
+
+Query= lcl|comp747_c0_seq1
+
+Length=103
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+ref|XP_975179.2|  PREDICTED: 10 kDa heat shock protein, mitochond...   137    7e-41
+gb|EFA03162.1|  hypothetical protein TcasGA2_TC013081 [Tribolium ...   137    8e-41
+gb|KDR14059.1|  10 kDa heat shock protein, mitochondrial [Zooterm...   136    2e-40
+ref|XP_002428683.1|  10 kDa heat shock protein, putative [Pedicul...   134    2e-39
+gb|EFX84688.1|  hypothetical protein DAPPUDRAFT_209506 [Daphnia p...   131    1e-38
+ref|XP_003399638.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   132    1e-38
+ref|XP_003700483.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   131    2e-38
+ref|XP_003491863.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   131    2e-38
+ref|XP_006557775.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   130    5e-38
+ref|XP_624910.1|  PREDICTED: 10 kDa heat shock protein, mitochond...   129    1e-37
+ref|XP_003691248.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   130    2e-37
+gb|ADV59557.1|  heat shock protein 10 [Paracyclopina nana]             128    2e-37
+gb|AGQ42769.1|  small heat shock protein G1 [Helicoverpa armigera]     128    2e-37
+ref|XP_001599992.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   128    2e-37
+ref|XP_004932946.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   128    3e-37
+gb|EFN79770.1|  10 kDa heat shock protein, mitochondrial [Harpegn...   127    4e-37
+gb|EGI60182.1|  10 kDa heat shock protein, mitochondrial [Acromyr...   129    4e-37
+ref|XP_321619.3|  AGAP001502-PA [Anopheles gambiae str. PEST] >gb...   127    5e-37
+dbj|BAN20787.1|  heat shock protein, putative [Riptortus pedestris]    127    6e-37
+gb|EHJ68162.1|  putative 10 kDa heat shock protein [Danaus plexip...   126    1e-36
+gb|ACA03519.1|  heat shock protein 10 [Tigriopus japonicus]            126    2e-36
+gb|AFX84557.1|  10 kDa heat shock protein [Lygus hesperus]             126    2e-36
+gb|EZA53301.1|  10 kDa heat shock protein, mitochondrial [Cerapac...   125    5e-36
+gb|ENN71973.1|  hypothetical protein YQE_11406, partial [Dendroct...   124    1e-35
+ref|XP_002433721.1|  heat shock protein [Ixodes scapularis] >gb|A...   122    4e-35
+gb|ACO15731.1|  10 kDa heat shock protein, mitochondrial [Caligus...   122    4e-35
+gb|ETN60307.1|  heat shock protein [Anopheles darlingi]                121    9e-35
+ref|XP_001657881.1|  heat shock protein, putative [Aedes aegypti]...   121    1e-34
+ref|XP_001848951.1|  heat shock protein [Culex quinquefasciatus] ...   119    1e-33
+ref|XP_008557212.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   118    3e-33
+gb|ADD38727.1|  10 kDa heat shock protein, mitochondrial [Lepeoph...   115    3e-32
+ref|XP_001956372.1|  GF24628 [Drosophila ananassae] >gb|EDV39178....   115    4e-32
+ref|XP_001353500.1|  GA10877 [Drosophila pseudoobscura pseudoobsc...   113    1e-31
+gb|ACO11796.1|  10 kDa heat shock protein, mitochondrial [Lepeoph...   113    2e-31
+ref|XP_002062093.1|  GK17350 [Drosophila willistoni] >gb|EDW73079...   112    4e-31
+ref|XP_004530594.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   112    6e-31
+ref|NP_648622.1|  CG11267 [Drosophila melanogaster] >gb|AAF49856....   112    7e-31
+ref|XP_001972611.1|  GG15616 [Drosophila erecta] >ref|XP_00203035...   110    2e-30
+gb|ACY66388.1|  chaperonin 10 [Scylla paramamosain]                    110    4e-30
+ref|XP_005175914.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   109    5e-30
+gb|AGI74966.1|  heat shock protein 10 [Scylla paramamosain]            109    6e-30
+ref|XP_003740651.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   107    4e-29
+ref|XP_001985472.1|  GH17079 [Drosophila grimshawi] >gb|EDV97820....   105    2e-28
+ref|NP_001119666.1|  heat shock 10kDa protein 1 [Acyrthosiphon pi...   104    4e-28
+gb|ENN72547.1|  hypothetical protein YQE_10887, partial [Dendroct...   104    6e-28
+ref|XP_002054763.1|  GJ22624 [Drosophila virilis] >gb|EDW68283.1|...   104    7e-28
+ref|XP_001997009.1|  GH22450 [Drosophila grimshawi] >gb|EDV90461....   103    9e-28
+ref|XP_003245465.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   102    3e-27
+ref|XP_004529926.1|  PREDICTED: 10 kDa heat shock protein, mitoch...   101    6e-27
+ref|NP_650333.1|  CG9920 [Drosophila melanogaster] >ref|XP_002031...   101    7e-27
+ref|XP_002070666.1|  GK10911 [Drosophila willistoni] >gb|EDW81652...   101    9e-27
+ref|XP_002097917.1|  GE10065 [Drosophila yakuba] >gb|AAR10247.1| ...   101    1e-26
+ref|XP_001979878.1|  GG21544 [Drosophila erecta] >gb|EDV48836.1| ...   100    3e-26
+ref|XP_001999508.1|  GI24558 [Drosophila mojavensis] >gb|EDW14969...  99.8    3e-26
+ref|XP_002008689.1|  GI11679 [Drosophila mojavensis] >gb|EDW19165...  99.4    4e-26
+ref|XP_002048443.1|  GJ11351 [Drosophila virilis] >gb|EDW70785.1|...  99.0    5e-26
+ref|XP_001955477.1|  GF18793 [Drosophila ananassae] >gb|EDV44038....  98.2    1e-25
+ref|XP_008467895.1|  PREDICTED: 10 kDa heat shock protein, mitoch...  97.4    3e-25
+ref|XP_001358693.1|  GA22124 [Drosophila pseudoobscura pseudoobsc...  97.1    5e-25
+ref|XP_002013612.1|  GL23313 [Drosophila persimilis] >gb|EDW24598...  96.7    6e-25
+ref|XP_002103496.1|  GD20460 [Drosophila simulans] >gb|EDX12999.1...  96.3    1e-24
+ref|XP_001663341.1|  heat shock protein, putative [Aedes aegypti]...  95.9    1e-24
+gb|EFA01178.1|  hypothetical protein TcasGA2_TC010501 [Tribolium ...  92.8    2e-23
+emb|CAE54109.1|  chaperonin [Mesobuthus gibbosus]                     87.4    8e-22
+ref|XP_969732.3|  PREDICTED: uncharacterized protein LOC658233 [T...  92.4    8e-22
+emb|CAE54223.1|  chaperonin [Mesobuthus eupeus]                       87.0    1e-21
+emb|CAE54227.1|  chaperonin [Mesobuthus cyprius]                      86.3    3e-21
+emb|CAE54100.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54101.1...  85.9    3e-21
+emb|CAE54224.1|  chaperonin [Mesobuthus caucasicus] >emb|CAE54237...  85.5    4e-21
+emb|CAE54257.1|  chaperonin [Mesobuthus gibbosus]                     85.5    5e-21
+emb|CAE54250.1|  chaperonin [Mesobuthus gibbosus]                     85.1    7e-21
+emb|CAE54114.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54115.1...  85.1    8e-21
+emb|CAE54262.1|  chaperonin [Mesobuthus gibbosus]                     84.0    2e-20
+emb|CAE54231.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54232.1...  84.0    2e-20
+emb|CAE54244.1|  chaperonin [Mesobuthus gibbosus]                     83.6    2e-20
+emb|CAE54228.1|  chaperonin [Mesobuthus cyprius]                      83.6    2e-20
+emb|CAE54243.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54245.1...  83.6    3e-20
+emb|CAE54113.1|  chaperonin [Mesobuthus gibbosus]                     83.2    3e-20
+emb|CAE54106.1|  chaperonin [Mesobuthus gibbosus]                     82.0    9e-20
+emb|CAE54111.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54112.1...  81.6    1e-19
+emb|CAE54234.1|  chaperonin [Mesobuthus gibbosus] >emb|CAE54236.1...  79.0    2e-18
+emb|CAE54235.1|  chaperonin [Mesobuthus gibbosus]                     77.4    6e-18
+pir||A42281  symbionin symS - pea aphid                               66.2    2e-13
+ref|XP_002401700.1|  chaperonin, putative [Ixodes scapularis] >gb...  60.5    2e-11
+ref|XP_004531735.1|  PREDICTED: 10 kDa chaperonin-like [Ceratitis...  60.5    3e-11
+ref|XP_003492997.1|  PREDICTED: 10 kDa chaperonin-like [Bombus im...  60.5    3e-11
+pir||JC5770  chaperonin groES-like protein - Weevil                   54.7    4e-09
+ref|XP_008481334.1|  PREDICTED: DNA gyrase subunit B, chloroplast...  45.8    8e-06
+ref|XP_002435338.1|  hypothetical protein IscW_ISCW005736 [Ixodes...  41.6    1e-04
+
+
+>ref|XP_975179.2| PREDICTED: 10 kDa heat shock protein, mitochondrial [Tribolium 
+castaneum]
+Length=102
+
+ Score =  137 bits (345),  Expect = 7e-41, Method: Compositional matrix adjust.
+ Identities = 63/101 (62%), Positives = 86/101 (85%), Gaps = 1/101 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            +SG AKR++PLFDRVLI++A   T+TKGG++IPEKAQ K L+  VVAVGPGAR  +G+T+
+Sbjct  1    MSGAAKRLIPLFDRVLIKKAEMVTKTKGGIVIPEKAQAKVLQGTVVAVGPGARNNNGETV  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKLS  103
+            P++V VGD VLLPEYGG+K+E+ E +E+ +FRE+DI+AKL+
+Sbjct  61   PLTVKVGDNVLLPEYGGTKVELEENQEYHLFRESDILAKLT  101
+
+
+>gb|EFA03162.1| hypothetical protein TcasGA2_TC013081 [Tribolium castaneum]
+Length=103
+
+ Score =  137 bits (345),  Expect = 8e-41, Method: Compositional matrix adjust.
+ Identities = 63/100 (63%), Positives = 85/100 (85%), Gaps = 1/100 (1%)
+
+Query  5    SGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIP  64
+            SG AKR++PLFDRVLI++A   T+TKGG++IPEKAQ K L+  VVAVGPGAR  +G+T+P
+Sbjct  3    SGAAKRLIPLFDRVLIKKAEMVTKTKGGIVIPEKAQAKVLQGTVVAVGPGARNNNGETVP  62
+
+Query  65   MSVGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKLS  103
+            ++V VGD VLLPEYGG+K+E+ E +E+ +FRE+DI+AKL+
+Sbjct  63   LTVKVGDNVLLPEYGGTKVELEENQEYHLFRESDILAKLT  102
+
+
+>gb|KDR14059.1| 10 kDa heat shock protein, mitochondrial [Zootermopsis nevadensis]
+Length=106
+
+ Score =  136 bits (343),  Expect = 2e-40, Method: Compositional matrix adjust.
+ Identities = 66/100 (66%), Positives = 84/100 (84%), Gaps = 1/100 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            V+ VAKR++PLFDRVLIQRA A T+T+GG++IPEKAQ K L   VVAVGPGAR E G+ +
+Sbjct  5    VAIVAKRLIPLFDRVLIQRAEAITKTRGGIVIPEKAQAKVLRGTVVAVGPGARNEKGEHV  64
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            P+SV VGD+VLLPEYGG+K+E+ E  EF +FRE+DI+AK+
+Sbjct  65   PLSVKVGDQVLLPEYGGAKVELEENSEFHLFRESDILAKI  104
+
+
+>ref|XP_002428683.1| 10 kDa heat shock protein, putative [Pediculus humanus corporis]
+ gb|EEB15945.1| 10 kDa heat shock protein, putative [Pediculus humanus corporis]
+Length=109
+
+ Score =  134 bits (336),  Expect = 2e-39, Method: Compositional matrix adjust.
+ Identities = 62/95 (65%), Positives = 83/95 (87%), Gaps = 1/95 (1%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++PLFDRVL+QRA A T+TKGG++IPEKAQ+K L   VVAVGPG+R ++G+ IP++V 
+Sbjct  14   KRLVPLFDRVLVQRAEAVTKTKGGIVIPEKAQSKVLHGTVVAVGPGSRNQNGEFIPLAVK  73
+
+Query  69   VGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            VGDKVLLPEYGG+K+E+ E +EF +FRE+DI+AK+
+Sbjct  74   VGDKVLLPEYGGTKVELEENKEFHLFRESDILAKV  108
+
+
+>gb|EFX84688.1| hypothetical protein DAPPUDRAFT_209506 [Daphnia pulex]
+Length=101
+
+ Score =  131 bits (330),  Expect = 1e-38, Method: Compositional matrix adjust.
+ Identities = 58/99 (59%), Positives = 83/99 (84%), Gaps = 0/99 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++G  KR +P+FDRVLI+RA A T+T+GG++IPEKAQ K L+  VVAVGPG+R + GD +
+Sbjct  1    MAGALKRFIPMFDRVLIERAEALTKTRGGIVIPEKAQQKVLKGTVVAVGPGSRTDKGDLV  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKL  102
+            P++V VGD VLLPEYGG+K+E+E +E+ +FRE+D++AK+
+Sbjct  61   PLAVKVGDNVLLPEYGGTKVEIEDKEYHLFRESDLLAKI  99
+
+
+>ref|XP_003399638.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Bombus 
+terrestris]
+Length=108
+
+ Score =  132 bits (331),  Expect = 1e-38, Method: Compositional matrix adjust.
+ Identities = 61/103 (59%), Positives = 82/103 (80%), Gaps = 1/103 (1%)
+
+Query  1    MSVVSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG  60
+            +   +   KR++PLFDRVLIQRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G
+Sbjct  4    LKAAANAIKRLIPLFDRVLIQRAEAVTKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKG  63
+
+Query  61   DTIPMSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            + IP+S+ VGD VLLPEYGG+K+E+E  +EF +FRE+DI+AKL
+Sbjct  64   EHIPLSIKVGDVVLLPEYGGTKVELEDNKEFHLFRESDILAKL  106
+
+
+>ref|XP_003700483.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Megachile 
+rotundata]
+Length=108
+
+ Score =  131 bits (330),  Expect = 2e-38, Method: Compositional matrix adjust.
+ Identities = 61/103 (59%), Positives = 82/103 (80%), Gaps = 1/103 (1%)
+
+Query  1    MSVVSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG  60
+            +   +   KR++PLFDRVLIQRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G
+Sbjct  4    LKAAANAIKRLVPLFDRVLIQRAEAVTKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKG  63
+
+Query  61   DTIPMSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            + IP+S+ VGD VLLPEYGG+K+E+E  +EF +FRE+DI+AKL
+Sbjct  64   EHIPLSIKVGDVVLLPEYGGTKVELEDNKEFHLFRESDILAKL  106
+
+
+>ref|XP_003491863.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Bombus 
+impatiens]
+Length=104
+
+ Score =  131 bits (329),  Expect = 2e-38, Method: Compositional matrix adjust.
+ Identities = 61/95 (64%), Positives = 80/95 (84%), Gaps = 1/95 (1%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++PLFDRVLIQRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G+ IP+S+ 
+Sbjct  8    KRLIPLFDRVLIQRAEAVTKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKGEHIPLSIK  67
+
+Query  69   VGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            VGD VLLPEYGG+K+E+E  +EF +FRE+DI+AKL
+Sbjct  68   VGDVVLLPEYGGTKVELEDNKEFHLFRESDILAKL  102
+
+
+>ref|XP_006557775.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like isoform 
+X1 [Apis mellifera]
+ ref|XP_006622782.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like isoform 
+X1 [Apis dorsata]
+Length=108
+
+ Score =  130 bits (327),  Expect = 5e-38, Method: Compositional matrix adjust.
+ Identities = 60/103 (58%), Positives = 81/103 (79%), Gaps = 1/103 (1%)
+
+Query  1    MSVVSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG  60
+            +   +   KR++PLFDRVL+QRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G
+Sbjct  4    LKAATNAIKRLIPLFDRVLVQRAEAITKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKG  63
+
+Query  61   DTIPMSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            + IP+S+ VGD VLLPEYGG+K+E E  +EF +FRE+DI+AKL
+Sbjct  64   EHIPLSIKVGDIVLLPEYGGTKVEFEDNKEFHLFRESDILAKL  106
+
+
+>ref|XP_624910.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like isoform 
+X2 [Apis mellifera]
+ ref|XP_006622783.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like isoform 
+X2 [Apis dorsata]
+Length=104
+
+ Score =  129 bits (324),  Expect = 1e-37, Method: Compositional matrix adjust.
+ Identities = 60/99 (61%), Positives = 80/99 (81%), Gaps = 1/99 (1%)
+
+Query  5    SGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIP  64
+            +   KR++PLFDRVL+QRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G+ IP
+Sbjct  4    TNAIKRLIPLFDRVLVQRAEAITKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKGEHIP  63
+
+Query  65   MSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            +S+ VGD VLLPEYGG+K+E E  +EF +FRE+DI+AKL
+Sbjct  64   LSIKVGDIVLLPEYGGTKVEFEDNKEFHLFRESDILAKL  102
+
+
+>ref|XP_003691248.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Apis 
+florea]
+Length=166
+
+ Score =  130 bits (328),  Expect = 2e-37, Method: Compositional matrix adjust.
+ Identities = 60/99 (61%), Positives = 80/99 (81%), Gaps = 1/99 (1%)
+
+Query  5    SGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIP  64
+            +   KR++PLFDRVL+QRA A T+TKGG+++PEKAQ K L+  VVA+GPG R + G+ IP
+Sbjct  66   TNAIKRLIPLFDRVLVQRAEAITKTKGGIVLPEKAQAKVLQGTVVAIGPGQRNDKGEHIP  125
+
+Query  65   MSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            +S+ VGD VLLPEYGG+K+E E  +EF +FRE+DI+AKL
+Sbjct  126  LSIKVGDIVLLPEYGGTKVEFEDNKEFHLFRESDILAKL  164
+
+
+>gb|ADV59557.1| heat shock protein 10 [Paracyclopina nana]
+Length=104
+
+ Score =  128 bits (322),  Expect = 2e-37, Method: Compositional matrix adjust.
+ Identities = 61/99 (62%), Positives = 81/99 (82%), Gaps = 0/99 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++G  KR++PLFDR+++QRA A T++KGG++IPEK+  K LEA VVA GPGAR + G+TI
+Sbjct  3    ITGPIKRLLPLFDRIVVQRAEAATKSKGGIIIPEKSVGKVLEATVVAAGPGARNDKGETI  62
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKL  102
+             MSV VGD+VLLPEYGG+KIE++  E+ +FRE DIVAK 
+Sbjct  63   KMSVQVGDRVLLPEYGGTKIEVDQIEYAIFREADIVAKF  101
+
+
+>gb|AGQ42769.1| small heat shock protein G1 [Helicoverpa armigera]
+Length=104
+
+ Score =  128 bits (322),  Expect = 2e-37, Method: Compositional matrix adjust.
+ Identities = 62/100 (62%), Positives = 80/100 (80%), Gaps = 2/100 (2%)
+
+Query  6    GVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPM  65
+             V KR++PL DRVLI+RA A T+T GG++IPEKAQTK L   VVAVGPG+R E+GD IP+
+Sbjct  4    NVVKRLIPLLDRVLIKRAEAVTKTAGGIVIPEKAQTKVLHGEVVAVGPGSRKENGDFIPV  63
+
+Query  66   SVGVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKLS  103
+             V VGDKVLLPEYGG+K+ +E +  E+ +FRE+DI+AK+ 
+Sbjct  64   LVKVGDKVLLPEYGGTKVSLENDDKEYHLFRESDILAKID  103
+
+
+>ref|XP_001599992.1| PREDICTED: 10 kDa heat shock protein, mitochondrial [Nasonia 
+vitripennis]
+Length=104
+
+ Score =  128 bits (322),  Expect = 2e-37, Method: Compositional matrix adjust.
+ Identities = 62/95 (65%), Positives = 79/95 (83%), Gaps = 1/95 (1%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++PLFDRVLIQRA A T+TKGG++IPEKAQ K L   VVA+GPG+R + G+ IP S+ 
+Sbjct  8    KRLIPLFDRVLIQRAEALTKTKGGIVIPEKAQGKVLRGTVVAIGPGSRNDKGEHIPPSIK  67
+
+Query  69   VGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            VGD VLLPEYGG+K+E+ E +EF +FRE+DI+AKL
+Sbjct  68   VGDVVLLPEYGGTKVELEENKEFHLFRESDILAKL  102
+
+
+>ref|XP_004932946.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Bombyx 
+mori]
+Length=103
+
+ Score =  128 bits (321),  Expect = 3e-37, Method: Compositional matrix adjust.
+ Identities = 61/101 (60%), Positives = 81/101 (80%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++   KR++PL DRVLI+RA A T+T GG++IPEKAQ+K L   VVAVGPGAR E+GD I
+Sbjct  1    MANAVKRLVPLLDRVLIKRAEAITKTAGGIVIPEKAQSKVLHGEVVAVGPGARKENGDFI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKL  102
+            P+ V VGDKVLLPEYGG+K+ +E +  E+ +FRE+DI+AK+
+Sbjct  61   PVQVSVGDKVLLPEYGGTKVSLENDEKEYHLFRESDILAKI  101
+
+
+>gb|EFN79770.1| 10 kDa heat shock protein, mitochondrial [Harpegnathos saltator]
+Length=107
+
+ Score =  127 bits (320),  Expect = 4e-37, Method: Compositional matrix adjust.
+ Identities = 57/99 (58%), Positives = 80/99 (81%), Gaps = 1/99 (1%)
+
+Query  5    SGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIP  64
+            +   KR++PLFDRVL+QRA A T+TKGG+++PEKAQ K L   VVA GPG+R + GD +P
+Sbjct  7    ANAVKRLIPLFDRVLVQRAEAITKTKGGIVLPEKAQAKVLRGTVVATGPGSRNDKGDHVP  66
+
+Query  65   MSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            +S+ +GD VLLPEYGG+K+E+E  +E+ +FRE+DI+AK+
+Sbjct  67   LSIKIGDVVLLPEYGGTKVELEDNKEYHLFRESDILAKV  105
+
+
+>gb|EGI60182.1| 10 kDa heat shock protein, mitochondrial [Acromyrmex echinatior]
+Length=162
+
+ Score =  129 bits (325),  Expect = 4e-37, Method: Compositional matrix adjust.
+ Identities = 59/99 (60%), Positives = 81/99 (82%), Gaps = 1/99 (1%)
+
+Query  5    SGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIP  64
+            + V KR++PLFDRVLIQRA A T+TKGG+++PEKAQ K L   VVA GPGAR + G+ +P
+Sbjct  62   ANVVKRLIPLFDRVLIQRAEAITKTKGGIVLPEKAQAKVLRGTVVATGPGARNDKGEHVP  121
+
+Query  65   MSVGVGDKVLLPEYGGSKIEME-GEEFQMFRETDIVAKL  102
+            +S+ +GD VLLPEYGG+K+E+E  +E+ +FRE+DI+AK+
+Sbjct  122  LSIKIGDVVLLPEYGGTKVELEDNKEYHLFRESDILAKV  160
+
+
+>ref|XP_321619.3| AGAP001502-PA [Anopheles gambiae str. PEST]
+ gb|EAA00874.3| AGAP001502-PA [Anopheles gambiae str. PEST]
+Length=101
+
+ Score =  127 bits (319),  Expect = 5e-37, Method: Compositional matrix adjust.
+ Identities = 61/96 (64%), Positives = 83/96 (86%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            KR++PL DRVLIQRA A T+TKGG++IPEKAQ+K LE  VVAVGPGAR A++G+ +P+SV
+Sbjct  5    KRLLPLLDRVLIQRAEALTKTKGGIVIPEKAQSKVLEGTVVAVGPGARHAQTGEHVPLSV  64
+
+Query  68   GVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+             VG+KVLLPEYGG+K+++ + +E+ +FRE DI+AK+
+Sbjct  65   KVGEKVLLPEYGGTKVDLGDSKEYHLFREADILAKM  100
+
+
+>dbj|BAN20787.1| heat shock protein, putative [Riptortus pedestris]
+Length=105
+
+ Score =  127 bits (319),  Expect = 6e-37, Method: Compositional matrix adjust.
+ Identities = 60/103 (58%), Positives = 81/103 (79%), Gaps = 1/103 (1%)
+
+Query  1    MSVVSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG  60
+            M+  +   K++MP+FDRVL+ RA A T+TKGG++IPEK+Q K L   VVAVGPGAR ++G
+Sbjct  1    MAKTAAAIKKLMPMFDRVLVLRAEAVTKTKGGIVIPEKSQGKVLHGTVVAVGPGARNQNG  60
+
+Query  61   DTIPMSVGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            + +P  V VGD VLLPEYGG+K+E+ E +E+ +FRETDI+AKL
+Sbjct  61   EIVPPQVAVGDNVLLPEYGGTKVEIEENKEYHLFRETDILAKL  103
+
+
+>gb|EHJ68162.1| putative 10 kDa heat shock protein [Danaus plexippus]
+Length=103
+
+ Score =  126 bits (317),  Expect = 1e-36, Method: Compositional matrix adjust.
+ Identities = 60/101 (59%), Positives = 83/101 (82%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++ VAK+++PL DRVLI+RA A T+T GG++IPEKAQ+K L   VVAVGPG+R E+G+ I
+Sbjct  1    MANVAKKLIPLLDRVLIKRAEAVTKTAGGIVIPEKAQSKVLHGEVVAVGPGSRKENGEFI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKL  102
+            P+ V VGDKVLLPEYGG+K+ +E +  E+ +FRE+DI+AK+
+Sbjct  61   PVLVSVGDKVLLPEYGGTKVSLENDEKEYHLFRESDILAKI  101
+
+
+>gb|ACA03519.1| heat shock protein 10 [Tigriopus japonicus]
+Length=103
+
+ Score =  126 bits (316),  Expect = 2e-36, Method: Compositional matrix adjust.
+ Identities = 63/101 (62%), Positives = 81/101 (80%), Gaps = 1/101 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAES-GDT  62
+            +SG  KR +PLFDRVLIQRA A T++KGG+LIPEKAQ K  E  VVAVG GA  ES G  
+Sbjct  1    MSGALKRFLPLFDRVLIQRAEAATKSKGGILIPEKAQGKVNEGTVVAVGTGAINESNGQV  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+             P++V VGD+V+LPE+GG+KIE+E +E+ +FRETDI+AK++
+Sbjct  61   RPLAVAVGDRVMLPEFGGTKIELEDKEYTLFRETDIIAKIA  101
+
+
+>gb|AFX84557.1| 10 kDa heat shock protein [Lygus hesperus]
+Length=105
+
+ Score =  126 bits (316),  Expect = 2e-36, Method: Compositional matrix adjust.
+ Identities = 60/103 (58%), Positives = 79/103 (77%), Gaps = 1/103 (1%)
+
+Query  1    MSVVSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG  60
+            M+  +   K++MP+FDRVL+ RA A T+TKGG++IPEK+Q K L   VVAVGPG+R   G
+Sbjct  1    MAKATAAIKKLMPMFDRVLVLRAEAVTKTKGGIVIPEKSQGKVLHGTVVAVGPGSRNTKG  60
+
+Query  61   DTIPMSVGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            D +P  V VGD VLLPEYGG+K+E+ E +E+ +FRETDI+AKL
+Sbjct  61   DLVPPQVSVGDHVLLPEYGGTKVEIEENKEYHLFRETDILAKL  103
+
+
+>gb|EZA53301.1| 10 kDa heat shock protein, mitochondrial [Cerapachys biroi]
+Length=104
+
+ Score =  125 bits (313),  Expect = 5e-36, Method: Compositional matrix adjust.
+ Identities = 56/95 (59%), Positives = 78/95 (82%), Gaps = 1/95 (1%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++PLFDRVL+QRA A T+TKGG+++PEKAQ K L   VVA GPGAR   G+ +P+S+ 
+Sbjct  8    KRLIPLFDRVLVQRAEAITKTKGGIVLPEKAQAKVLRGTVVATGPGARNNKGEHVPLSIK  67
+
+Query  69   VGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            +GD VLLPEYGG+K+E+ + +E+ +FRE+DI+AK+
+Sbjct  68   IGDIVLLPEYGGTKVELDDNKEYHLFRESDILAKV  102
+
+
+>gb|ENN71973.1| hypothetical protein YQE_11406, partial [Dendroctonus ponderosae]
+ gb|ERL83482.1| hypothetical protein D910_00493 [Dendroctonus ponderosae]
+ gb|ERL84166.1| hypothetical protein D910_01539 [Dendroctonus ponderosae]
+ gb|ERL84880.1| hypothetical protein D910_02303 [Dendroctonus ponderosae]
+ gb|ERL90339.1| hypothetical protein D910_07688 [Dendroctonus ponderosae]
+Length=102
+
+ Score =  124 bits (311),  Expect = 1e-35, Method: Compositional matrix adjust.
+ Identities = 61/101 (60%), Positives = 81/101 (80%), Gaps = 1/101 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            +S   KR++PLFDRVLI++A A T+TKGG++IPEKAQ K L+  VVAVGPG R E G+ I
+Sbjct  1    MSASLKRLVPLFDRVLIKKAEAITKTKGGIVIPEKAQGKILQGTVVAVGPGQRKEDGNHI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKLS  103
+            P+SV VG+ VLLPEYGG+K+++E   E+ ++RETDI+AKL 
+Sbjct  61   PISVKVGELVLLPEYGGTKVDVEENVEYHLYRETDILAKLD  101
+
+
+>ref|XP_002433721.1| heat shock protein [Ixodes scapularis]
+ gb|AAT92186.1| heat shock protein 10 [Ixodes pacificus]
+ gb|EEC05121.1| heat shock protein [Ixodes scapularis]
+Length=101
+
+ Score =  122 bits (307),  Expect = 4e-35, Method: Compositional matrix adjust.
+ Identities = 55/100 (55%), Positives = 79/100 (79%), Gaps = 0/100 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++G+ KR++PL DR+L++R   E +TKGG++IPEKAQ K   A V+AVG GAR E+G TI
+Sbjct  1    MAGLGKRLVPLLDRILVERFVPEAKTKGGIMIPEKAQAKVQSATVIAVGTGARTEAGQTI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            P +V  GDKVLLPEYGG+K+E++ +EF +FR++D++ K S
+Sbjct  61   PPAVKAGDKVLLPEYGGTKVEIDNKEFYIFRDSDVLGKWS  100
+
+
+>gb|ACO15731.1| 10 kDa heat shock protein, mitochondrial [Caligus clemensi]
+Length=101
+
+ Score =  122 bits (306),  Expect = 4e-35, Method: Compositional matrix adjust.
+ Identities = 59/100 (59%), Positives = 76/100 (76%), Gaps = 0/100 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++   +R  PLFDRVL+QR  A ++TK G+L+PEKAQ K  EA VVAVGPG+R E GD I
+Sbjct  1    MANTLRRFKPLFDRVLVQRGDAISKTKSGILLPEKAQEKVREATVVAVGPGSRNEKGDLI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            PMSV  GD VLLPE+GGSK+  E +E+ +FRE++I+AK S
+Sbjct  61   PMSVQEGDTVLLPEFGGSKLLFEEKEYTIFRESEIIAKFS  100
+
+
+>gb|ETN60307.1| heat shock protein [Anopheles darlingi]
+Length=100
+
+ Score =  121 bits (304),  Expect = 9e-35, Method: Compositional matrix adjust.
+ Identities = 59/96 (61%), Positives = 80/96 (83%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            KR++PL DRVLI RA A T+TK GL+IPEKAQ+K LE  VVAVGPGAR  ++G+ +P++V
+Sbjct  4    KRLLPLLDRVLILRAEALTKTKSGLVIPEKAQSKVLEGTVVAVGPGARNTQTGEHVPLAV  63
+
+Query  68   GVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+             VG+KVLLPEYGG+K+E+ + +E+ +FRE DI+AK+
+Sbjct  64   KVGEKVLLPEYGGTKVELGDSKEYHLFREADILAKI  99
+
+
+>ref|XP_001657881.1| heat shock protein, putative [Aedes aegypti]
+ gb|EAT47886.1| AAEL001052-PA [Aedes aegypti]
+Length=100
+
+ Score =  121 bits (304),  Expect = 1e-34, Method: Compositional matrix adjust.
+ Identities = 56/97 (58%), Positives = 83/97 (86%), Gaps = 2/97 (2%)
+
+Query  8    AKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMS  66
+            +KR++PL DRVL+QRA A T+TKGG+++PEKAQ+K LE  +VAVGPGAR +++G  +P++
+Sbjct  3    SKRLIPLLDRVLVQRAEALTKTKGGIVLPEKAQSKVLEGTIVAVGPGARNSQTGQHVPLA  62
+
+Query  67   VGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            V VG+KVLLPEYGG+K+++ + +E+ +FRE DI+AK+
+Sbjct  63   VTVGEKVLLPEYGGTKVDLGDTKEYHLFREADILAKI  99
+
+
+>ref|XP_001848951.1| heat shock protein [Culex quinquefasciatus]
+ gb|EDS29410.1| heat shock protein [Culex quinquefasciatus]
+Length=100
+
+ Score =  119 bits (297),  Expect = 1e-33, Method: Compositional matrix adjust.
+ Identities = 55/98 (56%), Positives = 82/98 (84%), Gaps = 2/98 (2%)
+
+Query  8    AKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMS  66
+            ++R++PL DRVL+QRA A T+TKGG+++PEKAQ+K LE  V+AVGPGAR A++G  + + 
+Sbjct  3    SRRLIPLLDRVLVQRAEALTKTKGGIVLPEKAQSKVLEGTVIAVGPGARNAQTGQHVALG  62
+
+Query  67   VGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKLS  103
+            V VG+KVLLPEYGG+K+++ + +E+ +FRE+DI+AK+ 
+Sbjct  63   VTVGEKVLLPEYGGTKVDLGDAKEYHLFRESDILAKID  100
+
+
+>ref|XP_008557212.1| PREDICTED: 10 kDa heat shock protein, mitochondrial [Microplitis 
+demolitor]
+ gb|EZA45895.1| 10 kDa heat shock protein, mitochondrial-like protein [Microplitis 
+demolitor]
+Length=101
+
+ Score =  118 bits (295),  Expect = 3e-33, Method: Compositional matrix adjust.
+ Identities = 56/95 (59%), Positives = 76/95 (80%), Gaps = 2/95 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++P+ DRVL+QRA A T+TKGG+L+PE  Q K L+A VVAVGPG+R E G  +PM++ 
+Sbjct  6    KRLIPMLDRVLVQRADAITKTKGGVLLPEN-QKKVLQATVVAVGPGSRNEQGQHVPMNIK  64
+
+Query  69   VGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            VGD VLLPEYGG+K+ + E +E  +FRE+DI+AK+
+Sbjct  65   VGDHVLLPEYGGTKVVLEEDKELHLFRESDILAKI  99
+
+
+>gb|ADD38727.1| 10 kDa heat shock protein, mitochondrial [Lepeophtheirus salmonis]
+Length=102
+
+ Score =  115 bits (288),  Expect = 3e-32, Method: Compositional matrix adjust.
+ Identities = 54/100 (54%), Positives = 73/100 (73%), Gaps = 0/100 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++   +R  PL DRVL+QR  A ++TK G+L+PEKAQ    EA V+AVGPG+R+ESG   
+Sbjct  1    MANTLRRFKPLMDRVLVQRGDAISKTKSGILLPEKAQDNVREATVIAVGPGSRSESGALN  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            PMS+  GD VLLPE+GGSK+  E +E+ +FRE +I+AK S
+Sbjct  61   PMSLKEGDTVLLPEFGGSKLTFEDKEYSLFREAEIIAKFS  100
+
+
+>ref|XP_001956372.1| GF24628 [Drosophila ananassae]
+ gb|EDV39178.1| GF24628 [Drosophila ananassae]
+Length=104
+
+ Score =  115 bits (287),  Expect = 4e-32, Method: Compositional matrix adjust.
+ Identities = 58/98 (59%), Positives = 79/98 (81%), Gaps = 4/98 (4%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            K+I+P+ DR+LIQRA A T+TKGG+++PEK+  K LE  VVAVGPGAR A +G+ IP+ V
+Sbjct  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKSIGKVLEGTVVAVGPGARNASTGNHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGEEFQ---MFRETDIVAKL  102
+              GD+VLLPE+GG+K+ +EG+E Q   +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVNLEGDEKQELILFRESDILAKL  103
+
+
+>ref|XP_001353500.1| GA10877 [Drosophila pseudoobscura pseudoobscura]
+ ref|XP_002021320.1| GL25265 [Drosophila persimilis]
+ gb|EAL31011.1| GA10877 [Drosophila pseudoobscura pseudoobscura]
+ gb|EDW40476.1| GL25265 [Drosophila persimilis]
+Length=103
+
+ Score =  113 bits (283),  Expect = 1e-31, Method: Compositional matrix adjust.
+ Identities = 58/97 (60%), Positives = 77/97 (79%), Gaps = 3/97 (3%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            K+I+P+ DR+LIQRA A T+TKGG+++PEKA  K LE  VVAVGPGAR A +G  IP+ V
+Sbjct  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVVAVGPGARNASTGSHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKL  102
+              GD+VLLPE+GG+K+ +EG+  E  +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVNLEGDVKELFLFRESDILAKL  102
+
+
+>gb|ACO11796.1| 10 kDa heat shock protein, mitochondrial [Lepeophtheirus salmonis]
+Length=102
+
+ Score =  113 bits (282),  Expect = 2e-31, Method: Compositional matrix adjust.
+ Identities = 53/100 (53%), Positives = 72/100 (72%), Gaps = 0/100 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++   +R  PL DRVL+QR  A ++TK G+L+PEKAQ    EA V+AVGPG+R+ESG   
+Sbjct  1    MANTLRRFKPLMDRVLVQRGDAISKTKSGILLPEKAQDNVREATVIAVGPGSRSESGALN  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            P S+  GD VLLPE+GGSK+  E +E+ +FRE +I+AK S
+Sbjct  61   PTSLKEGDTVLLPEFGGSKLTFEDKEYSLFREAEIIAKFS  100
+
+
+>ref|XP_002062093.1| GK17350 [Drosophila willistoni]
+ gb|EDW73079.1| GK17350 [Drosophila willistoni]
+Length=104
+
+ Score =  112 bits (280),  Expect = 4e-31, Method: Compositional matrix adjust.
+ Identities = 56/98 (57%), Positives = 77/98 (79%), Gaps = 4/98 (4%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            K+I+P+ DR+LIQRA A T+TKGG+++PEK+  K LE  VVAVGPG R   +G+ IP+ V
+Sbjct  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKSVGKVLEGTVVAVGPGTRNVTTGNHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE---EFQMFRETDIVAKL  102
+              GD+VLLPE+GG+K+ +EG+   EF +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVNLEGDDKKEFLLFRESDILAKL  103
+
+
+>ref|XP_004530594.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Ceratitis 
+capitata]
+Length=102
+
+ Score =  112 bits (279),  Expect = 6e-31, Method: Compositional matrix adjust.
+ Identities = 56/96 (58%), Positives = 78/96 (81%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARA-ESGDTIPMSV  67
+            KRI+P+ DR+LIQRA A T TKGG+++PEK+  K L+  VVAVGPGAR  +SG+ IP+ V
+Sbjct  6    KRILPMLDRILIQRAEAATTTKGGIVLPEKSVGKVLQGTVVAVGPGARNPQSGNYIPVGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEG-EEFQMFRETDIVAKL  102
+              GD+VLLPE+GG+++E+E  +E+ +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTRVELEDKKEYILFRESDILAKL  101
+
+
+>ref|NP_648622.1| CG11267 [Drosophila melanogaster]
+ gb|AAF49856.1| CG11267 [Drosophila melanogaster]
+ gb|AAL48167.1| RH34413p [Drosophila melanogaster]
+Length=103
+
+ Score =  112 bits (279),  Expect = 7e-31, Method: Compositional matrix adjust.
+ Identities = 56/97 (58%), Positives = 77/97 (79%), Gaps = 3/97 (3%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            K+I+P+ DR+LIQRA A T+TKGG+++PEKA  K LE  V+AVGPG R A +G+ IP+ V
+Sbjct  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVLAVGPGTRNASTGNHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKL  102
+              GD+VLLPE+GG+K+ +EG+  E  +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVNLEGDQKELFLFRESDILAKL  102
+
+
+>ref|XP_001972611.1| GG15616 [Drosophila erecta]
+ ref|XP_002030354.1| GM25388 [Drosophila sechellia]
+ ref|XP_002094659.1| GE21943 [Drosophila yakuba]
+ ref|XP_002084728.1| GD14421 [Drosophila simulans]
+ gb|EDV51637.1| GG15616 [Drosophila erecta]
+ gb|EDW41340.1| GM25388 [Drosophila sechellia]
+ gb|EDW94371.1| GE21943 [Drosophila yakuba]
+ gb|EDX10313.1| GD14421 [Drosophila simulans]
+Length=103
+
+ Score =  110 bits (276),  Expect = 2e-30, Method: Compositional matrix adjust.
+ Identities = 55/97 (57%), Positives = 77/97 (79%), Gaps = 3/97 (3%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            K+I+P+ DR+LIQRA A T+TKGG+++PEK+  K LE  V+AVGPG R A +G+ IP+ V
+Sbjct  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKSVGKVLEGTVLAVGPGTRNASTGNHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAKL  102
+              GD+VLLPE+GG+K+ +EG+  E  +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVNLEGDQKELFLFRESDILAKL  102
+
+
+>gb|ACY66388.1| chaperonin 10 [Scylla paramamosain]
+Length=102
+
+ Score =  110 bits (274),  Expect = 4e-30, Method: Compositional matrix adjust.
+ Identities = 52/99 (53%), Positives = 76/99 (77%), Gaps = 0/99 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++GV +R +PLFDRVL+Q+A   T+T  G+LIPEK+Q K L   VVAVG G R E+G  I
+Sbjct  1    MAGVLRRFVPLFDRVLVQKAEVATKTASGILIPEKSQAKVLIGKVVAVGEGQRTENGSFI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKL  102
+            P  V VGD+VLLPE+GG+K+ +E +++ +FR+++I+AK+
+Sbjct  61   PPVVSVGDEVLLPEFGGTKVTLEEKDYFLFRDSEILAKM  99
+
+
+>ref|XP_005175914.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Musca 
+domestica]
+Length=101
+
+ Score =  109 bits (273),  Expect = 5e-30, Method: Compositional matrix adjust.
+ Identities = 54/96 (56%), Positives = 78/96 (81%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            KRI+P+ DRVL++RA   T TKGG+++PEKAQ K +E  V+AVGPGAR A++G+ +  +V
+Sbjct  5    KRIIPMLDRVLVKRAETLTTTKGGIVLPEKAQGKMMEGTVIAVGPGARNAQTGEHMKPAV  64
+
+Query  68   GVGDKVLLPEYGGSKIEMEG-EEFQMFRETDIVAKL  102
+              GD++LLPE+GG+K+EME  +E+ +FRE+DI+AKL
+Sbjct  65   KEGDRILLPEFGGTKVEMEDKKEYLLFRESDILAKL  100
+
+
+>gb|AGI74966.1| heat shock protein 10 [Scylla paramamosain]
+Length=102
+
+ Score =  109 bits (272),  Expect = 6e-30, Method: Compositional matrix adjust.
+ Identities = 52/99 (53%), Positives = 76/99 (77%), Gaps = 0/99 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++GV +R +PLFDRVL+Q+A   T+T  G+LIPEK+Q K L   VVAVG G R E+G  I
+Sbjct  1    MAGVLRRFVPLFDRVLVQKAEVVTKTASGILIPEKSQAKVLIGKVVAVGEGQRTENGSFI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKL  102
+            P  V VGD+VLLPE+GG+K+ +E +++ +FR+++I+AK+
+Sbjct  61   PPVVSVGDEVLLPEFGGTKVTLEEKDYFLFRDSEILAKM  99
+
+
+>ref|XP_003740651.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Metaseiulus 
+occidentalis]
+Length=101
+
+ Score =  107 bits (267),  Expect = 4e-29, Method: Compositional matrix adjust.
+ Identities = 49/100 (49%), Positives = 74/100 (74%), Gaps = 0/100 (0%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++   +R++PL DR+L++R A E ++KGG+L+PE++Q K   A VVAVG G  ++ G  I
+Sbjct  1    MAAAGRRLIPLLDRILVERFAPEVKSKGGILLPEQSQNKVQTATVVAVGDGGYSKDGQRI  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            P+SV  GDKV+LPEYGG KIE++ +E  +FR++DI+AK  
+Sbjct  61   PVSVKAGDKVVLPEYGGQKIEVDKKELFIFRDSDILAKWQ  100
+
+
+>ref|XP_001985472.1| GH17079 [Drosophila grimshawi]
+ gb|EDV97820.1| GH17079 [Drosophila grimshawi]
+Length=104
+
+ Score =  105 bits (263),  Expect = 2e-28, Method: Compositional matrix adjust.
+ Identities = 52/98 (53%), Positives = 75/98 (77%), Gaps = 4/98 (4%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  67
+            KRI+P+ DR+L+QRA A T+TKGG+++PEK+  K LE  V+AVGPG R   +G  IP+ V
+Sbjct  6    KRIIPMLDRILVQRAEALTKTKGGIVLPEKSVGKVLEGTVIAVGPGTRNVTTGSHIPIGV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE---EFQMFRETDIVAKL  102
+              GD+VLLPE+GG+K++++ +   E  +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPEFGGTKVQLDSDDKKEMFLFRESDILAKL  103
+
+
+>ref|NP_001119666.1| heat shock 10kDa protein 1 [Acyrthosiphon pisum]
+ gb|ABD72671.1| unknown [Acyrthosiphon pisum]
+ dbj|BAH70888.1| ACYPI000693 [Acyrthosiphon pisum]
+Length=101
+
+ Score =  104 bits (260),  Expect = 4e-28, Method: Compositional matrix adjust.
+ Identities = 47/100 (47%), Positives = 76/100 (76%), Gaps = 1/100 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++ VA +  PLFDRVL++R  A  ++KGG+++PE A  K  EA V+AVGPGAR + G  +
+Sbjct  1    MASVATKFRPLFDRVLVKRLDAVKQSKGGIMLPESASKKIREATVIAVGPGARNQDGKPV  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEE-FQMFRETDIVAKL  102
+            P+ V VGD+VLLPEYGG+ I+++ ++ + +F+E++++AK+
+Sbjct  61   PIDVNVGDRVLLPEYGGTAIQLDDDDSYTIFKESELLAKV  100
+
+
+>gb|ENN72547.1| hypothetical protein YQE_10887, partial [Dendroctonus ponderosae]
+Length=111
+
+ Score =  104 bits (260),  Expect = 6e-28, Method: Compositional matrix adjust.
+ Identities = 43/95 (45%), Positives = 73/95 (77%), Gaps = 0/95 (0%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            K+++PLF+R+L++RA     +KGG+++PE    K L+  VVAVGPG R E G  +PM++ 
+Sbjct  16   KKLVPLFNRILVKRAEPLKESKGGIVLPEAKTAKSLKGTVVAVGPGTRTEKGVPVPMTIK  75
+
+Query  69   VGDKVLLPEYGGSKIEMEGEEFQMFRETDIVAKLS  103
+            VGD+V+LP+YGG+++EM+ + + +FRE++I+A+ +
+Sbjct  76   VGDEVMLPDYGGTRVEMDEQTYFLFRESEILARYT  110
+
+
+>ref|XP_002054763.1| GJ22624 [Drosophila virilis]
+ gb|EDW68283.1| GJ22624 [Drosophila virilis]
+Length=102
+
+ Score =  104 bits (259),  Expect = 7e-28, Method: Compositional matrix adjust.
+ Identities = 51/101 (50%), Positives = 78/101 (77%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGD-T  62
+            ++ V K+++P+ DR+LIQRA  +T T GG+L+PE +  K ++ VVVAVGPGAR   G   
+Sbjct  1    MASVIKKVVPMLDRILIQRAEVKTSTAGGILLPEDSVPKEMQGVVVAVGPGARNPVGSGH  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+            +P++V  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  61   LPVAVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_001997009.1| GH22450 [Drosophila grimshawi]
+ gb|EDV90461.1| GH22450 [Drosophila grimshawi]
+Length=102
+
+ Score =  103 bits (258),  Expect = 9e-28, Method: Compositional matrix adjust.
+ Identities = 51/101 (50%), Positives = 77/101 (76%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGD-T  62
+            +S V K+++P+ DR+LIQRA  +  T GG+L+PE +  K ++ VVVAVGPGAR   G   
+Sbjct  1    MSSVIKKVLPMLDRILIQRAEVKMTTAGGILLPEDSVPKEMQGVVVAVGPGARNPVGSGH  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+            +P++V  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  61   LPVAVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_003245465.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Acyrthosiphon 
+pisum]
+Length=101
+
+ Score =  102 bits (254),  Expect = 3e-27, Method: Compositional matrix adjust.
+ Identities = 46/100 (46%), Positives = 75/100 (75%), Gaps = 1/100 (1%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            ++ VA +  PLFDRVL++R  A  ++KGG+++PE A  K  EA V+AVGPGAR + G  +
+Sbjct  1    MASVANKFRPLFDRVLVKRLDAVKQSKGGIMLPESASKKIREATVIAVGPGARNQDGKPV  60
+
+Query  64   PMSVGVGDKVLLPEYGGSKIEMEGEE-FQMFRETDIVAKL  102
+            P+ V VGD+VLLPEYGG+ I+++ ++ + + +E++++AK+
+Sbjct  61   PIDVNVGDRVLLPEYGGTAIQLDDDDSYTIIKESELLAKV  100
+
+
+>ref|XP_004529926.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Ceratitis 
+capitata]
+Length=102
+
+ Score =  101 bits (252),  Expect = 6e-27, Method: Compositional matrix adjust.
+ Identities = 49/101 (49%), Positives = 76/101 (75%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARA-ESGDT  62
+            ++ + KR++P  DR+L++RA A   TKGG+++ EK   + +E  VVAVGPG+R  +SG+ 
+Sbjct  1    MAAIIKRVIPTLDRILVRRAEAANVTKGGIVLTEKGVERMVEGTVVAVGPGSRNPQSGNY  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEG-EEFQMFRETDIVAKL  102
+            IP+ V  GD+VLLP+YGG+++EME  +E+ ++RE DI+AKL
+Sbjct  61   IPIGVKAGDRVLLPKYGGTRVEMEDKKEYVLYREADILAKL  101
+
+
+>ref|NP_650333.1| CG9920 [Drosophila melanogaster]
+ ref|XP_002031249.1| GM25890 [Drosophila sechellia]
+ gb|AAF55015.1| CG9920 [Drosophila melanogaster]
+ gb|AAL68164.1| AT30951p [Drosophila melanogaster]
+ gb|EDW42235.1| GM25890 [Drosophila sechellia]
+Length=102
+
+ Score =  101 bits (252),  Expect = 7e-27, Method: Compositional matrix adjust.
+ Identities = 53/102 (52%), Positives = 79/102 (77%), Gaps = 4/102 (4%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            +S V K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ VVVAVGPGAR  +G   
+Sbjct  1    MSNVIKKVIPMLDRILIQRFEVKTTTAGGILLPEESVPKEMQGVVVAVGPGARNPAGAG-  59
+
+Query  64   PMSVGV--GDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+             +SVGV  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  60   HLSVGVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_002070666.1| GK10911 [Drosophila willistoni]
+ gb|EDW81652.1| GK10911 [Drosophila willistoni]
+Length=102
+
+ Score =  101 bits (251),  Expect = 9e-27, Method: Compositional matrix adjust.
+ Identities = 52/97 (54%), Positives = 76/97 (78%), Gaps = 4/97 (4%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVG  68
+            KR++P+ DR+LIQRA  +T T GG+L+PE++  K ++ +VVAVGPGAR   G    +SVG
+Sbjct  6    KRVIPMLDRILIQRAEVKTTTAGGILLPEESVPKEMQGIVVAVGPGAR-NPGGAGHLSVG  64
+
+Query  69   V--GDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+            V  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  65   VKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_002097917.1| GE10065 [Drosophila yakuba]
+ gb|AAR10247.1| similar to Drosophila melanogaster CG9920, partial [Drosophila 
+yakuba]
+ gb|EDW97629.1| GE10065 [Drosophila yakuba]
+Length=102
+
+ Score =  101 bits (251),  Expect = 1e-26, Method: Compositional matrix adjust.
+ Identities = 52/102 (51%), Positives = 79/102 (77%), Gaps = 4/102 (4%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            +S + K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ VVVAVGPGAR  +G   
+Sbjct  1    MSNIIKKVIPMLDRILIQRFEVKTTTAGGILLPEESVPKEMQGVVVAVGPGARNPAGAG-  59
+
+Query  64   PMSVGV--GDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+             +SVGV  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  60   HLSVGVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_001979878.1| GG21544 [Drosophila erecta]
+ gb|EDV48836.1| GG21544 [Drosophila erecta]
+Length=102
+
+ Score =  100 bits (248),  Expect = 3e-26, Method: Compositional matrix adjust.
+ Identities = 52/102 (51%), Positives = 79/102 (77%), Gaps = 4/102 (4%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTI  63
+            +S V K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ +VVAVGPGAR  +G   
+Sbjct  1    MSSVIKKVIPMLDRILIQRFEVKTTTAGGILLPEESVPKEMQGLVVAVGPGARNPAGAG-  59
+
+Query  64   PMSVGV--GDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+             +SVGV  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  60   HLSVGVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_001999508.1| GI24558 [Drosophila mojavensis]
+ gb|EDW14969.1| GI24558 [Drosophila mojavensis]
+Length=102
+
+ Score = 99.8 bits (247),  Expect = 3e-26, Method: Compositional matrix adjust.
+ Identities = 50/101 (50%), Positives = 76/101 (75%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG-DT  62
+            ++ V K+++P+ DR+LI RA  +T T GG+L+PE +  K ++ VVVAVGPGAR   G   
+Sbjct  1    MANVIKKVVPMLDRILILRAEVKTTTAGGILLPEDSVPKEMQGVVVAVGPGARNPVGAGH  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+            +P+ V  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  61   LPVGVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_002008689.1| GI11679 [Drosophila mojavensis]
+ gb|EDW19165.1| GI11679 [Drosophila mojavensis]
+Length=94
+
+ Score = 99.4 bits (246),  Expect = 4e-26, Method: Compositional matrix adjust.
+ Identities = 50/93 (54%), Positives = 71/93 (76%), Gaps = 4/93 (4%)
+
+Query  14   LFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSVGVGDK  72
+            + DR+LIQRA A T+TKGG+++PEK+  K LE  V+AVGPG R A +G  IP+ V  GD+
+Sbjct  1    MLDRILIQRAEALTKTKGGIVLPEKSVGKVLEGTVIAVGPGTRNATTGSHIPIGVKEGDR  60
+
+Query  73   VLLPEYGGSKIEMEGE---EFQMFRETDIVAKL  102
+            VLLPE+GG+K++++ +   E  +FRE+DI+AKL
+Sbjct  61   VLLPEFGGTKVQLDSDDKKELFLFRESDILAKL  93
+
+
+>ref|XP_002048443.1| GJ11351 [Drosophila virilis]
+ gb|EDW70785.1| GJ11351 [Drosophila virilis]
+Length=94
+
+ Score = 99.0 bits (245),  Expect = 5e-26, Method: Compositional matrix adjust.
+ Identities = 51/93 (55%), Positives = 71/93 (76%), Gaps = 4/93 (4%)
+
+Query  14   LFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSVGVGDK  72
+            + DR+L+QRA A T+TKGG+++PEK+  K LE  VVAVGPG R A +G  IP+ V  GD+
+Sbjct  1    MLDRILVQRAEALTKTKGGIVLPEKSVGKVLEGTVVAVGPGTRNATTGSHIPIGVKEGDR  60
+
+Query  73   VLLPEYGGSKIEM---EGEEFQMFRETDIVAKL  102
+            VLLPE+GG+K+++   E +E  +FRE+DI+AKL
+Sbjct  61   VLLPEFGGTKVQLDSDEKKELFLFRESDILAKL  93
+
+
+>ref|XP_001955477.1| GF18793 [Drosophila ananassae]
+ gb|EDV44038.1| GF18793 [Drosophila ananassae]
+Length=102
+
+ Score = 98.2 bits (243),  Expect = 1e-25, Method: Compositional matrix adjust.
+ Identities = 48/96 (50%), Positives = 74/96 (77%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG-DTIPMSV  67
+            K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ VVVAVGPGAR  +G   + ++V
+Sbjct  6    KKVIPMLDRILIQRFEVKTTTAGGILLPEESVPKEMQGVVVAVGPGARNPAGAGHLSVAV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEG-EEFQMFRETDIVAKL  102
+              GD+VLLP+YGG+K++M+   E+ +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPKYGGTKVDMDDKHEYVLFRESDILAKL  101
+
+
+>ref|XP_008467895.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Diaphorina 
+citri]
+ ref|XP_008483892.1| PREDICTED: 10 kDa heat shock protein, mitochondrial-like [Diaphorina 
+citri]
+Length=111
+
+ Score = 97.4 bits (241),  Expect = 3e-25, Method: Compositional matrix adjust.
+ Identities = 51/94 (54%), Positives = 72/94 (77%), Gaps = 0/94 (0%)
+
+Query  7    VAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMS  66
+            ++++  PL DR+L+ +    T+TKGG+LIPEKAQ +   AVVVAVGPGAR  +G+ I   
+Sbjct  12   LSQKFRPLLDRILVIKDEPLTKTKGGVLIPEKAQQEVNNAVVVAVGPGARTPNGEYIKPV  71
+
+Query  67   VGVGDKVLLPEYGGSKIEMEGEEFQMFRETDIVA  100
+            V VGDKVLLP++GG+KIE+EG+E  +F+E D++A
+Sbjct  72   VNVGDKVLLPKFGGTKIEVEGQELHLFKEADLLA  105
+
+
+>ref|XP_001358693.1| GA22124 [Drosophila pseudoobscura pseudoobscura]
+ gb|EAL27836.1| GA22124 [Drosophila pseudoobscura pseudoobscura]
+Length=102
+
+ Score = 97.1 bits (240),  Expect = 5e-25, Method: Compositional matrix adjust.
+ Identities = 47/101 (47%), Positives = 77/101 (76%), Gaps = 2/101 (2%)
+
+Query  4    VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG-DT  62
+            ++   K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ +VVAVGPGAR  +G   
+Sbjct  1    MANAIKKVIPMLDRILIQRFEMKTTTAGGILLPEESVPKEMQGLVVAVGPGARNPAGAGH  60
+
+Query  63   IPMSVGVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+            + ++V  GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  61   LSIAVKEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_002013612.1| GL23313 [Drosophila persimilis]
+ gb|EDW24598.1| GL23313 [Drosophila persimilis]
+Length=102
+
+ Score = 96.7 bits (239),  Expect = 6e-25, Method: Compositional matrix adjust.
+ Identities = 47/96 (49%), Positives = 75/96 (78%), Gaps = 2/96 (2%)
+
+Query  9    KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESG-DTIPMSV  67
+            K+++P+ DR+LIQR   +T T GG+L+PE++  K ++ +VVAVGPGAR  +G   + ++V
+Sbjct  6    KKVIPMLDRILIQRFEMKTTTAGGILLPEESVPKEMQGLVVAVGPGARNPAGAGHLSVAV  65
+
+Query  68   GVGDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+              GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  66   KEGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  101
+
+
+>ref|XP_002103496.1| GD20460 [Drosophila simulans]
+ gb|EDX12999.1| GD20460 [Drosophila simulans]
+Length=116
+
+ Score = 96.3 bits (238),  Expect = 1e-24, Method: Compositional matrix adjust.
+ Identities = 50/95 (53%), Positives = 74/95 (78%), Gaps = 4/95 (4%)
+
+Query  11   IMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGV-  69
+            ++P+ DR+LIQR   +T T GG+L+PE++  K ++ VVVAVGPGAR  +G    +SVGV 
+Sbjct  22   VIPMLDRILIQRFEVKTTTAGGILLPEESVPKEMQGVVVAVGPGARNPAGAG-HLSVGVK  80
+
+Query  70   -GDKVLLPEYGGSKIEMEGE-EFQMFRETDIVAKL  102
+             GD+VLLP+YGG+K++M+ + E+ +FRE+DI+AKL
+Sbjct  81   EGDRVLLPKYGGTKVDMDDKREYVLFRESDILAKL  115
+
+
+>ref|XP_001663341.1| heat shock protein, putative [Aedes aegypti]
+ gb|EAT34611.1| AAEL013161-PA [Aedes aegypti]
+Length=102
+
+ Score = 95.9 bits (237),  Expect = 1e-24, Method: Compositional matrix adjust.
+ Identities = 46/97 (47%), Positives = 75/97 (77%), Gaps = 3/97 (3%)
+
+Query  8    AKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARA-ESGDTIPMS  66
+             KR++PL DRVL+QRA A  ++KGG+++ EK++ K  E  V+AVGPG R  ++G+ +P++
+Sbjct  3    TKRVIPLLDRVLVQRAEALNQSKGGIVLTEKSRIKMQEGTVIAVGPGTRNMQTGEHVPLA  62
+
+Query  67   VGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKL  102
+            V VGDKVL+P +GG K+++ +G+ +Q+FRE++I+  L
+Sbjct  63   VNVGDKVLVP-FGGVKVDLGDGKLYQLFRESNILGVL  98
+
+
+>gb|EFA01178.1| hypothetical protein TcasGA2_TC010501 [Tribolium castaneum]
+Length=99
+
+ Score = 92.8 bits (229),  Expect = 2e-23, Method: Compositional matrix adjust.
+ Identities = 43/98 (44%), Positives = 68/98 (69%), Gaps = 1/98 (1%)
+
+Query  7    VAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMS  66
+            ++K ++PL +RVLI++     +TKGG++IPE  + K  +  VVAVGPG     G T+P  
+Sbjct  1    MSKHVVPLLNRVLIKKFDPAAKTKGGVVIPEGWRKKISKGKVVAVGPGTVNNQGKTVPCC  60
+
+Query  67   VGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKLS  103
+            +  GD VLLP+YGG+K++  E +E+ ++RE DI+AK++
+Sbjct  61   LKAGDVVLLPDYGGTKVQYDEKQEYYLYRENDILAKIN  98
+
+
+>emb|CAE54109.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 87.4 bits (215),  Expect = 8e-22, Method: Compositional matrix adjust.
+ Identities = 43/62 (69%), Positives = 51/62 (82%), Gaps = 0/62 (0%)
+
+Query  25  AETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIE  84
+           AE+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE
+Sbjct  1   AESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGTKIE  60
+
+Query  85  ME  86
+           ++
+Sbjct  61  ID  62
+
+
+>ref|XP_969732.3| PREDICTED: uncharacterized protein LOC658233 [Tribolium castaneum]
+Length=373
+
+ Score = 92.4 bits (228),  Expect = 8e-22, Method: Composition-based stats.
+ Identities = 43/98 (44%), Positives = 68/98 (69%), Gaps = 1/98 (1%)
+
+Query  7    VAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMS  66
+            ++K ++PL +RVLI++     +TKGG++IPE  + K  +  VVAVGPG     G T+P  
+Sbjct  1    MSKHVVPLLNRVLIKKFDPAAKTKGGVVIPEGWRKKISKGKVVAVGPGTVNNQGKTVPCC  60
+
+Query  67   VGVGDKVLLPEYGGSKIEM-EGEEFQMFRETDIVAKLS  103
+            +  GD VLLP+YGG+K++  E +E+ ++RE DI+AK++
+Sbjct  61   LKAGDVVLLPDYGGTKVQYDEKQEYYLYRENDILAKIN  98
+
+
+>emb|CAE54223.1| chaperonin [Mesobuthus eupeus]
+Length=64
+
+ Score = 87.0 bits (214),  Expect = 1e-21, Method: Compositional matrix adjust.
+ Identities = 43/61 (70%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           ETRTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ETRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54227.1| chaperonin [Mesobuthus cyprius]
+Length=64
+
+ Score = 86.3 bits (212),  Expect = 3e-21, Method: Compositional matrix adjust.
+ Identities = 42/61 (69%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDXVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54100.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54101.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54102.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54103.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54104.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54105.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54107.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54108.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54117.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54225.1| chaperonin [Mesobuthus cyprius]
+ emb|CAE54226.1| chaperonin [Mesobuthus cyprius]
+ emb|CAE54229.1| chaperonin [Mesobuthus cyprius]
+ emb|CAE54230.1| chaperonin [Mesobuthus cyprius]
+ emb|CAE54233.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54238.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54239.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54240.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54241.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54242.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54248.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54249.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54251.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54252.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54253.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54254.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54255.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54256.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54258.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54259.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54260.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54261.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54263.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 85.9 bits (211),  Expect = 3e-21, Method: Compositional matrix adjust.
+ Identities = 42/61 (69%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54224.1| chaperonin [Mesobuthus caucasicus]
+ emb|CAE54237.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 85.5 bits (210),  Expect = 4e-21, Method: Compositional matrix adjust.
+ Identities = 42/61 (69%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDLVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54257.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 85.5 bits (210),  Expect = 5e-21, Method: Compositional matrix adjust.
+ Identities = 42/61 (69%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDFVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54250.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 85.1 bits (209),  Expect = 7e-21, Method: Compositional matrix adjust.
+ Identities = 42/61 (69%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGXKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54114.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54115.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54116.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 85.1 bits (209),  Expect = 8e-21, Method: Compositional matrix adjust.
+ Identities = 42/60 (70%), Positives = 49/60 (82%), Gaps = 0/60 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGTKIEI  61
+
+
+>emb|CAE54262.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 84.0 bits (206),  Expect = 2e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E G+ +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGNFVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54231.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54232.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 84.0 bits (206),  Expect = 2e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P  V  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPXVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54244.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 83.6 bits (205),  Expect = 2e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++ PEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMXPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54228.1| chaperonin [Mesobuthus cyprius]
+Length=64
+
+ Score = 83.6 bits (205),  Expect = 2e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 50/61 (82%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYGG++IE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDFVPPSVKEGDRVLLPEYGGTEIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54243.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54245.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54246.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54247.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 83.6 bits (205),  Expect = 3e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPEYG +KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEYGXTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54113.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 83.2 bits (204),  Expect = 3e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+V LPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDFVPPSVKEGDRVXLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54106.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 82.0 bits (201),  Expect = 9e-20, Method: Compositional matrix adjust.
+ Identities = 41/61 (67%), Positives = 49/61 (80%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPGAR E GD +P SV  GD+VLLPE GG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGARTERGDIVPPSVKEGDRVLLPEXGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54111.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54112.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 81.6 bits (200),  Expect = 1e-19, Method: Compositional matrix adjust.
+ Identities = 40/61 (66%), Positives = 48/61 (79%), Gaps = 0/61 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ K   A VVAVGPG R   GD +P SV  GD+VLLPEYGG+KIE+
+Sbjct  2   ESRTKGGIMIPEKAQAKVQSATVVAVGPGXRTXRGDIVPPSVKEGDRVLLPEYGGTKIEI  61
+
+Query  86  E  86
+           +
+Sbjct  62  D  62
+
+
+>emb|CAE54234.1| chaperonin [Mesobuthus gibbosus]
+ emb|CAE54236.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 79.0 bits (193),  Expect = 2e-18, Method: Compositional matrix adjust.
+ Identities = 39/60 (65%), Positives = 47/60 (78%), Gaps = 0/60 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG++IPEKAQ     A VVAVGPGAR E GD +P SV  GD+V LPEYGG++IE+
+Sbjct  2   ESRTKGGIMIPEKAQATVQSATVVAVGPGARTERGDLVPPSVKEGDRVPLPEYGGTQIEI  61
+
+
+>emb|CAE54235.1| chaperonin [Mesobuthus gibbosus]
+Length=64
+
+ Score = 77.4 bits (189),  Expect = 6e-18, Method: Compositional matrix adjust.
+ Identities = 38/60 (63%), Positives = 47/60 (78%), Gaps = 0/60 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E+RTKGG+++PEKAQ     A VVAVGPGAR E GD +P SV  GD+V LPEYGG++IE+
+Sbjct  2   ESRTKGGIMMPEKAQATVQSATVVAVGPGARTERGDLVPPSVKEGDRVPLPEYGGTQIEI  61
+
+
+>pir||A42281 symbionin symS - pea aphid
+Length=96
+
+ Score = 66.2 bits (160),  Expect = 2e-13, Method: Compositional matrix adjust.
+ Identities = 35/92 (38%), Positives = 54/92 (59%), Gaps = 1/92 (1%)
+
+Query  10  RIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGV  69
+           +I PL DRVL++R   E+++ GG+++   A  K     V AVG G   ++GD  P+ V V
+Sbjct  2   KIRPLHDRVLVKRQEVESKSAGGIVLTGSAAGKSTRGTVTAVGKGRVLDNGDIKPLDVKV  61
+
+Query  70  GDKVLLPE-YGGSKIEMEGEEFQMFRETDIVA  100
+           GD V+  E YG    +++ EE  +  E+DI+A
+Sbjct  62  GDVVIFNEGYGAKTEKIDNEELLILTESDILA  93
+
+
+>ref|XP_002401700.1| chaperonin, putative [Ixodes scapularis]
+ gb|EEC11386.1| chaperonin, putative [Ixodes scapularis]
+Length=63
+
+ Score = 60.5 bits (145),  Expect = 2e-11, Method: Compositional matrix adjust.
+ Identities = 29/63 (46%), Positives = 46/63 (73%), Gaps = 0/63 (0%)
+
+Query  26  ETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPEYGGSKIEM  85
+           E +TKGG++IP+ A+ K ++  +VAVG G R + G+  P+ + VGDKVL  ++ GS+IE+
+Sbjct  1   EEKTKGGIIIPDTAKEKPMQGEIVAVGNGIRNKKGEIHPLELKVGDKVLYGKWAGSEIEI  60
+
+Query  86  EGE  88
+           +GE
+Sbjct  61  KGE  63
+
+
+>ref|XP_004531735.1| PREDICTED: 10 kDa chaperonin-like [Ceratitis capitata]
+Length=97
+
+ Score = 60.5 bits (145),  Expect = 3e-11, Method: Compositional matrix adjust.
+ Identities = 32/91 (35%), Positives = 54/91 (59%), Gaps = 1/91 (1%)
+
+Query  11  IMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVG  70
+           I PL DRV+++R   E+++ GG+++   A  K     ++AVG G   E+G+  P+ V VG
+Sbjct  3   IRPLHDRVIVKRKEVESKSAGGIVLTGSAAGKSTRGEIIAVGKGRILENGNVQPLDVKVG  62
+
+Query  71  DKVLLPE-YGGSKIEMEGEEFQMFRETDIVA  100
+           D V+  + YG    +++ EE  +  E+DI+A
+Sbjct  63  DIVIFNDGYGVKSEKIDNEEVLIMSESDILA  93
+
+
+>ref|XP_003492997.1| PREDICTED: 10 kDa chaperonin-like [Bombus impatiens]
+Length=97
+
+ Score = 60.5 bits (145),  Expect = 3e-11, Method: Compositional matrix adjust.
+ Identities = 35/92 (38%), Positives = 52/92 (57%), Gaps = 1/92 (1%)
+
+Query  10  RIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGV  69
+            I PL DRV+I+R   E+++ GG+++   A  K     V+AVG G   E+G   P+ V V
+Sbjct  2   NIRPLHDRVIIKRKEVESKSAGGIVLTGSAAGKSTRGEVIAVGNGRILENGQVQPLDVKV  61
+
+Query  70  GDKVLLPEYGGSKIE-MEGEEFQMFRETDIVA  100
+           G+ V+  E  G K E ++ EE  +  E DI+A
+Sbjct  62  GNIVIFNEGYGVKTEKIDNEEVLILSENDILA  93
+
+
+>pir||JC5770 chaperonin groES-like protein - Weevil
+Length=97
+
+ Score = 54.7 bits (130),  Expect = 4e-09, Method: Compositional matrix adjust.
+ Identities = 31/92 (34%), Positives = 52/92 (57%), Gaps = 1/92 (1%)
+
+Query  10  RIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGV  69
+            I PL DRV+++R   E ++ GG+++   A  K     V+AVG G   E+G+   + V V
+Sbjct  2   NIRPLHDRVIVKRKEVEAKSAGGIVLTGSAAGKSTRGEVLAVGHGRILENGEVKALDVKV  61
+
+Query  70  GDKVLLPE-YGGSKIEMEGEEFQMFRETDIVA  100
+           GD V+  + YG    +++ +E  +  E+DI+A
+Sbjct  62  GDIVIFNDGYGVKAEKIDNDEVLIMSESDILA  93
+
+
+>ref|XP_008481334.1| PREDICTED: DNA gyrase subunit B, chloroplastic/mitochondrial-like 
+[Diaphorina citri]
+Length=149
+
+ Score = 45.8 bits (107),  Expect = 8e-06, Method: Compositional matrix adjust.
+ Identities = 29/83 (35%), Positives = 46/83 (55%), Gaps = 7/83 (8%)
+
+Query  21   QRAAAE---TRTKGGLLIPEKAQTKGLEAVVVAVGPGARAESGDTIPMSVGVGDKVLLPE  77
+            +R+AAE   T    G    E A  K  +  V+A+G G   E G   P+++ VGD+VL  +
+Sbjct  67   KRSAAEIVMTELHAG----ETAAEKPDQGEVLAIGTGKILEDGRIRPLAIKVGDRVLFGK  122
+
+Query  78   YGGSKIEMEGEEFQMFRETDIVA  100
+            Y G  ++++G+E  + RE D+ A
+Sbjct  123  YAGQSVKVDGKELLVMREEDLFA  145
+
+
+>ref|XP_002435338.1| hypothetical protein IscW_ISCW005736 [Ixodes scapularis]
+ gb|EEC08162.1| hypothetical protein IscW_ISCW005736 [Ixodes scapularis]
+Length=64
+
+ Score = 41.6 bits (96),  Expect = 1e-04, Method: Compositional matrix adjust.
+ Identities = 17/40 (43%), Positives = 29/40 (73%), Gaps = 0/40 (0%)
+
+Query  4   VSGVAKRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKG  43
+           ++G+ KR++ L DR+L++R   E   KGG++IPEK  ++G
+Sbjct  1   MAGLGKRLVSLLDRILVERFVPEDVIKGGIMIPEKGPSQG  40
+
+
+
+Lambda      K        H        a         alpha
+   0.316    0.135    0.363    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 10776240840
+
+
+  Database: nr_arthropoda
+    Posted date:  Aug 12, 2014  10:24 PM
+  Number of letters in database: 441,210,899
+  Number of sequences in database:  1,123,327
+
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Neighboring words threshold: 11
+Window for multiple hits: 40
