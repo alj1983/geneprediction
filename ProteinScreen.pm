@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 package ProteinScreen;
-
+use match::smart; ## Replaces the smartmatch operator ~~
 use strict;
 use warnings;
 use Bio::SeqIO;
@@ -290,7 +290,7 @@ sub parse_local_database_search {
     my @querydescriptions;
     
     for ($ex=0;$ex<$evalsl1;$ex++){
-	if ($ex ~~ @excluding){}
+	if ($ex |M| @excluding){}
 	else{
 	    push @evals,$evals1[$ex];
 	    push @querynames,$querynames1[$ex];
@@ -1355,7 +1355,7 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	    chomp;
             # Chose only the lines for sequence 2
 	    
-	    if($. ~~ @lines1) {
+	    if($. |M| @lines1) {
 		my $s1 = $_;
 		$s1 =~ /^\S*\s*(\S*)$/;
 		my $seq1 = $1;
@@ -1363,7 +1363,7 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	    }
 	    
             # Chose only the lines for sequence 2
-	    if($. ~~ @lines2) {
+	    if($. |M| @lines2) {
 		my $s2 = $_;
 		$s2 =~ /^\S*\s*(\S*)$/;
 		my $seq2 = $1;
