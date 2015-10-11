@@ -2046,10 +2046,10 @@ create_report();
 #my $retVal15 = `pdflatex --interaction=nonstopmode ResultReport.tex`;
 }
 
+ProteinScreen::ProteinScreen("/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/Fishes_reproduction_embl.fasta", "/home/alj/Dropbox.personal/Dropbox/Pfam/Pfam-A.hmm", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nonredundant_dbv1.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/GuppyESTs.fasta");
 
 1;
 
-# Remove all errors when using TestScript.pl
 # XX Create reports in markdown and then convert it to pdf and html!
 
 #XX Create usage of model in separate script file and use subroutines with NAM::function(args);
