@@ -259,7 +259,6 @@ sub parse_local_database_search {
     # Exclude those records without evalues
     my @excluding;
     @excluding = grep { $evals1[$_] eq "" } 0..$#evals1;
-    
     my $ex;
     my $evalsl1 = @evals1;
     my @evals;
@@ -311,13 +310,20 @@ sub parse_local_database_search {
 	
 	
     }
-    
-    
+    @querynames_sig = grep { $_ ne '' } @querynames_sig; # Remove empyt elements
+    @hitnames_sig = grep { $_ ne '' } @hitnames_sig; # Remove empyt elements
+    @hitlength_sig = grep { $_ ne '' } @hitlength_sig; # Remove empyt elements
+    @evals_sig = grep { $_ ne '' } @evals_sig; # Remove empyt elements
+    @ranks_sig = grep { $_ ne '' } @ranks_sig; # Remove empyt elements
+    @queryframe_sig = grep { $_ ne '' } @queryframe_sig; # Remove empyt elements
+    @targetframe_sig = grep { $_ ne '' } @targetframe_sig; # Remove empyt elements
+    @querydescriptions_sig = grep { $_ ne '' } @querydescriptions_sig; # Remove empyt elements
     ############################################################
     ############# Identify the unique comps for each query #####
     ############################################################
     # First get an array of the unique queries that were used: 
     my @unique_queries = uniq @querynames_sig;
+    @unique_queries = grep { $_ ne '' } @unique_queries; # Remove empyt elements
     my $unique_queriesl=@unique_queries;
     print MYOUTFILE1 "\nQueries used:\n";
     print MYOUTFILE1 "-------------\n";
@@ -358,6 +364,8 @@ sub parse_local_database_search {
 	    $_ =~ /^(.*)_.*_.*$/;
 	    push @compnames, $1;
 	}
+    
+	@compnames = grep { $_ ne '' } @compnames; # Remove empyt elements
 	
 	print MYOUTFILE1 "\nUnique comp hits \n";
 	print MYOUTFILE1 "---------------- \n";
@@ -2046,10 +2054,13 @@ create_report();
 #my $retVal15 = `pdflatex --interaction=nonstopmode ResultReport.tex`;
 }
 
-ProteinScreen::ProteinScreen("/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/Fishes_reproduction_embl.fasta", "/home/alj/Dropbox.personal/Dropbox/Pfam/Pfam-A.hmm", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nonredundant_dbv1.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/GuppyESTs.fasta");
+#ProteinScreen::ProteinScreen("/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/Fishes_reproduction_embl.fasta", "/home/alj/Dropbox.personal/Dropbox/Pfam/Pfam-A.hmm", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nonredundant_dbv1.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/GuppyESTs.fasta");
 
 1;
 
+# Need to fix the uninitialized value warning?!
+
+# Running R script from within perl: http://www.perlmonks.org/?node_id=1009021
 # XX Create reports in markdown and then convert it to pdf and html!
 
 #XX Create usage of model in separate script file and use subroutines with NAM::function(args);
