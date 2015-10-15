@@ -310,20 +310,20 @@ sub parse_local_database_search {
 	
 	
     }
-    @querynames_sig = grep { $_ ne '' } @querynames_sig; # Remove empyt elements
-    @hitnames_sig = grep { $_ ne '' } @hitnames_sig; # Remove empyt elements
-    @hitlength_sig = grep { $_ ne '' } @hitlength_sig; # Remove empyt elements
-    @evals_sig = grep { $_ ne '' } @evals_sig; # Remove empyt elements
-    @ranks_sig = grep { $_ ne '' } @ranks_sig; # Remove empyt elements
-    @queryframe_sig = grep { $_ ne '' } @queryframe_sig; # Remove empyt elements
-    @targetframe_sig = grep { $_ ne '' } @targetframe_sig; # Remove empyt elements
-    @querydescriptions_sig = grep { $_ ne '' } @querydescriptions_sig; # Remove empyt elements
+    #@querynames_sig = grep { $_ ne '' } @querynames_sig; # Remove empyt elements
+    #@hitnames_sig = grep { $_ ne '' } @hitnames_sig; # Remove empyt elements
+    #@hitlength_sig = grep { $_ ne '' } @hitlength_sig; # Remove empyt elements
+    #@evals_sig = grep { $_ ne '' } @evals_sig; # Remove empyt elements
+    #@ranks_sig = grep { $_ ne '' } @ranks_sig; # Remove empyt elements
+    #@queryframe_sig = grep { $_ ne '' } @queryframe_sig; # Remove empyt elements
+    #@targetframe_sig = grep { $_ ne '' } @targetframe_sig; # Remove empyt elements
+    #@querydescriptions_sig = grep { $_ ne '' } @querydescriptions_sig; # Remove empyt elements
     ############################################################
     ############# Identify the unique comps for each query #####
     ############################################################
     # First get an array of the unique queries that were used: 
     my @unique_queries = uniq @querynames_sig;
-    @unique_queries = grep { $_ ne '' } @unique_queries; # Remove empyt elements
+    #@unique_queries = grep { $_ ne '' } @unique_queries; # Remove empyt elements
     my $unique_queriesl=@unique_queries;
     print MYOUTFILE1 "\nQueries used:\n";
     print MYOUTFILE1 "-------------\n";
@@ -365,7 +365,7 @@ sub parse_local_database_search {
 	    push @compnames, $1;
 	}
     
-	@compnames = grep { $_ ne '' } @compnames; # Remove empyt elements
+	#@compnames = grep { $_ ne '' } @compnames; # Remove empyt elements
 	
 	print MYOUTFILE1 "\nUnique comp hits \n";
 	print MYOUTFILE1 "---------------- \n";
