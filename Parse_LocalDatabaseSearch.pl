@@ -1,3 +1,5 @@
+#problem: EVALS1 TWO NUMBERS SHORTER THAN oTHER VALUES
+
 #!/usr/bin/perl -w
 
 # Script to extract Best hit in the local transcriptome/genome with
@@ -30,26 +32,30 @@ open(MYOUTFILE1, ">Cfin\.queryinfo"); #open for write
 
 
 
-    my @querynames1; ## This will hold the query names repeated for each hit.
-    my @hitnames1; ## This will hold the hit names
-    my @hitdescriptions1; ## This will hold the hit descriptions
-    my @hitlength1; ## This will hold the hit length
-    my @evals1; ## This will hold the e-values
-    my @ranks1; ## This will hold the ranks
-    my @queryframe1;  # this will hold the reading frame of the query
-    my @targetframe1; # this will hold the reading frame of the target
-    my @querydescriptions1;
-    
+my @querynames1; ## This will hold the query names repeated for each hit.
+my @hitnames1; ## This will hold the hit names
+my @hitdescriptions1; ## This will hold the hit descriptions
+my @querydescriptions1; ## This will hold the query descriptions
+my @hitlength1; ## This will hold the hit length
+my @evals1; ## This will hold the e-values
+my @ranks1; ## This will hold the ranks
+my @queryframe1;  # this will hold the reading frame of the query
+my @targetframe1; # this will hold the reading frame of the target
+
 #    open(IN, $ARGV[0]) or die "Can not open file $ARGV[0]";
+
 foreach (@files){
     my $f=$_;
-
+    
     open (IN,$f) or die "Can not open file $f";
     
     my $hitnumber=0;
+    my $hitnumber2=0;
+    my $hitnumber3=0;
     my $querynumber=1;
-
-my $queryname1; # This will hold the single query name for one file
+    
+    my $queryname1; # This will hold the single query name for one file
+    my $querydescription1; # This will hold the single query description
     while(<IN>){
 	chomp;
 	my $line=$_;
@@ -61,68 +67,73 @@ my $queryname1; # This will hold the single query name for one file
             # DDBJ, DNA Database of Japan       gi|gi-number|dbj|accession|locus
 	    if ($accession =~ /^.*gb\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    elsif ($accession =~ /^.*emb\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    elsif ($accession =~ /^.*dbj\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # NBRF PIR                          pir||entry
 	    elsif ($accession =~ /^.*pir\|\|(\S*)\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # Protein Research Foundation       prf||name
 	    elsif ($accession=~ /^.*prf\|.*\|(.*)\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # SWISS-PROT                        sp|accession|name
 	    elsif ($accession=~ /^.*sp\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # Brookhaven Protein Data Bank (1)  pdb|entry|chain
 	    elsif ($accession=~ /^.*pdb\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # GenInfo Backbone Id               bbs|number
 	    elsif ($accession=~ /^.*bbs\|(.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$1;
+		$querydescription1=$2;
 	    }
 	    # General database identifier       gnl|database|identifier
 	    elsif ($accession=~ /^.*gnl\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # NCBI Reference Sequence           ref|accession|locus
 	    elsif ($accession=~ /^.*ref\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # tpg|DAA34093.1| 
 	    elsif ($accession=~ /^.*tpg\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
 	    }
 	    # Local Sequence identifier         lcl|identifier
 	    elsif ($accession=~ /^.*lcl\|(.*)\|\s*(\S*.*)/){
 		$queryname1=$1;
-		push @querydescriptions1,$2;
+		$querydescription1=$2;
+	    }
+	    elsif ($accession=~ /^(\S*)/){
+		$queryname1=$1;
+		$querydescription1="No description";
 	    }
 	    elsif ($accession){
 		$queryname1="";
-		push @querydescriptions1,"";
+		$querydescription1="No description";
 	    }
 	}
 	if ($line =~ /^>/){
 	    push @querynames1, $queryname1;
+	    push @querydescriptions1, $querydescription1;
 	    ### Test what kind of Fasta definition line format this is:
 	    # GenBank                           gi|gi-number|gb|accession|locus
 	    # EMBL Data Library                 gi|gi-number|emb|accession|locus
@@ -188,20 +199,31 @@ my $queryname1; # This will hold the single query name for one file
 		push @hitnames1,$1;
 		push @hitdescriptions1,$2;
 	    }
+	    elsif ($line=~ /^(\S*)/){
+		push @hitnames1, $1;
+		push @hitdescriptions1,"";
+	    }
 	    elsif ($line){
 		push @hitnames1,"";
 		push @hitdescriptions1,"";
 	    }
 	    $hitnumber++;
+	    $hitnumber2=0;
+	    $hitnumber3=0;
 	    $querynumber=$hitnumber;
 	    if ($hitnumber>0){
 		push @ranks1, $hitnumber;
 	    }
 	}
 	
-	if ($line =~ /Score\s*=\s*(.*)\s*bits.*Expect\s*=\s*(\S*),.*$/g){
+
+	if ($line =~ /Expect.*=\s*(\S*),/g){
+	    my $e=$1;
+	    if ($hitnumber2<2){
 	    #push @estscores,$1;
-	    push @evals1,$2;
+	    push @evals1,$e;
+	    $hitnumber2=2;
+	    }
 	}
 	if ($hitnumber>0){
 	    #push @estscores,$1;
@@ -211,13 +233,15 @@ my $queryname1; # This will hold the single query name for one file
 	}
 	
 	if ($line =~ /Frame = (.*)$/g){
-	    push @targetframe1,$1; 
-	    push @queryframe1,"1";
+	    if ($hitnumber3<2){
+		push @targetframe1,$1; 
+		push @queryframe1,"1";
+		$hitnumber3=2;
+	    }
 	}
     }
     close IN;
 }
-
 
 
 ##### Remove those hits with an e-value >=1e-05
@@ -230,12 +254,13 @@ my $ex;
 my $evalsl1 = @evals1;
 my @evals;
 my @querynames; ## This will hold the query names
+my @querydescriptions; ## This will hold the query descriptions
 my @hitnames; ## This will hold the hit names
 my @hitlength; ## This will hold the hit length
 my @ranks; ## This will hold the ranks
 my @queryframe;
 my @targetframe;
-my @querydescriptions;
+
 
 for ($ex=0;$ex<$evalsl1;$ex++){
     if ($ex ~~ @excluding){}
@@ -248,42 +273,42 @@ for ($ex=0;$ex<$evalsl1;$ex++){
 	push @queryframe,$queryframe1[$ex];
 	push @targetframe,$targetframe1[$ex];
 	push @querydescriptions,$querydescriptions1[$ex];
-	
     }
 }
 
+
 my $evalsl = @evals;
 my @querynames_sig;
+my @querydescriptions_sig;
 my @hitnames_sig;
 my @hitlength_sig;
 my @evals_sig;
 my @ranks_sig;
 my @queryframe_sig;
 my @targetframe_sig;
-my @querydescriptions_sig;
 
 my $o;
 for ($o=0;$o<$evalsl;$o++){
     if ($evals[$o]<1e-05){
-       push @querynames_sig, $querynames[$o];
-       push @hitnames_sig, $hitnames[$o];
-       push @hitlength_sig, $hitlength[$o];
-       push @evals_sig, $evals[$o];
-       push @ranks_sig, $ranks[$o];
-       push @queryframe_sig,$queryframe[$o];
-       push @targetframe_sig,$targetframe[$o];
-       push @querydescriptions_sig,$querydescriptions[$o];
+	push @querynames_sig, $querynames[$o];
+	push @querydescriptions_sig, $querydescriptions[$o];
+	push @hitnames_sig, $hitnames[$o];
+	push @hitlength_sig, $hitlength[$o];
+	push @evals_sig, $evals[$o];
+	push @ranks_sig, $ranks[$o];
+	push @queryframe_sig,$queryframe[$o];
+	push @targetframe_sig,$targetframe[$o];
     }
-
-
+    
+    
 }
 
-
-############################################################
-############# Identify the unique comps for each query #####
-############################################################
+#####
+# Identify the unique comps for each query #####
 # First get an array of the unique queries that were used: 
-my @unique_queries = uniq @querynames_sig;
+
+my @unique_queries;
+@unique_queries = uniq @querynames_sig;
 my $unique_queriesl=@unique_queries;
 print MYOUTFILE1 "\nQueries used:\n";
 print MYOUTFILE1 "-------------\n";
@@ -302,10 +327,10 @@ my @all_unique_comp_hits; # this will collect the unique comp hits of
 for ($q=0;$q<$unique_queriesl;$q++){
     print MYOUTFILE1 "\nUsedQuery: $unique_queries[$q]\n";
     print MYOUTFILE1 "--------------------\n";
-
+    
     
     my $querynames_sigl = @querynames_sig;
-
+    
     my $i;
     my @comp_hits;
     my @queryindices;
@@ -316,19 +341,21 @@ for ($q=0;$q<$unique_queriesl;$q++){
 	    push @queryindices, $i;
 	}
     }
-    
-    
     my @compnames;
     foreach(@comp_hits)
     {
-	$_ =~ /^(.*)_.*_.*$/;
-	push @compnames, $1;
+	if ($_ =~ /^(.*)_.*_.*$/){
+	    push @compnames, $1;
+	}
+	else {
+	    push @compnames, $_;
+	}
     }
     
     print MYOUTFILE1 "\nUnique comp hits \n";
     print MYOUTFILE1 "---------------- \n";
-# get the unique comp hits for that query
-    my @unique_comp_hits = uniq @compnames;
+#get the unique comp hits for that query
+   my @unique_comp_hits = uniq @compnames;
     
     my @index;
     foreach(@unique_comp_hits){

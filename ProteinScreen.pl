@@ -21,13 +21,13 @@ script\n"; }
 
 my $retVal0 = `perl LocalDatabaseSearch.pl $ARGV[0] $ARGV[2]`;
 my $retVal01 = `perl Parse_LocalDatabaseSearch.pl tblastn.LocalDatabase`;
-my $retVal02 = `perl BestHitsToFasta.pl Cfin.compinfo`;
+my $retVal02 = `perl BestHitsToFasta.pl Cfin.compinfo $ARGV[2]`;
 my $retVal03 = `perl translation.pl Comphits.fasta Cfin.compinfo`;
 my $retVal1 = `perl DeduplicateFasta.pl TranslatedCompHits.fasta`;
 my $retVal3 = `perl Parse_DeCypher2.pl Cfin.compinfo deduplicated.fasta`;
 my $retVal4 = `perl PeptideExtraction.pl UniqueCompHits.fasta`;
 my $retVal5 = `perl ReciprocalArthropodaBlast.pl LongestPolypeptide.fasta $ARGV[3]`;
-my $retVal6 = `perl Parse_ArthropodaBlastp.pl  Blastp.outfiles`;
+my $retVal6 = `perl Parse_ArthropodaBlastp.pl  Blastp.outfiles $ARGV[3]`;
 my $retVal7 = `perl HMMSCAN.pl LongestPolypeptide.fasta besthits.fasta $ARGV[1]`;
 my $retVal8 = `perl MAFFT.pl LongestPolypeptide.fasta besthits.fasta blastp.besthits`;
 my $retVal9 = `perl Parse_mafft.pl mafftalignments.outfilenames`;

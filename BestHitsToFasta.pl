@@ -7,6 +7,8 @@ use warnings;
 
 if ($ARGV[0] eq '' ) { die "Cfin.compinfo has to be provided as input\n"; }
 
+if ($ARGV[1] eq '' ) { die "Transcriptome fasta file has to be provided as second argument\n"; }
+
 open(IN, $ARGV[0]) or die "Can not open file $ARGV[0]";
 
 # Get the unique comp hit identifiers. 
@@ -18,10 +20,10 @@ while (<IN>){
     if ($line=~ /^hit:\s*(\S*)/){
 	my $identifier=$1;
 	if ($hit==0){
-	    my $blastdbcmd = `blastdbcmd -db Calanus_206k.fasta -entry $identifier > Comphits.fasta`;    
+	    my $blastdbcmd = `blastdbcmd -db $ARGV[1] -entry $identifier > Comphits.fasta`;    
 	}
 	else{
-	    my $blastdbcmd = `blastdbcmd -db Calanus_206k.fasta -entry $identifier >> Comphits.fasta`;    
+	    my $blastdbcmd = `blastdbcmd -db $ARGV[1] -entry $identifier >> Comphits.fasta`;    
 	}
 	$hit++;
     }

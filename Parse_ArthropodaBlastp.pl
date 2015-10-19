@@ -6,9 +6,11 @@ use strict;
 use warnings;
 use LWP::Simple;
 
-if ($ARGV[0] eq '' ) { die "text file has to be provided that lists
+if ($ARGV[0] eq '' ) { die "Text file has to be provided that lists
 the names of blast report files which shall be treated in this
 script\n"; }
+
+if ($ARGV[1] eq '' ) {die "The protein database (nr) of taxa related to your target species has to be provided as fourth argument to the script\n"; }
 
 open(IN, $ARGV[0]) or die "Can not open file $ARGV[0]";
 
@@ -230,7 +232,7 @@ foreach (@besthits){
     my $db     = "protein";
     my $query  = $_;
     print "$query\n";
-    my $blastdbcmd = `blastdbcmd -db nr_arthropoda -entry $query >> besthits.fasta`;
+    my $blastdbcmd = `blastdbcmd -db $ARGV[1] -entry $query >> besthits.fasta`;
 
 }
 close MYOUTFILE2;

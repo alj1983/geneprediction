@@ -49,7 +49,7 @@ while (<QUERYINFO>){
 }
 close QUERYINFO;
 
-print MYOUTFILE "\\section\{Unique 'comp' hits in the \\textit\{Calanus finmarchicu\}s transcriptome}\n";
+print MYOUTFILE "\\section\{Unique contig hits in the transcriptome of your target species}\n";
 print MYOUTFILE "The following sections will summarize the results for each of these contigs\:\\\\\\\\\n";
 open(COMPINFO,"Cfin.compinfo");
 my @comphits;
@@ -80,7 +80,7 @@ foreach (@comphitslatex){
 ############### Include a table on the information to which querys
 ############### this comphit showed up as a hit and in which quality
 ############### print MYOUTFILE "\\begin\{center\}\n";
-    print MYOUTFILE "\\textbf\{Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the  \\textit\{C\}\. \\textit\{finmarchicus\} contig.\}\\\\\\\\\n";
+    print MYOUTFILE "\\textbf\{Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the  contig of your target species.\}\\\\\\\\\n";
     print MYOUTFILE "\\begin\{longtable\}\{c c c r r\}\n";
     print MYOUTFILE "\\hline\n";
     print MYOUTFILE "Query \& Rank \& E\-value \& Queryframe \& Targetframe\\\\\n";
@@ -138,7 +138,7 @@ foreach (@comphitslatex){
 ################# Include information on best hit in Arthropod
 ################# proteins on NCBI
     
-    print MYOUTFILE "\\\\ \\\\ \\textbf\{Best blastp hit in the Arthropoda protein database:\}\\\\\\\\\n";
+    print MYOUTFILE "\\\\ \\\\ \\textbf\{Best blastp hit in the protein database:\}\\\\\\\\\n";
     my $besthits;
     open(BESTHIT,"blastp.besthits");
     while (<BESTHIT>){
@@ -255,14 +255,14 @@ foreach (@comphitslatex){
 ############### Include the figure of alignment and protein domain
 	print MYOUTFILE "\\begin\{figure\}\[h\]\n";
 	print MYOUTFILE "\\centering\n";
-	print MYOUTFILE "\\includegraphics\[width\=\.6\\textwidth\]\{$comphit\_Pfam.png\}\n";
-	print MYOUTFILE "\\caption\{Protein domains predicted along the \\textit\{C\}\. \\textit\{finmarchicus\} protein sequence derived from $actualcomphit and its aligned best blastp hit $printbesthit.\}\n";
+	print MYOUTFILE "\\includegraphics\[width\=\.6\\textwidth\]\{\{$comphit\_Pfam\}.png\}\n";
+	print MYOUTFILE "\\caption\{Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit.\}\n";
 	print MYOUTFILE "\\end\{figure\}\n";
     }
     
     
 ############## Include information on the EST hits in the Cfin database
-    print MYOUTFILE "\\\\\\textbf\{\\textit\{C\}\. \\textit\{finmarchicus\} EST hits\:\}\\\\\\\\\n";    
+    print MYOUTFILE "\\\\\\textbf\{EST hits\:\}\\\\\\\\\n";    
     
     print MYOUTFILE "\\begin\{longtable\}\{l r r r l r r\}\n";
     print MYOUTFILE "\\hline\n";

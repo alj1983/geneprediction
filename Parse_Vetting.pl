@@ -180,10 +180,12 @@ foreach (@files){
 	    $estnumber++;
 	    $querynumber=$estnumber;
 	}	
-	if ($line =~ /\sScore\s*=\s*(\S*)\s*bits.*Expect\s*=\s*(\S*)\,.*$/g){
+	if ($line =~ /Score.*\s*=\s*(\S*)\s*bits.*Expect.*\s*=\s*(\S*)\,/){
+	    my $a=$1;
+	    my $b=$2;
 	    unless  ($line =~ /.*mRNA.*/){
-	    push @estscores,$1;
-	    push @estevalues,$2;
+	    push @estscores,$a;
+	    push @estevalues,$b;
 	    }
 
 	}
@@ -197,10 +199,9 @@ foreach (@files){
 	    push @frame,$1; #the first hit here will be the reading frame.
 	}
 	if ($line =~ /^Query\s*(\d*)\s*\D*\s*\d*/g){
+	    my $as=$1;
 	    if ($querynumber == $estnumber){
-#		$line =~ /^Query\s*(\d*)\s*.*/;
-#		print "$1";
-		push @queryalignmentstart,$1; #this collects the start of
+		push @queryalignmentstart,$as; #this collects the start of
 		#the alignment of the query
 		#file to identify if the hit
 		#aligns at the N- or
@@ -219,9 +220,9 @@ foreach (@files){
     }
     close IN;
     # Print one line for each est hit
-    my $l;
     my $lines=@esthits;
-    for ($l=0;$l<$lines;$l++){
+    for (my $l=0;$l<$lines;$l++){
+
 	print OUT "$query\t$querylength\t$esthits[$l]\t$estlengths2[$l]\t$estscores[$l]\t$estidentities[$l]\t$estevalues[$l]\t$queryalignmentstart[$l]\t$estdescriptions[$l]\t$frame[$l]\n";
     }
 }
