@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 package ProteinScreen;
-use match::smart; ## Replaces the smartmatch operator ~~
+use match::smart; ## |M| Replaces the smartmatch operator ~~
 use strict;
 use warnings;
 use Bio::SeqIO;
@@ -358,7 +358,7 @@ script\n"; }
 
 
     for ($ex=0;$ex<$evalsl1;$ex++){
-	if ($ex ~~ @excluding){}
+	if ($ex |M| @excluding){}
 	else{
 	    push @evals,$evals1[$ex];
 	    push @querynames,$querynames1[$ex];
@@ -1432,7 +1432,7 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	    chomp;
 # Chose only the lines for sequence 2
 	    
-	    if($. ~~ @lines1) {
+	    if($. |M| @lines1) {
 		my $s1 = $_;
 		$s1 =~ /^\S*\s*(\S*)$/;
 		my $seq1 = $1;
@@ -1440,7 +1440,7 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	    }
 	    
 # Chose only the lines for sequence 2
-	    if($. ~~ @lines2) {
+	    if($. |M| @lines2) {
 		my $s2 = $_;
 		$s2 =~ /^\S*\s*(\S*)$/;
 		my $seq2 = $1;
@@ -2154,10 +2154,12 @@ sub ProteinScreen {
 
 1;
 
+
+# Smartmatch - how did I solve that before?
+
 # Need to fix the uninitialized value warning?!
 
 #XXX How to include Pfam.r execution??
-
 
 # Running R script from within perl: http://www.perlmonks.org/?node_id =  1009021
 # XX Create reports in markdown and then convert it to pdf and html!
