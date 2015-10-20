@@ -736,7 +736,7 @@ sub deduplicate_fasta {
 sub parse_decypher2 {
     if ($_[0] eq '' or $_[1] eq '' ) { die "Two input files are needed. First the
 output from Parse_DeCypher.pl and second a fasta file with hits in the
-C. finmarchicus transcriptome\n"; }
+transcriptome\n"; }
 
 # open the output file from Parse_DeCypherAndConverge.pl
 
@@ -2132,7 +2132,7 @@ sub ProteinScreen {
 # argument 4: fasta file with EST sequence(s) of your target species
     local_database_search($_[0], $_[2]);
     parse_local_database_search("tblastn.LocalDatabase");
-    best_hits_to_fasta("Cfin.compinfo");
+    best_hits_to_fasta("Cfin.compinfo", $_[2]);
     translation("Comphits.fasta", "Cfin.compinfo");
     deduplicate_fasta("TranslatedCompHits.fasta");
     parse_decypher2("Cfin.compinfo", "deduplicated.fasta");
@@ -2154,8 +2154,8 @@ sub ProteinScreen {
 
 1;
 
-
-# Smartmatch - how did I solve that before?
+# Use of uninitialized value $_[1] in string eq at ProteinScreen.pm line 570.
+# Transcriptome fasta file has to be provided as second argument
 
 # Need to fix the uninitialized value warning?!
 
