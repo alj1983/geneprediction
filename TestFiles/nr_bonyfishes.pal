@@ -1,8 +1,8 @@
 #
-# Alias file created 08/25/2014 14:44:05
+# Alias file created 10/23/2015 08:21:29
 #
 TITLE nr_bonyfishes
-DBLIST /home/alj/Documents/Projects/2014CopepodHSPs/ProgramWithLocalDatabases/nr
+DBLIST ../../ProgramWithLocalDatabases/nr
 GILIST nr_bonyfishes.p.gil
 NSEQ 690899
 LENGTH 360556688
