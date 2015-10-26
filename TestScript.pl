@@ -20,5 +20,5 @@ use ProteinScreen;
 #ProteinScreen::parse_decypher2("Cfin.compinfo", "deduplicated.fasta");
 
 #ProteinScreen::peptide_extraction("UniqueCompHits.fasta");
-ProteinScreen::reciprocal_blast("LongestPolypeptide.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");
-
+#ProteinScreen::reciprocal_blast("LongestPolypeptide.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");
+ProteinScreen::parse_blastp("Blastp.outfiles", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");

@@ -1003,6 +1003,7 @@ script\n"; }
     my @queries;
 
 
+
     foreach (@files){
 	my $f=$_;
 
@@ -1191,21 +1192,18 @@ script\n"; }
     my $n;
     my $querynumber = $#queries;
     for ($n=0;$n<$querynumber+1;$n++){
+	no warnings 'uninitialized';
 	print MYOUTFILE "$queries[$n]\t$besthits[$n]\t$bestdescriptions[$n]\t$bestscores[$n]\t$bestevalues[$n]\n";
     }
     close MYOUTFILE;
 
     open (MYOUTFILE2,">besthits\.fasta");
 ############# Now get the sequences of the best hits and write them to a fastafile
-
-
+    @besthits = grep { $_ ne '' } @besthits; # removing empty elements from the array besthits
     foreach (@besthits){
-
 	my $db     = "protein";
 	my $query  = $_;
-	print "$query\n";
 	my $blastdbcmd = `blastdbcmd -db $_[1] -entry $query >> besthits.fasta`;
-
     }
     close MYOUTFILE2;
 }
@@ -2287,7 +2285,7 @@ sub ProteinScreen {
     parse_decypher2("Cfin.compinfo", "deduplicated.fasta");
     peptide_extraction("UniqueCompHits.fasta");
     reciprocal_blast("LongestPolypeptide.fasta", $_[3]);
-    parse_blastp("Blastp.outfiles");
+    parse_blastp("Blastp.outfiles", $_[3]);
     hmmscan("LongestPolypeptide.fasta", "besthits.fasta", $_[1]);
     mafft("LongestPolypeptide.fasta", "besthits.fasta", "blastp.besthits");
     parse_mafft("mafftalignments.outfilenames");
