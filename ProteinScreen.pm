@@ -1429,29 +1429,34 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	open(IN, "$actualfilename") or die "Could not open file $actualfilename\n";
 	while (<IN>) {
 	    chomp;
-# Chose only the lines for sequence 2
-	    
-	    if($. |M| @lines1) {
+# Chose only the lines for sequence 1
+
+	    my %hash1;
+	    @hash1{@lines1}=();
+
+	    if(exists $hash1{$.}) {
 		my $s1 = $_;
 		$s1 =~ /^\S*\s*(\S*)$/;
 		my $seq1 = $1;
 		$sequence1 .= $seq1;
 	    }
-	    
 # Chose only the lines for sequence 2
-	    if($. |M| @lines2) {
+	    my %hash2;
+	    @hash2{@lines2}=();
+
+	    if(exists $hash2{$.}) {
 		my $s2 = $_;
-		$s2 =~ /^\S*\s*(\S*)$/;
+ 		$s2 =~ /^\S*\s*(\S*)$/;
 		my $seq2 = $1;
 		$sequence2 .= $seq2;
 	    }
 	}
 	close IN;
-	
 # Count the number of amino acids in the sequences:
 	my $count1= ($sequence1=~s/\w//g);
 	my $count2= ($sequence2=~s/\w//g);
-	
+	#print "$sequence1\n";
+	#print "$sequence2\n";
 	my $count='';
 	
 	if ($count1>$count2){
@@ -1463,7 +1468,6 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
 	
 	my $identical = ( $aln =~ tr/\*// );
 	my $similar = ( $aln =~ tr/\.\*\:// );
-	
 	my $identicalreport=100*($identical/$count);
 	my $similarreport=100*($similar/$count);
 	my $comparison = $actualfilename =~ /^(.*)\_\_(.*)\_\_.*$/; 
@@ -2304,6 +2308,14 @@ sub ProteinScreen {
 
 #XX need to put the R commands differently for not causing problems.
 
+# XX Check if |M| is used correctly or if I not rather want to find
+# here if the first element is part of an array with a code similar to the following:
+
+#my @array = qw/This that the other and then some./;
+#my %hash;
+#@hash{@array}=();
+#my $look_for = "other";
+#print "'$look_for' exists\n" if exists $hash{$look_for};
 
 # XXX need to create the protein database new based on my approach in the guppy.org file
 # blastdb_aliastool -gilist bonyfishes.gi.txt -db ../../ProgramWithLocalDatabases/nr -out nr_bonyfishes -title nr_bonyfishes
