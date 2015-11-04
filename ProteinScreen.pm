@@ -2295,7 +2295,7 @@ sub ProteinScreen {
     parse_mafft("mafftalignments.outfilenames");
     vetting("LongestPolypeptide.fasta", $_[4]);
     parse_vetting("tblastn.ESTout");
-#my $retVal12							       =  `R CMD BATCH Pfam.r`;
+    pfam();
     create_report();
 #my $retVal14							       =  `pdflatex --interaction=nonstopmode ResultReport.tex`;
 #my $retVal15							       =  `pdflatex --interaction=nonstopmode ResultReport.tex`;
@@ -2305,8 +2305,6 @@ sub ProteinScreen {
 
 1;
 
-
-#XX need to put the R commands differently for not causing problems.
 
 # XX Check if |M| is used correctly or if I not rather want to find
 # here if the first element is part of an array with a code similar to the following:
@@ -2332,3 +2330,5 @@ sub ProteinScreen {
 # http://www.perlmonks.org/?node_id				       =  304000
 
 # XX Inform the user how the databases and files have to be created
+
+# XX Inform the user that the scales and seqinr R packages have to be installed
