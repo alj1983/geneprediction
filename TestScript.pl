@@ -21,4 +21,12 @@ use ProteinScreen;
 
 #ProteinScreen::peptide_extraction("UniqueCompHits.fasta");
 #ProteinScreen::reciprocal_blast("LongestPolypeptide.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");
-ProteinScreen::parse_blastp("Blastp.outfiles", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");
+#ProteinScreen::parse_blastp("Blastp.outfiles", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes");
+#ProteinScreen::hmmscan("LongestPolypeptide.fasta", "besthits.fasta", "/home/alj/Dropbox.personal/Dropbox/Pfam/Pfam-A.hmm");
+#ProteinScreen::mafft("LongestPolypeptide.fasta", "besthits.fasta", "blastp.besthits");
+#ProteinScreen::parse_mafft("mafftalignments.outfilenames");
+#ProteinScreen::vetting("LongestPolypeptide.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/GuppyESTs.fasta");
+
+
+#ProteinScreen::pfam();
+ProteinScreen::create_report();

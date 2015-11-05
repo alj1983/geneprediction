@@ -1953,36 +1953,16 @@ sub pfam {
 
 ## create_report
 sub create_report {
-
-    open (MYOUTFILE,">ResultReport.tex");
-#if ( $_[0] eq '' ) {
-#    die "A fasta file from DeCypher has to be provided as first input\n";}
-
-#if ( $_[1] eq '' ) {
-#    die "A text file from DeCypher hast to be provided as second input\n";}
-
-#if ( $_[2] eq '' ) {
-#    die "The filepath of the Pfam-A database has to be provided as third input\n";}
-    print MYOUTFILE "\\documentclass\[a4paper\]\{article\}\n";
-    print MYOUTFILE "\\usepackage\{graphicx\}\n";
-    print MYOUTFILE "\\usepackage\{hyperref\}\n";
-    print MYOUTFILE "\\hypersetup\{\n";
-    print MYOUTFILE "colorlinks   = true,\n";
-    print MYOUTFILE "urlcolor     = blue,\n";
-    print MYOUTFILE "linkcolor    = blue,\n";
-    print MYOUTFILE "citecolor   = red\n";
-    print MYOUTFILE "\}\n";
-    print MYOUTFILE "\\usepackage\[top=2cm, bottom=2cm, left=2.5cm, right=2.5cm\]\{geometry\}\n";
-    print MYOUTFILE "\\usepackage\{longtable\}\n";
-
-    print MYOUTFILE "\\begin\{document\}\n";
-    print MYOUTFILE "\\title\{Report\}\n";
-    print MYOUTFILE "\\author\{Protein prediction\}\n";
-    print MYOUTFILE "\\maketitle\n";
-    print MYOUTFILE "\\section\{Queries\}\n";
-    print MYOUTFILE "Accession numbers and descriptions of the queries used\:\\\\\\\\\n";
+    
+    open (MYOUTFILE,">ResultReport.md");
+    
+    
+    print MYOUTFILE "# Report\n";
+    print MYOUTFILE "## Protein prediction\n";
+    print MYOUTFILE "### Queries\n";
+    print MYOUTFILE "Accession numbers and descriptions of the queries used\:\n";
     open(QUERYINFO,"Cfin.queryinfo");
-
+    
     while (<QUERYINFO>){
 	chomp;
 	my $line=$_;
@@ -1993,13 +1973,13 @@ sub create_report {
 	    $querydescription =~ s/\=/\\=/g;
 	    my $searchquery=$query;
 	    $query =~ s/\_/\\_/g;
-	    print MYOUTFILE "\\href\{http://www.ncbi.nlm.nih.gov/protein/$searchquery\}{$query} - $querydescription\\\\\n";
+	    print MYOUTFILE "[$query](http://www.ncbi.nlm.nih.gov/protein/$searchquery) - $querydescription\n";
 	}
     }
     close QUERYINFO;
-
-    print MYOUTFILE "\\section\{Unique contig hits in the transcriptome of your target species}\n";
-    print MYOUTFILE "The following sections will summarize the results for each of these contigs\:\\\\\\\\\n";
+    
+    print MYOUTFILE "### Unique contig hits in the transcriptome of your target species\n";
+    print MYOUTFILE "The following sections will summarize the results for each of these contigs\:\n";
     open(COMPINFO,"Cfin.compinfo");
     my @comphits;
     my @comphitslatex;
@@ -2011,42 +1991,27 @@ sub create_report {
 	    push @comphits,$hit;
 	    $hit =~ s/\_/\\_/g;
 	    push @comphitslatex,$hit;
-	    print MYOUTFILE "$hit\\\\\n";
+	    print MYOUTFILE "$hit\n";
 	}
     }
     close COMPINFO;
-
-    print MYOUTFILE "\\\\The fasta file \\href\{UniqueComphits.fasta\}\{UniqueComphits.fasta\} contains the polypeptide sequences of these contigs.\\\\\n";        
-    print MYOUTFILE "The fasta file \\href\{LongestPolypeptide.fasta\}\{LongestPolypeptide.fasta\} contains the polypeptide sequences of the longest open reading frames for these contigs.\\\\\n";        
+    
+    print MYOUTFILE "The fasta file [UniqueComphits.fasta](UniqueComphits.fasta) contains the polypeptide sequences of these contigs.\n";        
+    print MYOUTFILE "The fasta file [LongestPolypeptide.fasta](LongestPolypeptide.fasta) contains the polypeptide sequences of the longest open reading frames for these contigs.\n";        
 
     foreach (@comphitslatex){
 	my $actualcomphit=$_;
 	my $comphit= $actualcomphit;
 	$comphit =~ s/\\_/\_/g;
-	print MYOUTFILE "\\clearpage\n";        
-	print MYOUTFILE "\\section\{$actualcomphit\}\n";
-
+	print MYOUTFILE "### $actualcomphit\n";
+	
 ############### Include a table on the information to which querys
 ############### this comphit showed up as a hit and in which quality
 ############### print MYOUTFILE "\\begin\{center\}\n";
-	print MYOUTFILE "\\textbf\{Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the  contig of your target species.\}\\\\\\\\\n";
-	print MYOUTFILE "\\begin\{longtable\}\{c c c r r\}\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "Query \& Rank \& E\-value \& Queryframe \& Targetframe\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endfirsthead\n";
-	print MYOUTFILE "\\multicolumn\{5\}\{c\}\n";
-	print MYOUTFILE "\{\\tablename\ -- \\textit\{Continued from previous page\}\}\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "Query \& Rank \& E\-value \& Queryframe \& Targetframe\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endhead\n";
-	print MYOUTFILE "\\multicolumn\{5\}\{r\}\n";
-	print MYOUTFILE "\{\\textit\{Continued on next page\}\} \\\\\n";
-	print MYOUTFILE "\\endfoot\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endlastfoot\n";
-
+	print MYOUTFILE "#### Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the contig of your target species.\n";
+	
+	print MYOUTFILE "| Query       | Rank          | E\-value | Queryframe | Targetframe |\n";
+	print MYOUTFILE "|:-----------:|:-------------:|:--------:| ----------:| -----------:|\n";
 	open(COMPINFO2,"Cfin.compinfo");
 	my @queries;
 	my @ranks;
@@ -2077,16 +2042,12 @@ sub create_report {
 	for ($e=0;$e<$elength;$e++){
 	    my $q=$queries[$e];
 	    $q =~ s/\_/\\_/g;
-	    print MYOUTFILE "\\href\{http://www.ncbi.nlm.nih.gov/protein/$queries[$e]\}{$q} \& $ranks[$e] \& $evalues[$e] \& $queryframes[$e] \& $targetframes[$e] \\\\\n";
+	    print MYOUTFILE "| [$q](http://www.ncbi.nlm.nih.gov/protein/$queries[$e]) | $ranks[$e] | $evalues[$e] | $queryframes[$e] | $targetframes[$e] |\n";
 	}
-	print MYOUTFILE "\\end\{longtable\}\\\\\n";
-#    print MYOUTFILE "\\end\{center\}\n";    
-
-
 
 ################# proteins on NCBI
 	
-	print MYOUTFILE "\\\\ \\\\ \\textbf\{Best blastp hit in the protein database:\}\\\\\\\\\n";
+	print MYOUTFILE "#### Best blastp hit in the protein database:\n";
 	my $besthits;
 	open(BESTHIT,"blastp.besthits");
 	while (<BESTHIT>){
@@ -2105,13 +2066,13 @@ sub create_report {
 		    $desc =~ s/\_/\\_/;
 		}
 		if ($besthits){
-		    print MYOUTFILE "Accession: \\href\{http://www.ncbi.nlm.nih.gov/protein/$besthits\}\{$besthit}\\\\\n";
-		    print MYOUTFILE "Description: $desc\\\\\n";
-		    print MYOUTFILE "Score: $s\\\\\n";
-		    print MYOUTFILE "E-value: $ev\\\\\n";
+		    print MYOUTFILE "Accession: [$besthit](http://www.ncbi.nlm.nih.gov/protein/$besthits)\n";
+		    print MYOUTFILE "Description: $desc\n";
+		    print MYOUTFILE "Score: $s\n";
+		    print MYOUTFILE "E-value: $ev\n";
 		}
 		else {
-		    print MYOUTFILE "No best hit found !\\\\\n";
+		    print MYOUTFILE "No best hit found\n";
 		}
 	    }
 	}
@@ -2129,8 +2090,8 @@ sub create_report {
 		if ($line =~ /^$comphit\t.*\t(.*)\t(.*)/g){
 		    my $identity=sprintf "%.2f", $1;
 		    my $similarity=sprintf "%.2f", $2;
-		    print MYOUTFILE "\\% Identity (based on alignment): $identity\\\\\n";
-		    print MYOUTFILE "\\% Similarity (based on alignment): $similarity\\\\\n";
+		    print MYOUTFILE "\\% Identity (based on alignment): $identity\n";
+		    print MYOUTFILE "\\% Similarity (based on alignment): $similarity\n";
 		}
 	    }
 	    close MAFFTOUT;
@@ -2141,30 +2102,15 @@ sub create_report {
 	    $printcomphit =~ s/\_/\\_/g;
 	    my $printbesthit=$besthits;
 	    $printbesthit =~ s/\_/\\_/g;
-	    print MYOUTFILE "Link to alignment file:\\\\\n";
-	    print MYOUTFILE "\\href\{$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\}\{$printcomphit\\_\\_$printbesthit\\_\\_MAFFTalignmentClustalW\.txt\}\\\\\n";
+	    print MYOUTFILE "Link to alignment file:\n";
+	    print MYOUTFILE "[$printcomphit\\_\\_$printbesthit\\_\\_MAFFTalignmentClustalW\.txt]($comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt)\n";
 	    
-
+	    
 ############# Include information on the protein domains in the Cfin contig and the best hit.
-	    print MYOUTFILE "\\\\\\textbf\{Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\}\\\\\\\\\n";    
+	    print MYOUTFILE "#### Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\n";    
 	    
-	    print MYOUTFILE "\\begin\{longtable\}\{l r l l r r r l\}\n";
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "Sequence \& Slength \& Domain \& Accession \& Dlength \& Start \& End \& i\-E\-value \\\\\n";
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "\\endfirsthead\n";
-	    print MYOUTFILE "\\multicolumn\{8\}\{c\}\n";
-	    print MYOUTFILE "\{\\tablename\ -- \\textit\{Continued from previous page\}\}\\\\\n";
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "Sequence \& Slength \& Domain \& Accession \& Dlength \& Start \& End \& i\-E\-value \\\\\n";
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "\\endhead\n";
-	    print MYOUTFILE "\\multicolumn\{8\}\{r\}\n";
-	    print MYOUTFILE "\{\\textit\{Continued on next page\}\} \\\\\n";
-	    print MYOUTFILE "\\endfoot\n";
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "\\endlastfoot\n";
-
+	    print MYOUTFILE "| Sequence | Slength | Domain | Accession | Dlength | Start | End | i\-E\-value |\n";
+	    print MYOUTFILE "|:-------- | -------:|:------ |:--------- | -------:| -----:| ---:|:----------- |\n";
 	    
 	    open(PROTEINDOMAINS,"hmmscan.out");
 	    while (<PROTEINDOMAINS>){
@@ -2180,8 +2126,8 @@ sub create_report {
 		    my $end=$4;
 		    my $evalue=$10;
 		    $domain =~ s/\_/\\_/g;
-		    print MYOUTFILE "$actualcomphit \& $seqlength \& $domain \& \\href\{http://pfam.xfam.org/family/$accession\}\{$accession\} \& $domlength \& $start \& $end \& $evalue \\\\\n";
-		}
+		    print MYOUTFILE "| $actualcomphit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
+		}   
 		if ($line =~ /$besthits/g){
 		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
 		    my $seqlength=$1;
@@ -2192,44 +2138,23 @@ sub create_report {
 		    my $end=$4;
 		    my $evalue=$10;
 		    $domain =~ s/\_/\\_/g;
-		    print MYOUTFILE "$printbesthit \& $seqlength \& $domain \& \\href\{http://pfam.xfam.org/family/$accession\}\{$accession\} \& $domlength \& $start \& $end \& $evalue \\\\\n";
+		    print MYOUTFILE "| $printbesthit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
 		}
 	    }
 	    close PROTEINDOMAINS;
-	    print MYOUTFILE "\\hline\n";
-	    print MYOUTFILE "\\end\{longtable\}\\\\\n";
-
-
+	    
 ############### Include the figure of alignment and protein domain
-	    print MYOUTFILE "\\begin\{figure\}\[h\]\n";
-	    print MYOUTFILE "\\centering\n";
-	    print MYOUTFILE "\\includegraphics\[width\=\.6\\textwidth\]\{\{$comphit\_Pfam\}.png\}\n";
-	    print MYOUTFILE "\\caption\{Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit.\}\n";
-	    print MYOUTFILE "\\end\{figure\}\n";
+	    print MYOUTFILE "Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit\n";
+	    print MYOUTFILE "![$comphit\_Pfam\}.png]($comphit\_Pfam\}.png)\n";
+	    
 	}
 	
 	
 ############## Include information on the EST hits in the Cfin database
-	print MYOUTFILE "\\\\\\textbf\{EST hits\:\}\\\\\\\\\n";    
-	
-	print MYOUTFILE "\\begin\{longtable\}\{l r r r l r r\}\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "EST \& Length \& Score \& Identity \& E\-value \& Alignmentstart \& Frame\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endfirsthead\n";
-	print MYOUTFILE "\\multicolumn\{7\}\{c\}\n";
-	print MYOUTFILE "\{\\tablename\ -- \\textit\{Continued from previous page\}\}\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "EST \& Length \& Score \& Identity \& E\-value \& Alignmentstart \& Frame\\\\\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endhead\n";
-	print MYOUTFILE "\\multicolumn\{7\}\{r\}\n";
-	print MYOUTFILE "\{\\textit\{Continued on next page\}\} \\\\\n";
-	print MYOUTFILE "\\endfoot\n";
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\endlastfoot\n";
-	
-	
+	print MYOUTFILE "#### EST hits\:\n";    
+	print MYOUTFILE "| EST | Length | Score | Identity | E\-value | Alignmentstart | Frame |\n";
+	print MYOUTFILE "|:----| ------:| -----:| --------:|:-------- | --------------:| -----:|\n";
+
 	
 	open(VETTINGOUT,"Vetting.out");
 	while (<VETTINGOUT>){
@@ -2248,32 +2173,18 @@ sub create_report {
 		    $est =~ s/\_/\\_/;
 		}
 		$identity =~ s/%/\\%/;
-		print MYOUTFILE "\\href\{http://www.ncbi.nlm.nih.gov/nucest/$searchest\}\{$est\} \& $length \& $score \& $identity \& $evalue \& $start \& $readingframe \\\\\n";
+		print MYOUTFILE "|[$est](http://www.ncbi.nlm.nih.gov/nucest/$searchest) | $length | $score  | $identity | $evalue | $start | $readingframe |\n";
+	
 	    }
 	}
 	close VETTINGOUT;
-	print MYOUTFILE "\\hline\n";
-	print MYOUTFILE "\\end\{longtable\}\\\\\n";
-	
-
     }
-
-
-
-    print MYOUTFILE "\\end\{document\}\n";
-
-
-#\section{Conclusion}
-#Write your conclusion here.
-
-
-
-
+    
     close MYOUTFILE;
-
+    
 }
 
-
+    
 ### Function calls
 sub ProteinScreen {
 # argument 0: A fasta file with query sequences
@@ -2305,6 +2216,7 @@ sub ProteinScreen {
 
 1;
 
+# Convert the markdown now automatically to html
 
 # XX Check if |M| is used correctly or if I not rather want to find
 # here if the first element is part of an array with a code similar to the following:
@@ -2315,12 +2227,6 @@ sub ProteinScreen {
 #my $look_for = "other";
 #print "'$look_for' exists\n" if exists $hash{$look_for};
 
-# XXX need to create the protein database new based on my approach in the guppy.org file
-# blastdb_aliastool -gilist bonyfishes.gi.txt -db ../../ProgramWithLocalDatabases/nr -out nr_bonyfishes -title nr_bonyfishes
-
-#XXX How to include Pfam.r execution??
-
-# Running R script from within perl: http://www.perlmonks.org/?node_id =  1009021 Using the package statistics::R
 # XX Create reports in markdown and then convert it to pdf and html!
 
 #XX Create usage of model in separate script file and use subroutines with NAM::function(args);
@@ -2332,3 +2238,6 @@ sub ProteinScreen {
 # XX Inform the user how the databases and files have to be created
 
 # XX Inform the user that the scales and seqinr R packages have to be installed
+
+# XX Let the user define the folder in which to work and where to save
+# the results. Change then the link to this specific folder in the output markdown file
