@@ -29,4 +29,5 @@ use ProteinScreen;
 
 
 #ProteinScreen::pfam();
-ProteinScreen::create_report();
+#ProteinScreen::create_report();
+ProteinScreen::convert_report();

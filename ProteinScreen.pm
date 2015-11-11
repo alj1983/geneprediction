@@ -8,6 +8,7 @@ use Bio::SeqIO;
 use LWP::Simple;
 use List::MoreUtils qw(uniq); # This allows to find all unique values in an array
 use Statistics::R;
+use Text::Markdown 'markdown';
 ### Function definitions
 
 ## local_database_search
@@ -2184,7 +2185,6 @@ sub create_report {
     
 }
 
-    
 ### Function calls
 sub ProteinScreen {
 # argument 0: A fasta file with query sequences
@@ -2216,8 +2216,10 @@ sub ProteinScreen {
 
 1;
 
-# Convert the markdown now automatically to html
 
+
+# Put output in formatted html code with links
+# Put layout CSS in the html code directly
 # XX Check if |M| is used correctly or if I not rather want to find
 # here if the first element is part of an array with a code similar to the following:
 
