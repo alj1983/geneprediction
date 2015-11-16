@@ -1955,13 +1955,62 @@ sub pfam {
 ## create_report
 sub create_report {
     
-    open (MYOUTFILE,">ResultReport.md");
-    
-    
-    print MYOUTFILE "# Report\n";
-    print MYOUTFILE "## Protein prediction\n";
-    print MYOUTFILE "### Queries\n";
-    print MYOUTFILE "Accession numbers and descriptions of the queries used\:\n";
+    open (MYOUTFILE,">ResultReport.html");
+        
+
+    print MYOUTFILE "<!DOCTYPE html>";
+    print MYOUTFILE "<html>\n";
+    print MYOUTFILE "<head>\n";
+    print MYOUTFILE "<title>Result report for protein predictions</title>\n";
+
+    print MYOUTFILE "<style type=\"text/css\">\n";
+
+    print MYOUTFILE "li {\n";
+    print MYOUTFILE "display: inline;\n";
+    print MYOUTFILE "margin: 20px 20px;\n";
+    print MYOUTFILE "}\n";
+
+    print MYOUTFILE "ul {\n";
+    print MYOUTFILE "width: 570px;\n";
+    print MYOUTFILE "padding: 15px;\n";
+    print MYOUTFILE "margin: 0px auto 0px auto;\n";
+    print MYOUTFILE "border-top: 2px solid #000;\n";
+    print MYOUTFILE "border-bottom: 1px solid #000;\n";
+    print MYOUTFILE "text-align: center;\n";
+    print MYOUTFILE "}\n";
+
+    print MYOUTFILE "</style>\n";
+
+    print MYOUTFILE "</head>\n";
+    print MYOUTFILE "<body>\n";
+    print MYOUTFILE "<h1 style=\"text-align:center\">Result Report for protein predictions</h1>\n";
+    print MYOUTFILE "<ul>\n";
+    print MYOUTFILE "<li><a href=\"Queries.html\">Queries</a></li>\n";
+    print MYOUTFILE "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+    print MYOUTFILE "</ul>\n";
+    print MYOUTFILE "</body>\n";
+    print MYOUTFILE "</html>\n";
+
+
+
+######## Queries
+
+    open (MYOUTFILE2,">Queries.html");  
+    print MYOUTFILE2 "<!DOCTYPE html>";
+    print MYOUTFILE2 "<html>\n";
+    print MYOUTFILE2 "<head>\n";
+    print MYOUTFILE2 "<title>Queries</title>\n";
+
+    print MYOUTFILE2 "<style type=\"text/css\">\n";
+
+    print MYOUTFILE2 "</style>\n";
+
+    print MYOUTFILE2 "</head>\n";
+    print MYOUTFILE2 "<body>\n";
+    print MYOUTFILE2 "<h1 style=\"text-align:center\">Queries</h1>\n";
+    print MYOUTFILE2 "<h2 style=\"text-align:center\">Accession numbers and descriptions of the queries used</h2>\n";
+    print MYOUTFILE2 "<dl>\n";
+
     open(QUERYINFO,"Cfin.queryinfo");
     
     while (<QUERYINFO>){
@@ -1974,16 +2023,81 @@ sub create_report {
 	    $querydescription =~ s/\=/\\=/g;
 	    my $searchquery=$query;
 	    $query =~ s/\_/\\_/g;
-	    print MYOUTFILE "[$query](http://www.ncbi.nlm.nih.gov/protein/$searchquery) - $querydescription\n";
+	    print MYOUTFILE2 "<dt><a href=\"http://www.ncbi.nlm.nih.gov/protein/$searchquery\">$query</a></dt>\n";
+	    print MYOUTFILE2 "<dd>$querydescription</dd>\n";
 	}
     }
     close QUERYINFO;
-    
-    print MYOUTFILE "### Unique contig hits in the transcriptome of your target species\n";
-    print MYOUTFILE "The following sections will summarize the results for each of these contigs\:\n";
+
+    print MYOUTFILE2 "</dl>\n";
+    print MYOUTFILE2 "</body>\n";
+    print MYOUTFILE2 "</html>\n";  
+
+
+######## Best contig hits
+    open (MYOUTFILE3,">BestHits.html");
+
+    print MYOUTFILE3 "<!DOCTYPE html>";
+    print MYOUTFILE3 "<html>\n";
+    print MYOUTFILE3 "<head>\n";
+    print MYOUTFILE3 "<title>Best contig hits</title>\n";
+
+    print MYOUTFILE3 "<style type=\"text/css\">\n";
+
+    print MYOUTFILE3 "li {\n";
+    print MYOUTFILE3 "}\n";
+
+    print MYOUTFILE3 "ul {\n";
+    print MYOUTFILE3 "width: 570px;\n";
+    print MYOUTFILE3 "padding: 15px;\n";
+    print MYOUTFILE3 "margin: 0px auto 0px auto;\n";
+    print MYOUTFILE3 "}\n";
+
+    print MYOUTFILE3 "</style>\n";
+
+    print MYOUTFILE3 "</head>\n";
+    print MYOUTFILE3 "<body>\n";
+    print MYOUTFILE3 "<h1 style=\"text-align:center\">Best contig hits</h1>\n";
+    print MYOUTFILE3 "<h2 style=\"text-align:center\">Unique contig hits in the transcriptome of your target species</h2>\n";
+    print MYOUTFILE3 "<p>The fasta file <a href=\"UniqueComphits.fasta\">UniqueComphits.fasta</a> contains the polypeptide sequences of these contigs.</p>\n";       
+    print MYOUTFILE3 "<p>The fasta file <a href=\"LongestPolypeptide.fasta\">LongestPolypeptide.fasta</a> contains the polypeptide sequences of the longest open reading frames for these contigs.</p>\n";        
+    print MYOUTFILE3 "<dl>\n";
+
     open(COMPINFO,"Cfin.compinfo");
     my @comphits;
     my @comphitslatex;
+
+    print MYOUTFILE3 "<table>\n";
+    print MYOUTFILE3 "<thead>\n";
+    print MYOUTFILE3 "<tr>\n";
+    
+    print MYOUTFILE3 "<th width=\"150\">Contig </th>\n";
+    print MYOUTFILE3 "<th colspan=\"7\" width=\"1050\">Best blastp hit</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Domains</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Queries</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">ESTs</th>\n";
+    
+    print MYOUTFILE3 "</tr>\n";
+    
+    print MYOUTFILE3 "<tr>\n";
+    
+    print MYOUTFILE3 "<th width=\"150\"></th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Accession</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Description</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Score</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Evalue</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">\\% Identity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">\\% Similarity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">Link to alignment</th>\n";
+    print MYOUTFILE3 "<th width=\"150\"></th>\n";
+    print MYOUTFILE3 "<th width=\"150\"></th>\n";
+    print MYOUTFILE3 "<th width=\"150\"></th>\n";
+    
+    print MYOUTFILE3 "</tr>\n";
+    
+    print MYOUTFILE3 "</thead>\n";
+    
+    print MYOUTFILE3 "<tbody>\n";
     while (<COMPINFO>){
 	chomp;
 	my $line=$_;
@@ -1992,27 +2106,130 @@ sub create_report {
 	    push @comphits,$hit;
 	    $hit =~ s/\_/\\_/g;
 	    push @comphitslatex,$hit;
-	    print MYOUTFILE "$hit\n";
+
+	 
+
 	}
     }
     close COMPINFO;
-    
-    print MYOUTFILE "The fasta file [UniqueComphits.fasta](UniqueComphits.fasta) contains the polypeptide sequences of these contigs.\n";        
-    print MYOUTFILE "The fasta file [LongestPolypeptide.fasta](LongestPolypeptide.fasta) contains the polypeptide sequences of the longest open reading frames for these contigs.\n";        
+
+
+
+### Detailed info for each contig  
 
     foreach (@comphitslatex){
-	my $actualcomphit=$_;
-	my $comphit= $actualcomphit;
-	$comphit =~ s/\\_/\_/g;
-	print MYOUTFILE "### $actualcomphit\n";
+ 	my $actualcomphit=$_;
+ 	my $comphit= $actualcomphit;
+ 	$comphit =~ s/\\_/\_/g;
+
+
+# ################# proteins on NCBI
 	
-############### Include a table on the information to which querys
-############### this comphit showed up as a hit and in which quality
-############### print MYOUTFILE "\\begin\{center\}\n";
-	print MYOUTFILE "#### Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the contig of your target species.\n";
+	print MYOUTFILE3 "<tr>\n";
+	print MYOUTFILE3 "<td width=\"150\">$comphit</td>\n";
+ 	my $besthits;
+ 	open(BESTHIT,"blastp.besthits");
+ 	while (<BESTHIT>){
+ 	    chomp;
+ 	    my $line=$_;
+ 	    if ($line =~ /^$comphit\t(.*)\t(.*)\t(.*)\t(.*)/g){
+ 		my $besthit=$1;
+ 		$besthits=$besthit;
+ 		my $desc=$2;	    
+ 		my $s=$3;
+ 		my $ev=$4;
+ 		if ($besthit =~ /\_/){
+ 		    $besthit =~ s/\_/\\_/;
+ 		}
+ 		if ($desc =~ /\_/){
+ 		    $desc =~ s/\_/\\_/;
+ 		}
+ 		if ($besthits){
+		    print MYOUTFILE3 "<td width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$besthits\"></a>$besthit</td>\n";
+		    print MYOUTFILE3 "<td width=\"150\">$desc</td>\n";
+		    print MYOUTFILE3 "<td width=\"150\">$s</td>\n";
+		    print MYOUTFILE3 "<td width=\"150\">$ev</td>\n";
+ 		}
+ 		else {
+		    print MYOUTFILE3 "<td colspan=\"7\" width=\"1050\">No best hit found</td>\n";
+ 		}
+ 	    }
+ 	}
+ 	close BESTHIT;
 	
-	print MYOUTFILE "| Query       | Rank          | E\-value | Queryframe | Targetframe |\n";
-	print MYOUTFILE "|:-----------:|:-------------:|:--------:| ----------:| -----------:|\n";
+
+
+
+############## Include information on the identity and similarity from the mafft alignment
+ 	if ($besthits){    
+ 	    open(MAFFTOUT,"parsemafft.out");
+ 	    while (<MAFFTOUT>){
+ 		chomp;
+ 		my $line=$_;
+ 		if ($line =~ /^$comphit\t.*\t(.*)\t(.*)/g){
+ 		    my $identity=sprintf "%.2f", $1;
+ 		    my $similarity=sprintf "%.2f", $2;
+		    print MYOUTFILE3 "<td width=\"150\"> $identity</td>\n";
+		    print MYOUTFILE3 "<td width=\"150\"> $similarity</td>\n";
+
+ 		}
+ 	    }
+ 	    close MAFFTOUT;
+	    
+# ########### Make a link to the clustalw alignment file
+	    
+ 	    my $printcomphit=$comphit;
+ 	    $printcomphit =~ s/\_/\\_/g;
+ 	    my $printbesthit=$besthits;
+ 	    $printbesthit =~ s/\_/\\_/g;
+	    print MYOUTFILE3 "<td width=\"150\"><a href=\"$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\"></a>$printcomphit\\_\\_$printbesthit\\_\\_MAFFTalignmentClustalW\.txt</td>\n";
+	    
+
+	}
+
+	print MYOUTFILE3 "<td width=\"150\"><a href=\"domains$actualcomphit.html\">link</a></td>\n";
+	print MYOUTFILE3 "<td width=\"150\"><a href=\"queries$actualcomphit.html\">link</a></td>\n";
+	print MYOUTFILE3 "<td width=\"150\"><a href=\"ests$actualcomphit.html\">link</a></td>\n";
+	print MYOUTFILE3 "</tr>\n";
+
+	open (MYOUTFILE4,">queries$actualcomphit.html");
+	
+	print MYOUTFILE4 "<!DOCTYPE html>";
+	print MYOUTFILE4 "<html>\n";
+	print MYOUTFILE4 "<head>\n";
+	print MYOUTFILE4 "<title>$actualcomphit</title>\n";
+	
+	print MYOUTFILE4 "<style type=\"text/css\">\n";
+	    
+	    
+	print MYOUTFILE4 "</style>\n";
+	    
+	print MYOUTFILE4 "</head>\n";
+	print MYOUTFILE4 "<body>\n";
+	print MYOUTFILE4 "<h1 style=\"text-align:center\">$actualcomphit</h1>\n";
+	    
+# ############### Include a table on the information to which querys
+# ############### this comphit showed up as a hit and in which quality
+	
+	print MYOUTFILE4 "<p> Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the contig of your target species.</p>\n";
+
+	print MYOUTFILE4 "<table>\n";
+	
+	print MYOUTFILE4 "<thead>\n";
+	print MYOUTFILE4 "<tr>\n";
+	    
+	print MYOUTFILE4 "<th width=\"150\">Query </th>\n";
+	print MYOUTFILE4 "<th width=\"150\">Rank</th>\n";
+	print MYOUTFILE4 "<th width=\"150\">E\-value</th>\n";
+	print MYOUTFILE4 "<th width=\"150\">Queryframe</th>\n";
+	print MYOUTFILE4 "<th width=\"150\">Targetframe</th>\n";
+	
+	print MYOUTFILE4 "</tr>\n";
+	print MYOUTFILE4 "</thead>\n";
+	
+	print MYOUTFILE4 "<tbody>\n";
+	
+	    
 	open(COMPINFO2,"Cfin.compinfo");
 	my @queries;
 	my @ranks;
@@ -2043,145 +2260,127 @@ sub create_report {
 	for ($e=0;$e<$elength;$e++){
 	    my $q=$queries[$e];
 	    $q =~ s/\_/\\_/g;
-	    print MYOUTFILE "| [$q](http://www.ncbi.nlm.nih.gov/protein/$queries[$e]) | $ranks[$e] | $evalues[$e] | $queryframes[$e] | $targetframes[$e] |\n";
+	    
+	    print MYOUTFILE4 "<tr>\n";   
+	    print MYOUTFILE4 "<th width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$queries[$e]\">$q</a> </th>\n";
+	    print MYOUTFILE4 "<th width=\"150\">$ranks[$e]</th>\n";
+	    print MYOUTFILE4 "<th width=\"150\">$evalues[$e]</th>\n";
+	    print MYOUTFILE4 "<th width=\"150\">$queryframes[$e]</th>\n";
+	    print MYOUTFILE4 "<th width=\"150\">$targetframes[$e]</th>\n";
+	    print MYOUTFILE4 "</tr>\n";
 	}
+	    
+	    
+## XX why does the same query show up here several times?
 
-################# proteins on NCBI
-	
-	print MYOUTFILE "#### Best blastp hit in the protein database:\n";
-	my $besthits;
-	open(BESTHIT,"blastp.besthits");
-	while (<BESTHIT>){
-	    chomp;
-	    my $line=$_;
-	    if ($line =~ /^$comphit\t(.*)\t(.*)\t(.*)\t(.*)/g){
-		my $besthit=$1;
-		$besthits=$besthit;
-		my $desc=$2;	    
-		my $s=$3;
-		my $ev=$4;
-		if ($besthit =~ /\_/){
-		    $besthit =~ s/\_/\\_/;
-		}
-		if ($desc =~ /\_/){
-		    $desc =~ s/\_/\\_/;
-		}
-		if ($besthits){
-		    print MYOUTFILE "Accession: [$besthit](http://www.ncbi.nlm.nih.gov/protein/$besthits)\n";
-		    print MYOUTFILE "Description: $desc\n";
-		    print MYOUTFILE "Score: $s\n";
-		    print MYOUTFILE "E-value: $ev\n";
-		}
-		else {
-		    print MYOUTFILE "No best hit found\n";
-		}
-	    }
-	}
-	close BESTHIT;
-	
-
-
-
-############## Include information on the identity and similarity from the mafft alignment
-	if ($besthits){    
-	    open(MAFFTOUT,"parsemafft.out");
-	    while (<MAFFTOUT>){
-		chomp;
-		my $line=$_;
-		if ($line =~ /^$comphit\t.*\t(.*)\t(.*)/g){
-		    my $identity=sprintf "%.2f", $1;
-		    my $similarity=sprintf "%.2f", $2;
-		    print MYOUTFILE "\\% Identity (based on alignment): $identity\n";
-		    print MYOUTFILE "\\% Similarity (based on alignment): $similarity\n";
-		}
-	    }
-	    close MAFFTOUT;
-	    
-########### Make a link to the clustalw alignment file
-	    
-	    my $printcomphit=$comphit;
-	    $printcomphit =~ s/\_/\\_/g;
-	    my $printbesthit=$besthits;
-	    $printbesthit =~ s/\_/\\_/g;
-	    print MYOUTFILE "Link to alignment file:\n";
-	    print MYOUTFILE "[$printcomphit\\_\\_$printbesthit\\_\\_MAFFTalignmentClustalW\.txt]($comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt)\n";
-	    
-	    
-############# Include information on the protein domains in the Cfin contig and the best hit.
-	    print MYOUTFILE "#### Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\n";    
-	    
-	    print MYOUTFILE "| Sequence | Slength | Domain | Accession | Dlength | Start | End | i\-E\-value |\n";
-	    print MYOUTFILE "|:-------- | -------:|:------ |:--------- | -------:| -----:| ---:|:----------- |\n";
-	    
-	    open(PROTEINDOMAINS,"hmmscan.out");
-	    while (<PROTEINDOMAINS>){
-		chomp;
-		my $line=$_;
-		if ($line =~ /$comphit/g){
-		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
-		    my $seqlength=$1;
-		    my $domain=$2;
-		    my $accession=$5;
-		    my $domlength=$6;
-		    my $start=$3;
-		    my $end=$4;
-		    my $evalue=$10;
-		    $domain =~ s/\_/\\_/g;
-		    print MYOUTFILE "| $actualcomphit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
-		}   
-		if ($line =~ /$besthits/g){
-		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
-		    my $seqlength=$1;
-		    my $domain=$2;
-		    my $accession=$5;
-		    my $domlength=$6;
-		    my $start=$3;
-		    my $end=$4;
-		    my $evalue=$10;
-		    $domain =~ s/\_/\\_/g;
-		    print MYOUTFILE "| $printbesthit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
-		}
-	    }
-	    close PROTEINDOMAINS;
-	    
-############### Include the figure of alignment and protein domain
-	    print MYOUTFILE "Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit\n";
-	    print MYOUTFILE "![$comphit\_Pfam\}.png]($comphit\_Pfam\}.png)\n";
-	    
-	}
+	print MYOUTFILE4 "</tbody>\n";
 	
 	
-############## Include information on the EST hits in the Cfin database
-	print MYOUTFILE "#### EST hits\:\n";    
-	print MYOUTFILE "| EST | Length | Score | Identity | E\-value | Alignmentstart | Frame |\n";
-	print MYOUTFILE "|:----| ------:| -----:| --------:|:-------- | --------------:| -----:|\n";
-
+	print MYOUTFILE4 "</table>\n";
 	
-	open(VETTINGOUT,"Vetting.out");
-	while (<VETTINGOUT>){
-	    chomp;
-	    my $line=$_;
-	    if ($line =~ /^$comphit\t.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t.*\t(.*)/g){
-		my $est=$1;
-		my $searchest=$est;
-		my $length=$2;
-		my $score=$3;
-		my $identity=$4;
-		my $evalue=$5;
-		my $start=$6;
-		my $readingframe=$7;
-		if ($est =~ /\_/){
-		    $est =~ s/\_/\\_/;
-		}
-		$identity =~ s/%/\\%/;
-		print MYOUTFILE "|[$est](http://www.ncbi.nlm.nih.gov/nucest/$searchest) | $length | $score  | $identity | $evalue | $start | $readingframe |\n";
-	
-	    }
-	}
-	close VETTINGOUT;
+	print MYOUTFILE4 "</body>\n";
+	print MYOUTFILE4 "</html>\n";  
+	    
+	close MYOUTFILE4;
     }
+	
+    print MYOUTFILE3 "</tbody>\n";
+    print MYOUTFILE3 "</table>\n";
+    print MYOUTFILE3 "</body>\n";
+    print MYOUTFILE3 "</html>\n";  
+    
+    
+	
+# XX Make separate html files for the tables that relate to the
+# contig. Make also one file for the domain predictions. In the
+# BestHit.html file, provide a table that gives links to all this
+# information
+
+	
+
+
+
+
+	    
+	    
+# ############# Include information on the protein domains in the Cfin contig and the best hit.
+# 	    print MYOUTFILE "#### Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\n";    
+	    
+# 	    print MYOUTFILE "| Sequence | Slength | Domain | Accession | Dlength | Start | End | i\-E\-value |\n";
+# 	    print MYOUTFILE "|:-------- | -------:|:------ |:--------- | -------:| -----:| ---:|:----------- |\n";
+	    
+# 	    open(PROTEINDOMAINS,"hmmscan.out");
+# 	    while (<PROTEINDOMAINS>){
+# 		chomp;
+# 		my $line=$_;
+# 		if ($line =~ /$comphit/g){
+# 		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
+# 		    my $seqlength=$1;
+# 		    my $domain=$2;
+# 		    my $accession=$5;
+# 		    my $domlength=$6;
+# 		    my $start=$3;
+# 		    my $end=$4;
+# 		    my $evalue=$10;
+# 		    $domain =~ s/\_/\\_/g;
+# 		    print MYOUTFILE "| $actualcomphit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
+# 		}   
+# 		if ($line =~ /$besthits/g){
+# 		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
+# 		    my $seqlength=$1;
+# 		    my $domain=$2;
+# 		    my $accession=$5;
+# 		    my $domlength=$6;
+# 		    my $start=$3;
+# 		    my $end=$4;
+# 		    my $evalue=$10;
+# 		    $domain =~ s/\_/\\_/g;
+# 		    print MYOUTFILE "| $printbesthit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
+# 		}
+# 	    }
+# 	    close PROTEINDOMAINS;
+	    
+# ############### Include the figure of alignment and protein domain
+# 	    print MYOUTFILE "Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit\n";
+# 	    print MYOUTFILE "![$comphit\_Pfam\}.png]($comphit\_Pfam\}.png)\n";
+	    
+# 	}
+	
+	
+# ############## Include information on the EST hits in the Cfin database
+# 	print MYOUTFILE "#### EST hits\:\n";    
+# 	print MYOUTFILE "| EST | Length | Score | Identity | E\-value | Alignmentstart | Frame |\n";
+# 	print MYOUTFILE "|:----| ------:| -----:| --------:|:-------- | --------------:| -----:|\n";
+
+	
+# 	open(VETTINGOUT,"Vetting.out");
+# 	while (<VETTINGOUT>){
+# 	    chomp;
+# 	    my $line=$_;
+# 	    if ($line =~ /^$comphit\t.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t.*\t(.*)/g){
+# 		my $est=$1;
+# 		my $searchest=$est;
+# 		my $length=$2;
+# 		my $score=$3;
+# 		my $identity=$4;
+# 		my $evalue=$5;
+# 		my $start=$6;
+# 		my $readingframe=$7;
+# 		if ($est =~ /\_/){
+# 		    $est =~ s/\_/\\_/;
+# 		}
+# 		$identity =~ s/%/\\%/;
+# 		print MYOUTFILE "|[$est](http://www.ncbi.nlm.nih.gov/nucest/$searchest) | $length | $score  | $identity | $evalue | $start | $readingframe |\n";
+	
+# 	    }
+# 	}
+# 	close VETTINGOUT;
+#     }
     
     close MYOUTFILE;
+    close MYOUTFILE2;
+    close MYOUTFILE3;
+
     
 }
 
