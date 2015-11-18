@@ -113,10 +113,11 @@ script\n"; }
     open(IN, $_[0]) or die "Can not open file $_[0]";
 # Get an array containing the filenames that shall be parsed here
     my @files;
+    my %lines;
     while (<IN>){
 	chomp;
-	push @files,$_;
-	
+	push @files,$_ if not $lines{$_}++;
+	# The if statment emoves duplicate rows
     }
     close IN;
 
@@ -2086,8 +2087,8 @@ sub create_report {
     print MYOUTFILE3 "<th width=\"150\">Description</th>\n";
     print MYOUTFILE3 "<th width=\"150\">Score</th>\n";
     print MYOUTFILE3 "<th width=\"150\">Evalue</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">\\% Identity (based on alignment)</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">\\% Similarity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">\% Identity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"150\">\% Similarity (based on alignment)</th>\n";
     print MYOUTFILE3 "<th width=\"150\">Link to alignment</th>\n";
     print MYOUTFILE3 "<th width=\"150\"></th>\n";
     print MYOUTFILE3 "<th width=\"150\"></th>\n";
@@ -2128,6 +2129,7 @@ sub create_report {
 	print MYOUTFILE3 "<tr>\n";
 	print MYOUTFILE3 "<td width=\"150\">$comphit</td>\n";
  	my $besthits;
+	my @besthitsarray;
  	open(BESTHIT,"blastp.besthits");
  	while (<BESTHIT>){
  	    chomp;
@@ -2139,57 +2141,81 @@ sub create_report {
  		my $s=$3;
  		my $ev=$4;
  		if ($besthit =~ /\_/){
- 		    $besthit =~ s/\_/\\_/;
+ 		    $besthit =~ s/\_/\_/;
  		}
  		if ($desc =~ /\_/){
  		    $desc =~ s/\_/\\_/;
  		}
- 		if ($besthits){
-		    print MYOUTFILE3 "<td width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$besthits\"></a>$besthit</td>\n";
-		    print MYOUTFILE3 "<td width=\"150\">$desc</td>\n";
-		    print MYOUTFILE3 "<td width=\"150\">$s</td>\n";
-		    print MYOUTFILE3 "<td width=\"150\">$ev</td>\n";
- 		}
- 		else {
+
+		if ($besthits){
+
+
+		    if (!grep ($besthits, @besthitsarray)){
+			
+			print MYOUTFILE3 "<td width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$besthits\">$besthit</a></td>\n";
+			print MYOUTFILE3 "<td width=\"150\">$desc</td>\n";
+			print MYOUTFILE3 "<td width=\"150\">$s</td>\n";
+			print MYOUTFILE3 "<td width=\"150\">$ev</td>\n";
+			
+############## Include information on the identity and similarity from the mafft alignment
+			my @hitsarray;
+			open(MAFFTOUT,"parsemafft.out");
+			while (<MAFFTOUT>){
+			    chomp;
+			    my $line=$_;
+			    if ($line =~ /^$comphit\t.*\t(.*)\t(.*)/g){
+				my $hit=$1;
+
+				if (!grep ($hit, @hitsarray)){
+				    my $identity=sprintf "%.2f", $1;
+				    my $similarity=sprintf "%.2f", $2;
+				    print MYOUTFILE3 "<td width=\"150\"> $identity</td>\n";
+				    print MYOUTFILE3 "<td width=\"150\"> $similarity</td>\n";
+				}
+				push @hitsarray,$hit;
+			    }
+			    
+			}
+			close MAFFTOUT;
+			
+# ########### Make a link to the clustalw alignment file
+			
+			my $printcomphit=$comphit;
+			$printcomphit =~ s/\_/\_/g;
+			my $printbesthit=$besthits;
+			$printbesthit =~ s/\_/\_/g;
+			print MYOUTFILE3 "<td width=\"150\"><a href=\"$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\">$printcomphit\_\_$printbesthit\_\_MAFFTalignmentClustalW\.txt</a></td>\n";
+			
+			print MYOUTFILE3 "<td width=\"150\"><a href=\"domains$actualcomphit.html\">link</a></td>\n";
+			print MYOUTFILE3 "<td width=\"150\"><a href=\"queries$actualcomphit.html\">link</a></td>\n";
+			print MYOUTFILE3 "<td width=\"150\"><a href=\"ests$actualcomphit.html\">link</a></td>\n";
+	    
+			
+			push @besthitsarray,$besthits;
+			
+		    }
+		}
+
+		else {
 		    print MYOUTFILE3 "<td colspan=\"7\" width=\"1050\">No best hit found</td>\n";
- 		}
+		}
+
+
+
+		
  	    }
+	    
  	}
  	close BESTHIT;
 	
 
 
 
-############## Include information on the identity and similarity from the mafft alignment
- 	if ($besthits){    
- 	    open(MAFFTOUT,"parsemafft.out");
- 	    while (<MAFFTOUT>){
- 		chomp;
- 		my $line=$_;
- 		if ($line =~ /^$comphit\t.*\t(.*)\t(.*)/g){
- 		    my $identity=sprintf "%.2f", $1;
- 		    my $similarity=sprintf "%.2f", $2;
-		    print MYOUTFILE3 "<td width=\"150\"> $identity</td>\n";
-		    print MYOUTFILE3 "<td width=\"150\"> $similarity</td>\n";
 
- 		}
- 	    }
- 	    close MAFFTOUT;
-	    
-# ########### Make a link to the clustalw alignment file
-	    
- 	    my $printcomphit=$comphit;
- 	    $printcomphit =~ s/\_/\\_/g;
- 	    my $printbesthit=$besthits;
- 	    $printbesthit =~ s/\_/\\_/g;
-	    print MYOUTFILE3 "<td width=\"150\"><a href=\"$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\"></a>$printcomphit\\_\\_$printbesthit\\_\\_MAFFTalignmentClustalW\.txt</td>\n";
-	    
 
-	}
 
-	print MYOUTFILE3 "<td width=\"150\"><a href=\"domains$actualcomphit.html\">link</a></td>\n";
-	print MYOUTFILE3 "<td width=\"150\"><a href=\"queries$actualcomphit.html\">link</a></td>\n";
-	print MYOUTFILE3 "<td width=\"150\"><a href=\"ests$actualcomphit.html\">link</a></td>\n";
+
+
 	print MYOUTFILE3 "</tr>\n";
 
 	open (MYOUTFILE4,">queries$actualcomphit.html");
