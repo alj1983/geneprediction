@@ -25,14 +25,14 @@ ProteinScreen - identifying target proteins in de novo transcriptomes
 
 This program works only in a UNIX environment. The user needs to install
 - hmmer http://hmmer.org/download.html
-- XX what needs to be installed to run formatdb and for makeblastdb?
+- BLAST+ applications with the makeblastdb tool http://www.ncbi.nlm.nih.gov/books/NBK279671/
 
 ==head2 PREPARATIONS
 
 ==head3 Transcriptome
 
 The transcriptome must be prepared as a database with the following unix command:
- formatdb -i fastafilename.fasta -t fastafilename -o T -p F 
+  makeblastdb -in fastafilename.fasta -title fastafilename -name fastafilename -out -parse-seqids -dbtype nucl
 Here, 'fastafilename' needs to be changed to the name of your own
 fastafile.
 
@@ -111,36 +111,92 @@ Fasta file with EST sequence(s) of your target species, including the ending '.f
 
 ==head3 Output 
 
-The wrapper function C<ProteinScreen::ProteinScreen> summarizes the
+The wrapper function C<ProteinScreen::ProteinScreen> summarizes all
 results in the file ResultReport.html. This file provides a link to
 'Queries', which lists all protein queries that were used, and a link
-to 'Best hits', which lists the contigs in your target species'
+to 'Best hits', which lists all the contigs in your target species'
 transcriptome that are closely related to one or several of your
-protein queries. 
+protein queries. The list of 'Best hits' provides for each contig
+information on best hit in the protein database, as well as links to
+predicted domains, used protein queries, and related Expressed
+Sequence Tags (ESTs).
 
+==head3 Pipeline details This section describes the functions that the
+wrapper function C<ProteinScreen::ProteinScreen> is built on.
 
-XX Describe the output files that are produced.
+The wrapper function C<ProteinScreen::ProteinScreen> 
 
-==head3 Pipeline details
+XX  describe below shortly what all the methods are doing
 
-XX How Can I export only the protein screen function for the user? Or
-XXshall I make all the methods available?
-
-XX I at least need to describe what all the methods are doing
-
-=head2 Methods
-
-=over 12
+=over 
 
 =item C<new>
 
 Returns a new My::Module object.
 
-=item C<as_string>
+=item C<local_database_search>
 
-Returns a stringified representation of
-the object. This is mainly for debugging
-purposes.
+Text
+
+=item C<parse_local_database_search>
+
+Text
+
+=item C<best_hits_to_fasta>
+
+Text
+
+=item C<translation>
+
+Text
+
+=item C<deduplicate_fasta>
+
+Text
+
+=item C<parse_decypher2>
+
+Text
+
+=item C<peptide_extraction>
+
+Text
+
+=item C<reciprocal_blast>
+
+Text
+
+=item C<parse_blastp>
+
+Text
+
+=item C<hmmscan>
+
+Text
+
+=item C<mafft>
+
+Text
+
+=item C<parse_mafft>
+
+Text
+
+=item C<vetting>
+
+Text
+
+=item C<parse_vetting>
+
+Text
+
+=item C<pfam>
+
+Text
+
+=item C<create_report>
+
+Text
 
 =back
 
