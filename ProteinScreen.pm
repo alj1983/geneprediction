@@ -1,5 +1,160 @@
 #!/usr/bin/perl -w
 
+
+
+XX Choose BMC bioinformatics as target journal
+
+
+=head1 NAME
+
+ProteinScreen - identifying target proteins in de novo transcriptomes 
+
+=head1 SYNOPSIS
+    use strict;
+    use ProteinScreen;
+
+    my $queries = 'queries.fasta';
+    my $pfam = 'Pfam-A.hmm';
+    my $transcriptome = 'transcriptome.fasta';
+    my $proteindatabase = 'nr_database';
+    my $ests = 'ests.fasta';
+
+    ProteinScreen::ProteinScreen($queries, $pfam, $transcriptome, $proteindatabase, $ests);
+
+=head1 DESCRIPTION
+
+This program works only in a UNIX environment. The user needs to install
+- hmmer http://hmmer.org/download.html
+- XX what needs to be installed to run formatdb and for makeblastdb?
+
+==head2 PREPARATIONS
+
+==head3 Transcriptome
+
+The transcriptome must be prepared as a database with the following unix command:
+ formatdb -i fastafilename.fasta -t fastafilename -o T -p F 
+Here, 'fastafilename' needs to be changed to the name of your own
+fastafile.
+
+==head3 Protein database
+
+A database with protein sequences from species closely related to your target species 
+must be prepared as follows: 
+
+=over
+
+=item *
+Download the nr.gz database from ftp://ftp.ncbi.nih.gov/blast/db/FASTA/
+
+=item *
+unpack it with the Unix code
+  gunzip nr.gz
+
+=item *
+format it as blast database on the command line with
+  makeblastdb -dbtype prot -in nr -parse_seqids
+
+=item *
+Search the Entrez Protein database (online) for the wider taxon of your target species (here bony fishes) with the query: I<"bony fishes"[ORGN]>
+
+=item *
+Select I<Send to File> and choose format I<GI list> and save it in I<sequence.gi.txt>.
+
+=item *
+Now, run the Unix command
+  blastdb_aliastool -gilist sequence.gi.txt -db nt -out nt_bonyfishes -title nt_bonyfishes
+Change bony fishes to the wider taxon name of your own target species. For example, if your tanscriptome belongs to a decapod species, you can choose I<arthropoda> as wider taxon. 
+
+=back
+
+==head3 ESTs
+
+Download from NCBI all entries for your target species in the EST
+database as fasta file and format it as blast database with the
+command 
+ makeblastdb -in fastafilename.fasta -dbtype nucl -parse_seqids
+Here, 'fastafilename' needs to be replaced with the
+name of your own fasta file containing EST sequences.
+
+==head2 RUNNING THE MAIN FUNCTION
+
+The ProteinScreen module provides the function
+ProteinScreen::ProteinScreen. This function runs a pipeline to extract
+from a de novo transcriptome those contigs that are closely related
+to previously selected target proteins, e.g. heat shock proteins. The
+user needs to provide five arguments:
+
+=over
+
+=item $queries
+
+Fasta file with peptide sequences of target proteins from related species, including the file ending '.fasta'..
+
+=item $pfam
+
+Link to the protein database pfam, downloaded from http://pfam.xfam.org/ as Pfam-A.hmm file.
+
+=item $transcriptome
+
+Fasta file name of the transcriptome, including the ending '.fasta'.
+
+=item $proteindatabase
+
+Name of local non-redundant protein database of the wider taxon of your target species.
+
+=item $ests
+
+Fasta file with EST sequence(s) of your target species, including the ending '.fasta'.
+
+=back
+
+
+==head3 Output 
+
+The wrapper function C<ProteinScreen::ProteinScreen> summarizes the
+results in the file ResultReport.html. This file provides a link to
+'Queries', which lists all protein queries that were used, and a link
+to 'Best hits', which lists the contigs in your target species'
+transcriptome that are closely related to one or several of your
+protein queries. 
+
+
+XX Describe the output files that are produced.
+
+==head3 Pipeline details
+
+XX How Can I export only the protein screen function for the user? Or
+XXshall I make all the methods available?
+
+XX I at least need to describe what all the methods are doing
+
+=head2 Methods
+
+=over 12
+
+=item C<new>
+
+Returns a new My::Module object.
+
+=item C<as_string>
+
+Returns a stringified representation of
+the object. This is mainly for debugging
+purposes.
+
+=back
+
+=head1 LICENSE
+
+This is released under the Artistic 
+License. See L<perlartistic>.
+
+=head1 AUTHOR
+
+Alexander Jueterbock - L<http://marinetics.org/>
+
+=cut
+
 package ProteinScreen;
 use match::smart; ## |M| Replaces the smartmatch operator ~~
 use strict;
@@ -24,7 +179,7 @@ script\n"; }
 
     my $seqio = Bio::SeqIO->new(-file=>$_[0] , '-format' => 'fasta' );
 
-    open (MYOUTFILE, ">tblastn\.LocalDatabase"); #open for write - this will contain
+    open (MYOUTFILE, ">outfiles/tblastn\.LocalDatabase"); #open for write - this will contain
     #the filenames of the output files
     #this script produces
 
@@ -89,7 +244,7 @@ script\n"; }
 	    $comp							       =  $1;
 	}
 	my $filename						       =  $comp."\_tblastnLocalDatabase\.out";
-	my $tblastnrun						       =  `tblastn -query temporarysequence.fasta -db $_[1] -out $filename`;
+	my $tblastnrun						       =  'tblastn -query temporarysequence.fasta -db $_[1] -out $filename';
 	print (".");
 	print MYOUTFILE "$filename\n";
     }
@@ -123,7 +278,7 @@ script\n"; }
 
 
 
-    open(MYOUTFILE1, ">Cfin\.queryinfo"); #open for write
+    open(MYOUTFILE1, ">outfiles/Cfin\.queryinfo"); #open for write
 
 
 
@@ -531,7 +686,7 @@ script\n"; }
 ########################################################################
 ###### converge unique comp hits between the different queries #########
 ########################################################################
-    open(MYOUTFILE2, ">Cfin\.compinfo"); #open for write
+    open(MYOUTFILE2, ">outfiles/Cfin\.compinfo"); #open for write
     my @overall_unique_comp_hits = uniq @all_unique_comp_hits;
 
 # scan through all the table and print the queries, ranks and evals
@@ -581,10 +736,10 @@ sub best_hits_to_fasta {
 	if ($line=~ /^hit:\s*(\S*)/){
 	    my $identifier=$1;
 	    if ($hit==0){
-		my $blastdbcmd = `blastdbcmd -db $_[1] -entry $identifier > Comphits.fasta`;    
+		my $blastdbcmd = `blastdbcmd -db $_[1] -entry $identifier > outfiles/Comphits.fasta`;    
 	    }
 	    else{
-		my $blastdbcmd = `blastdbcmd -db $_[1] -entry $identifier >> Comphits.fasta`;    
+		my $blastdbcmd = `blastdbcmd -db $_[1] -entry $identifier >> outfiles/Comphits.fasta`;    
 	    }
 	    $hit++;
 	}
@@ -646,7 +801,7 @@ sub translation {
 
     my $fastafile   = $_[0];
     my $seqio  = Bio::SeqIO->new(-file => $fastafile, -format => "fasta");
-    open(MYOUTFILE, ">TranslatedCompHits.fasta"); #open for write
+    open(MYOUTFILE, ">outfiles/TranslatedCompHits.fasta"); #open for write
 
 # Get only the unique sequence * frame combinations
     my %unique;      
@@ -723,7 +878,7 @@ sub deduplicate_fasta {
     my $file   = $_[0];
     my $filenamecode = $file =~/^(.*).fasta/;
     my $seqio  = Bio::SeqIO->new(-file => $file, -format => "fasta");
-    my $outseq = Bio::SeqIO->new(-file => ">deduplicated.fasta", -format => "fasta");
+    my $outseq = Bio::SeqIO->new(-file => ">outfiles/deduplicated.fasta", -format => "fasta");
 
     while(my $seqs = $seqio->next_seq) {
 	my $id  = $seqs->display_id;
@@ -905,7 +1060,7 @@ script\n"; }
     my $seqio  = Bio::SeqIO->new(-file => $_[0], -format => "fasta");
 
 
-    open (MYOUTFILE, ">Blastp\.outfiles"); #open for write - this will contain
+    open (MYOUTFILE, ">outfiles/Blastp\.outfiles"); #open for write - this will contain
     #the filenames of the output files
     #this script produces
     print ("waiting for blastp against the protein database (nr)...");
@@ -1189,7 +1344,7 @@ script\n"; }
 	push @bestevalues,$evalues_selected[0];
     }
 
-    open (MYOUTFILE,">blastp\.besthits");
+    open (MYOUTFILE,">outfiles/blastp\.besthits");
     print MYOUTFILE "query\tbesthit\tdescription\tscore\tevalue\n";
     my $n;
     my $querynumber = $#queries;
@@ -1199,7 +1354,7 @@ script\n"; }
     }
     close MYOUTFILE;
 
-    open (MYOUTFILE2,">besthits\.fasta");
+    open (MYOUTFILE2,">outfiles/besthits\.fasta");
 ############# Now get the sequences of the best hits and write them to a fastafile
     @besthits = grep { $_ ne '' } @besthits; # removing empty elements from the array besthits
     foreach (@besthits){
@@ -1239,6 +1394,7 @@ script. One contains the contigs of your target species the other contains the s
     close MYOUTFILE;
 
 # running hmmscan from the command line
+    my $hmmpress = `hmmpress $_[2]`;
     my $output = `hmmscan --domtblout hmmscanoutput.tab $_[2] alldata.fasta`;
     open (MYOUTFILE2, ">hmmscan.out");
     print MYOUTFILE2 "queryname\tlen\tdomname\tbegin\tend\tdomaccession\tdomlength\tquerylength\tEval\tscore\tiEval\tdomscore\n";
@@ -1314,7 +1470,7 @@ script. The first contains the contigs of your target species and the second con
 #### Extract the protein sequences for the query-besthit pairs and
 #### submit them for alignment to mafft
 
-    open(OUT, ">mafftalignments.outfilenames"); # this will list the outputfilenames in one file.
+    open(OUT, ">outfiles/mafftalignments.outfilenames"); # this will list the outputfilenames in one file.
 
 # Creating a temporary output file that stores the sequence pairs in fasta format
     my $t;
@@ -1360,10 +1516,10 @@ script. The first contains the contigs of your target species and the second con
 
 	my $fastapairname1="$queries[$t]\_\_$besthits[$t]\_\_MAFFTalignmentClustalW\.txt";
 	print OUT "$fastapairname1\n";
-	my $maffrun1 = `mafft --clustalout temporary_fastapair.fasta  > $fastapairname1`;
+	my $maffrun1 = `mafft --clustalout temporary_fastapair.fasta  > outfiles/$fastapairname1`;
 
 	my $fastapairname2="$queries[$t]\_\_$besthits[$t]\_\_MAFFTalignment\.fasta";
-	my $maffrun2 = `mafft temporary_fastapair.fasta  > $fastapairname2`;
+	my $maffrun2 = `mafft temporary_fastapair.fasta  > outfiles/$fastapairname2`;
 	
 	
 
@@ -1395,6 +1551,7 @@ script. The filename must be of the pattern queryname__besthitname__MAFFTalignme
     print OUTLIST "query\thit\tidentity\tsimilarity\n";
     foreach (@filenames){
 	my $actualfilename=$_;
+	print $actualfilename;
 	my $aln='';
 	
 	my @lines=(); # this saves the lines that contain the comparison characters of the two alignments
@@ -1502,7 +1659,7 @@ script\n"; }
 
     my $seqio = Bio::SeqIO->new(-file=>$_[0] , '-format' => 'fasta' );
 
-    open (MYOUTFILE, ">tblastn\.ESTout"); #open for write - this will contain
+    open (MYOUTFILE, ">outfiles/tblastn\.ESTout"); #open for write - this will contain
     #the filenames of the output files
     #this script produces
 
@@ -1984,11 +2141,14 @@ sub create_report {
 
     print MYOUTFILE "</head>\n";
     print MYOUTFILE "<body>\n";
-    print MYOUTFILE "<h1 style=\"text-align:center\">Result Report for protein predictions</h1>\n";
+
     print MYOUTFILE "<ul>\n";
     print MYOUTFILE "<li><a href=\"Queries.html\">Queries</a></li>\n";
     print MYOUTFILE "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
     print MYOUTFILE "</ul>\n";
+
+    print MYOUTFILE "<h1 style=\"text-align:center\">Result Report for protein predictions</h1>\n";
+
     print MYOUTFILE "</body>\n";
     print MYOUTFILE "</html>\n";
 
@@ -2004,13 +2164,43 @@ sub create_report {
 
     print MYOUTFILE2 "<style type=\"text/css\">\n";
 
+    print MYOUTFILE2 "li {\n";
+    print MYOUTFILE2 "display: inline;\n";
+    print MYOUTFILE2 "margin: 20px 20px;\n";
+    print MYOUTFILE2 "}\n";
+
+    print MYOUTFILE2 "ul {\n";
+    print MYOUTFILE2 "width: 570px;\n";
+    print MYOUTFILE2 "padding: 15px;\n";
+    print MYOUTFILE2 "margin: 0px auto 0px auto;\n";
+    print MYOUTFILE2 "border-top: 2px solid #000;\n";
+    print MYOUTFILE2 "border-bottom: 1px solid #000;\n";
+    print MYOUTFILE2 "text-align: center;\n";
+    print MYOUTFILE2 "}\n";
+
     print MYOUTFILE2 "</style>\n";
 
     print MYOUTFILE2 "</head>\n";
     print MYOUTFILE2 "<body>\n";
+    print MYOUTFILE2 "<ul>\n";
+    print MYOUTFILE2 "<li><a href=\"Queries.html\">Queries</a></li>\n";
+    print MYOUTFILE2 "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+    print MYOUTFILE2 "</ul>\n";
+
     print MYOUTFILE2 "<h1 style=\"text-align:center\">Queries</h1>\n";
-    print MYOUTFILE2 "<h2 style=\"text-align:center\">Accession numbers and descriptions of the queries used</h2>\n";
-    print MYOUTFILE2 "<dl>\n";
+
+    print MYOUTFILE2 "<table>\n";
+	
+    print MYOUTFILE2 "<thead>\n";
+    print MYOUTFILE2 "<tr>\n";
+    
+    print MYOUTFILE2 "<th width=\"300\">Accession number </th>\n";
+    print MYOUTFILE2 "<th width=\"500\">Description</th>\n";
+	
+    print MYOUTFILE2 "</tr>\n";
+    print MYOUTFILE2 "</thead>\n";
+	
+    print MYOUTFILE2 "<tbody>\n";
 
     open(QUERYINFO,"Cfin.queryinfo");
     
@@ -2020,15 +2210,29 @@ sub create_report {
 	if ($line =~ /^Query\:\s(.*)\t(.*)$/){
 	    my $query=$1;
 	    my $querydescription=$2;
-	    $querydescription =~ s/\_/\\_/g;
+	    $querydescription =~ s/\_/\_/g;
 	    $querydescription =~ s/\=/\\=/g;
 	    my $searchquery=$query;
-	    $query =~ s/\_/\\_/g;
-	    print MYOUTFILE2 "<dt><a href=\"http://www.ncbi.nlm.nih.gov/protein/$searchquery\">$query</a></dt>\n";
-	    print MYOUTFILE2 "<dd>$querydescription</dd>\n";
+	    $query =~ s/\_/\_/g;
+	print MYOUTFILE2 "<tr>\n";
+	print MYOUTFILE2 "<td width=\"300\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$searchquery\">$query</a> </td>\n";
+	print MYOUTFILE2 "<td width=\"500\">$querydescription</td>\n";
+
+	print MYOUTFILE2 "</tr>\n";
 	}
     }
     close QUERYINFO;
+	    
+
+	
+
+	print MYOUTFILE2 "</tbody>\n";
+
+	print MYOUTFILE2 "</table>\n";
+
+
+
+   
 
     print MYOUTFILE2 "</dl>\n";
     print MYOUTFILE2 "</body>\n";
@@ -2043,24 +2247,54 @@ sub create_report {
     print MYOUTFILE3 "<head>\n";
     print MYOUTFILE3 "<title>Best contig hits</title>\n";
 
+    # print MYOUTFILE3 "<style type=\"text/css\">\n";
+
+
+
     print MYOUTFILE3 "<style type=\"text/css\">\n";
 
     print MYOUTFILE3 "li {\n";
+    print MYOUTFILE3 "display: inline;\n";
+    print MYOUTFILE3 "margin: 20px 20px;\n";
     print MYOUTFILE3 "}\n";
 
     print MYOUTFILE3 "ul {\n";
     print MYOUTFILE3 "width: 570px;\n";
     print MYOUTFILE3 "padding: 15px;\n";
     print MYOUTFILE3 "margin: 0px auto 0px auto;\n";
+    print MYOUTFILE3 "border-top: 2px solid #000;\n";
+    print MYOUTFILE3 "border-bottom: 1px solid #000;\n";
+    print MYOUTFILE3 "text-align: center;\n";
     print MYOUTFILE3 "}\n";
 
     print MYOUTFILE3 "</style>\n";
 
+
+
+    #print MYOUTFILE3 "li {\n";
+    #print MYOUTFILE3 "}\n";
+
+    #print MYOUTFILE3 "ul {\n";
+    #print MYOUTFILE3 "width: 570px;\n";
+    #print MYOUTFILE3 "padding: 15px;\n";
+    #print MYOUTFILE3 "margin: 0px auto 0px auto;\n";
+    #print MYOUTFILE3 "}\n";
+
+    #print MYOUTFILE3 "</style>\n";
+
     print MYOUTFILE3 "</head>\n";
     print MYOUTFILE3 "<body>\n";
+
+    print MYOUTFILE3 "<ul>\n";
+    print MYOUTFILE3 "<li><a href=\"Queries.html\">Queries</a></li>\n";
+    print MYOUTFILE3 "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+    print MYOUTFILE3 "</ul>\n";
+    
     print MYOUTFILE3 "<h1 style=\"text-align:center\">Best contig hits</h1>\n";
     print MYOUTFILE3 "<h2 style=\"text-align:center\">Unique contig hits in the transcriptome of your target species</h2>\n";
-    print MYOUTFILE3 "<p>The fasta file <a href=\"UniqueComphits.fasta\">UniqueComphits.fasta</a> contains the polypeptide sequences of these contigs.</p>\n";       
+   
+
+    print MYOUTFILE3 "<p>The fasta file <a href=\"UniqueCompHits.fasta\">UniqueCompHits.fasta</a> contains the polypeptide sequences of these contigs.</p>\n";       
     print MYOUTFILE3 "<p>The fasta file <a href=\"LongestPolypeptide.fasta\">LongestPolypeptide.fasta</a> contains the polypeptide sequences of the longest open reading frames for these contigs.</p>\n";        
     print MYOUTFILE3 "<dl>\n";
 
@@ -2072,27 +2306,27 @@ sub create_report {
     print MYOUTFILE3 "<thead>\n";
     print MYOUTFILE3 "<tr>\n";
     
-    print MYOUTFILE3 "<th width=\"150\">Contig </th>\n";
-    print MYOUTFILE3 "<th colspan=\"7\" width=\"1050\">Best blastp hit</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Domains</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Queries</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">ESTs</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Contig </th>\n";
+    print MYOUTFILE3 "<th colspan=\"7\" width=\"2100\">Best blastp hit</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Domains</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Queries</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">ESTs</th>\n";
     
     print MYOUTFILE3 "</tr>\n";
     
     print MYOUTFILE3 "<tr>\n";
     
-    print MYOUTFILE3 "<th width=\"150\"></th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Accession</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Description</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Score</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Evalue</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">\% Identity (based on alignment)</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">\% Similarity (based on alignment)</th>\n";
-    print MYOUTFILE3 "<th width=\"150\">Link to alignment</th>\n";
-    print MYOUTFILE3 "<th width=\"150\"></th>\n";
-    print MYOUTFILE3 "<th width=\"150\"></th>\n";
-    print MYOUTFILE3 "<th width=\"150\"></th>\n";
+    print MYOUTFILE3 "<th width=\"300\"></th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Accession</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Description</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Score</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Evalue</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">\% Identity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">\% Similarity (based on alignment)</th>\n";
+    print MYOUTFILE3 "<th width=\"300\">Link to alignment</th>\n";
+    print MYOUTFILE3 "<th width=\"300\"></th>\n";
+    print MYOUTFILE3 "<th width=\"300\"></th>\n";
+    print MYOUTFILE3 "<th width=\"300\"></th>\n";
     
     print MYOUTFILE3 "</tr>\n";
     
@@ -2127,7 +2361,7 @@ sub create_report {
 # ################# proteins on NCBI
 	
 	print MYOUTFILE3 "<tr>\n";
-	print MYOUTFILE3 "<td width=\"150\">$comphit</td>\n";
+	print MYOUTFILE3 "<td width=\"300\">$comphit</td>\n";
  	my $besthits;
 	my @besthitsarray;
  	open(BESTHIT,"blastp.besthits");
@@ -2152,10 +2386,10 @@ sub create_report {
 
 		    if (!grep ($besthits, @besthitsarray)){
 			
-			print MYOUTFILE3 "<td width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$besthits\">$besthit</a></td>\n";
-			print MYOUTFILE3 "<td width=\"150\">$desc</td>\n";
-			print MYOUTFILE3 "<td width=\"150\">$s</td>\n";
-			print MYOUTFILE3 "<td width=\"150\">$ev</td>\n";
+			print MYOUTFILE3 "<td width=\"300\"><a href=\"http://www.ncbi.nlm.nih.gov/protein/$besthits\">$besthit</a></td>\n";
+			print MYOUTFILE3 "<td width=\"300\">$desc</td>\n";
+			print MYOUTFILE3 "<td width=\"300\">$s</td>\n";
+			print MYOUTFILE3 "<td width=\"300\">$ev</td>\n";
 			
 ############## Include information on the identity and similarity from the mafft alignment
 			my @hitsarray;
@@ -2169,8 +2403,8 @@ sub create_report {
 				if (!grep ($hit, @hitsarray)){
 				    my $identity=sprintf "%.2f", $1;
 				    my $similarity=sprintf "%.2f", $2;
-				    print MYOUTFILE3 "<td width=\"150\"> $identity</td>\n";
-				    print MYOUTFILE3 "<td width=\"150\"> $similarity</td>\n";
+				    print MYOUTFILE3 "<td width=\"300\"> $identity</td>\n";
+				    print MYOUTFILE3 "<td width=\"300\"> $similarity</td>\n";
 				}
 				push @hitsarray,$hit;
 			    }
@@ -2184,11 +2418,11 @@ sub create_report {
 			$printcomphit =~ s/\_/\_/g;
 			my $printbesthit=$besthits;
 			$printbesthit =~ s/\_/\_/g;
-			print MYOUTFILE3 "<td width=\"150\"><a href=\"$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\">$printcomphit\_\_$printbesthit\_\_MAFFTalignmentClustalW\.txt</a></td>\n";
+			print MYOUTFILE3 "<td width=\"300\"><a href=\"$comphit\_\_$besthits\_\_MAFFTalignmentClustalW\.txt\">$printcomphit\_\_$printbesthit\_\_MAFFTalignmentClustalW\.txt</a></td>\n";
 			
-			print MYOUTFILE3 "<td width=\"150\"><a href=\"domains$actualcomphit.html\">link</a></td>\n";
-			print MYOUTFILE3 "<td width=\"150\"><a href=\"queries$actualcomphit.html\">link</a></td>\n";
-			print MYOUTFILE3 "<td width=\"150\"><a href=\"ests$actualcomphit.html\">link</a></td>\n";
+			print MYOUTFILE3 "<td width=\"300\"><a href=\"domains$actualcomphit.html\">link</a></td>\n";
+			print MYOUTFILE3 "<td width=\"300\"><a href=\"queries$actualcomphit.html\">link</a></td>\n";
+			print MYOUTFILE3 "<td width=\"300\"><a href=\"ests$actualcomphit.html\">link</a></td>\n";
 	    
 			
 			push @besthitsarray,$besthits;
@@ -2197,7 +2431,7 @@ sub create_report {
 		}
 
 		else {
-		    print MYOUTFILE3 "<td colspan=\"7\" width=\"1050\">No best hit found</td>\n";
+		    print MYOUTFILE3 "<td colspan=\"7\" width=\"2100\">No best hit found</td>\n";
 		}
 
 
@@ -2209,33 +2443,47 @@ sub create_report {
  	close BESTHIT;
 	
 
-
-
-
-
-
-
-
 	print MYOUTFILE3 "</tr>\n";
+
+
+
+
 
 	open (MYOUTFILE4,">queries$actualcomphit.html");
 	
 	print MYOUTFILE4 "<!DOCTYPE html>";
 	print MYOUTFILE4 "<html>\n";
 	print MYOUTFILE4 "<head>\n";
-	print MYOUTFILE4 "<title>$actualcomphit</title>\n";
+	print MYOUTFILE4 "<title>$actualcomphit queries</title>\n";
 	
 	print MYOUTFILE4 "<style type=\"text/css\">\n";
-	    
-	    
+
+	print MYOUTFILE4 "li {\n";
+	print MYOUTFILE4 "display: inline;\n";
+	print MYOUTFILE4 "margin: 20px 20px;\n";
+	print MYOUTFILE4 "}\n";
+	
+	print MYOUTFILE4 "ul {\n";
+	print MYOUTFILE4 "width: 570px;\n";
+	print MYOUTFILE4 "padding: 15px;\n";
+	print MYOUTFILE4 "margin: 0px auto 0px auto;\n";
+	print MYOUTFILE4 "border-top: 2px solid #000;\n";
+	print MYOUTFILE4 "border-bottom: 1px solid #000;\n";
+	print MYOUTFILE4 "text-align: center;\n";
+	print MYOUTFILE4 "}\n";
+	
 	print MYOUTFILE4 "</style>\n";
 	    
 	print MYOUTFILE4 "</head>\n";
 	print MYOUTFILE4 "<body>\n";
-	print MYOUTFILE4 "<h1 style=\"text-align:center\">$actualcomphit</h1>\n";
-	    
+
+	print MYOUTFILE4 "<ul>\n";
+	print MYOUTFILE4 "<li><a href=\"Queries.html\">Queries</a></li>\n";
+	print MYOUTFILE4 "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+	print MYOUTFILE4 "</ul>\n";
 # ############### Include a table on the information to which querys
 # ############### this comphit showed up as a hit and in which quality
+	print MYOUTFILE4 "<h1 style=\"text-align:center\">$actualcomphit queries</h1>\n";
 	
 	print MYOUTFILE4 "<p> Contig $actualcomphit showed up as a hit to the following queries (sorted by e-values). The targetframe refers to the contig of your target species.</p>\n";
 
@@ -2297,8 +2545,6 @@ sub create_report {
 	}
 	    
 	    
-## XX why does the same query show up here several times?
-
 	print MYOUTFILE4 "</tbody>\n";
 	
 	
@@ -2308,6 +2554,255 @@ sub create_report {
 	print MYOUTFILE4 "</html>\n";  
 	    
 	close MYOUTFILE4;
+
+
+# XX Continue here creating outfile 5 and 6 for each query
+
+######## MYOUTFILE5
+
+	open (MYOUTFILE5,">domains$actualcomphit.html");
+	
+	print MYOUTFILE5 "<!DOCTYPE html>";
+	print MYOUTFILE5 "<html>\n";
+	print MYOUTFILE5 "<head>\n";
+	print MYOUTFILE5 "<title>$actualcomphit domains</title>\n";
+	
+	print MYOUTFILE5 "<style type=\"text/css\">\n";
+	
+	print MYOUTFILE5 "li {\n";
+	print MYOUTFILE5 "display: inline;\n";
+	print MYOUTFILE5 "margin: 20px 20px;\n";
+	print MYOUTFILE5 "}\n";
+	
+	print MYOUTFILE5 "ul {\n";
+	print MYOUTFILE5 "width: 570px;\n";
+	print MYOUTFILE5 "padding: 15px;\n";
+	print MYOUTFILE5 "margin: 0px auto 0px auto;\n";
+	print MYOUTFILE5 "border-top: 2px solid #000;\n";
+	print MYOUTFILE5 "border-bottom: 1px solid #000;\n";
+	print MYOUTFILE5 "text-align: center;\n";
+	print MYOUTFILE5 "}\n";
+
+	print MYOUTFILE5 "</style>\n";
+	    
+	print MYOUTFILE5 "</head>\n";
+	print MYOUTFILE5 "<body>\n";
+
+	print MYOUTFILE5 "<ul>\n";
+	print MYOUTFILE5 "<li><a href=\"Queries.html\">Queries</a></li>\n";
+	print MYOUTFILE5 "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+	print MYOUTFILE5 "</ul>\n";
+
+	print MYOUTFILE5 "<h1 style=\"text-align:center\">$actualcomphit domains</h1>\n";
+# ############### Include a table on the information to which querys
+# ############### this comphit showed up as a hit and in which quality
+	
+	print MYOUTFILE5 "<p> Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\n";
+
+	print MYOUTFILE5 "<table>\n";
+	
+	print MYOUTFILE5 "<thead>\n";
+	print MYOUTFILE5 "<tr>\n";
+	    
+	print MYOUTFILE5 "<th width=\"150\">Sequence </th>\n";
+	print MYOUTFILE5 "<th width=\"150\">Slength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">Domain</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">Accession</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">Dlength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">Start</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">End</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">i\-E\-value</th>\n";
+	
+	print MYOUTFILE5 "</tr>\n";
+	print MYOUTFILE5 "</thead>\n";
+	
+	print MYOUTFILE5 "<tbody>\n";
+
+	    open(PROTEINDOMAINS,"hmmscan.out");
+	    while (<PROTEINDOMAINS>){
+		chomp;
+		my $line=$_;
+		if ($line =~ /$comphit/g){
+		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
+		    my $seqlength=$1;
+		    my $domain=$2;
+		    my $accession=$5;
+		    my $domlength=$6;
+		    my $start=$3;
+		    my $end=$4;
+		    my $evalue=$10;
+		    $domain =~ s/\_/\_/g;
+
+	print MYOUTFILE5 "<tr>\n";
+	    
+	print MYOUTFILE5 "<th width=\"150\">$actualcomphit </th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$seqlength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$domain</th>\n";
+	print MYOUTFILE5 "<th width=\"150\"><a href=\"http://pfam.xfam.org/family/$accession\">$accession</a></th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$domlength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$start</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$end</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$evalue</th>\n";
+	
+	print MYOUTFILE5 "</tr>\n";
+
+		}   
+		if ($line =~ /$besthits/g){
+		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
+		    my $seqlength=$1;
+		    my $domain=$2;
+		    my $accession=$5;
+		    my $domlength=$6;
+		    my $start=$3;
+		    my $end=$4;
+		    my $evalue=$10;
+		    $domain =~ s/\_/\_/g;
+
+	print MYOUTFILE5 "<tr>\n";
+	    
+		    my $printbesthit=$besthits;
+		    $printbesthit =~ s/\_/\_/g;
+	print MYOUTFILE5 "<th width=\"150\">$printbesthit</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$seqlength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$domain</th>\n";
+	print MYOUTFILE5 "<th width=\"150\"><a href=\"http://pfam.xfam.org/family/$accession\">$accession</a></th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$domlength</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$start</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$end</th>\n";
+	print MYOUTFILE5 "<th width=\"150\">$evalue</th>\n";
+	
+	print MYOUTFILE5 "</tr>\n";
+
+		}
+	    }
+	    close PROTEINDOMAINS;
+
+	print MYOUTFILE5 "</tbody>\n";
+	
+	
+	print MYOUTFILE5 "</table>\n";
+
+my $printbesthit=$besthits;
+	print MYOUTFILE5 "<p> Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit:\n";
+	
+
+	print MYOUTFILE5 "<img src=\"$comphit\_Pfam.png\" alt=\"$comphit\_Pfam.png\" style=\"width:504px;height:390px;\">\n";
+
+
+	print MYOUTFILE5 "</body>\n";
+	print MYOUTFILE5 "</html>\n";  
+	    
+	close MYOUTFILE5;
+
+
+
+
+
+######## MYOUTFILE6
+
+	open (MYOUTFILE6,">ests$actualcomphit.html");
+	
+	print MYOUTFILE6 "<!DOCTYPE html>";
+	print MYOUTFILE6 "<html>\n";
+	print MYOUTFILE6 "<head>\n";
+	print MYOUTFILE6 "<title>$actualcomphit ESTs</title>\n";
+	
+	print MYOUTFILE6 "<style type=\"text/css\">\n";
+
+	print MYOUTFILE6 "li {\n";
+	print MYOUTFILE6 "display: inline;\n";
+	print MYOUTFILE6 "margin: 20px 20px;\n";
+	print MYOUTFILE6 "}\n";
+	
+	print MYOUTFILE6 "ul {\n";
+	print MYOUTFILE6 "width: 570px;\n";
+	print MYOUTFILE6 "padding: 15px;\n";
+	print MYOUTFILE6 "margin: 0px auto 0px auto;\n";
+	print MYOUTFILE6 "border-top: 2px solid #000;\n";
+	print MYOUTFILE6 "border-bottom: 1px solid #000;\n";
+	print MYOUTFILE6 "text-align: center;\n";
+	print MYOUTFILE6 "}\n";
+
+	print MYOUTFILE6 "</style>\n";
+	    
+	print MYOUTFILE6 "</head>\n";
+	print MYOUTFILE6 "<body>\n";
+       
+	print MYOUTFILE6 "<ul>\n";
+	print MYOUTFILE6 "<li><a href=\"Queries.html\">Queries</a></li>\n";
+	print MYOUTFILE6 "<li><a href=\"BestHits.html\">Best hits</a></li>\n";
+	print MYOUTFILE6 "</ul>\n";
+# ############### Include a table on the information to which querys
+# ############### this comphit showed up as a hit and in which quality
+	print MYOUTFILE6 "<h1 style=\"text-align:center\">$actualcomphit EST hits</h1>\n";
+	print MYOUTFILE6 "<table>\n";
+	
+	print MYOUTFILE6 "<thead>\n";
+	print MYOUTFILE6 "<tr>\n";
+	    
+	print MYOUTFILE6 "<th width=\"150\">EST</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">Length</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">Score</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">Identity</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">E\-value</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">Alignmentstart</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">Frame</th>\n";
+	print MYOUTFILE6 "</tr>\n";
+	print MYOUTFILE6 "</thead>\n";
+	
+	print MYOUTFILE6 "<tbody>\n";
+
+ 	open(VETTINGOUT,"Vetting.out");
+ 	while (<VETTINGOUT>){
+ 	    chomp;
+ 	    my $line=$_;
+ 	    if ($line =~ /^$comphit\t.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t.*\t(.*)/g){
+		my $est=$1;
+ 		my $searchest=$est;
+ 		my $length=$2;
+ 		my $score=$3;
+ 		my $identity=$4;
+ 		my $evalue=$5;
+ 		my $start=$6;
+ 		my $readingframe=$7;
+ 		if ($est =~ /\_/){
+ 		    $est =~ s/\_/\_/;
+ 		}
+ 		$identity =~ s/%/\%/;
+
+
+
+	print MYOUTFILE6 "<tr>\n";
+	    
+	print MYOUTFILE6 "<th width=\"150\"><a href=\"http://www.ncbi.nlm.nih.gov/nucest/$searchest\">$est</a></th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$length </th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$score</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$identity</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$evalue</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$start</th>\n";
+	print MYOUTFILE6 "<th width=\"150\">$readingframe</th>\n";
+	
+	print MYOUTFILE6 "</tr>\n";
+
+ 	    }
+ 	}
+ 	close VETTINGOUT;
+
+
+	print MYOUTFILE6 "</tbody>\n";
+	
+	
+	print MYOUTFILE6 "</table>\n";
+
+
+	print MYOUTFILE6 "</body>\n";
+	print MYOUTFILE6 "</html>\n";  
+	    
+	close MYOUTFILE6;
+
+
+
+
     }
 	
     print MYOUTFILE3 "</tbody>\n";
@@ -2317,61 +2812,10 @@ sub create_report {
     
     
 	
-# XX Make separate html files for the tables that relate to the
-# contig. Make also one file for the domain predictions. In the
-# BestHit.html file, provide a table that gives links to all this
-# information
-
-	
 
 
 
 
-	    
-	    
-# ############# Include information on the protein domains in the Cfin contig and the best hit.
-# 	    print MYOUTFILE "#### Domain predictions. Start and End refer to the non-aligned protein-sequences. Slength: length of the query sequence; Dlength: Length of the domain.\n";    
-	    
-# 	    print MYOUTFILE "| Sequence | Slength | Domain | Accession | Dlength | Start | End | i\-E\-value |\n";
-# 	    print MYOUTFILE "|:-------- | -------:|:------ |:--------- | -------:| -----:| ---:|:----------- |\n";
-	    
-# 	    open(PROTEINDOMAINS,"hmmscan.out");
-# 	    while (<PROTEINDOMAINS>){
-# 		chomp;
-# 		my $line=$_;
-# 		if ($line =~ /$comphit/g){
-# 		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
-# 		    my $seqlength=$1;
-# 		    my $domain=$2;
-# 		    my $accession=$5;
-# 		    my $domlength=$6;
-# 		    my $start=$3;
-# 		    my $end=$4;
-# 		    my $evalue=$10;
-# 		    $domain =~ s/\_/\\_/g;
-# 		    print MYOUTFILE "| $actualcomphit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
-# 		}   
-# 		if ($line =~ /$besthits/g){
-# 		    $line =~ /.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)/g;
-# 		    my $seqlength=$1;
-# 		    my $domain=$2;
-# 		    my $accession=$5;
-# 		    my $domlength=$6;
-# 		    my $start=$3;
-# 		    my $end=$4;
-# 		    my $evalue=$10;
-# 		    $domain =~ s/\_/\\_/g;
-# 		    print MYOUTFILE "| $printbesthit | $seqlength | $domain | [$accession](http://pfam.xfam.org/family/$accession) | $domlength | $start | $end | $evalue |\n";
-# 		}
-# 	    }
-# 	    close PROTEINDOMAINS;
-	    
-# ############### Include the figure of alignment and protein domain
-# 	    print MYOUTFILE "Protein domains predicted along the protein sequence of your target species derived from $actualcomphit and its aligned best blastp hit $printbesthit\n";
-# 	    print MYOUTFILE "![$comphit\_Pfam\}.png]($comphit\_Pfam\}.png)\n";
-	    
-# 	}
-	
 	
 # ############## Include information on the EST hits in the Cfin database
 # 	print MYOUTFILE "#### EST hits\:\n";    
@@ -2379,28 +2823,8 @@ sub create_report {
 # 	print MYOUTFILE "|:----| ------:| -----:| --------:|:-------- | --------------:| -----:|\n";
 
 	
-# 	open(VETTINGOUT,"Vetting.out");
-# 	while (<VETTINGOUT>){
-# 	    chomp;
-# 	    my $line=$_;
-# 	    if ($line =~ /^$comphit\t.*\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t(.*)\t.*\t(.*)/g){
-# 		my $est=$1;
-# 		my $searchest=$est;
-# 		my $length=$2;
-# 		my $score=$3;
-# 		my $identity=$4;
-# 		my $evalue=$5;
-# 		my $start=$6;
-# 		my $readingframe=$7;
-# 		if ($est =~ /\_/){
-# 		    $est =~ s/\_/\\_/;
-# 		}
-# 		$identity =~ s/%/\\%/;
-# 		print MYOUTFILE "|[$est](http://www.ncbi.nlm.nih.gov/nucest/$searchest) | $length | $score  | $identity | $evalue | $start | $readingframe |\n";
-	
-# 	    }
-# 	}
-# 	close VETTINGOUT;
+
+
 #     }
     
     close MYOUTFILE;
@@ -2417,33 +2841,36 @@ sub ProteinScreen {
 # argument 2: The fasta file of the local transcriptome database
 # argument 3: The protein database (nr) of taxa related to your target species
 # argument 4: fasta file with EST sequence(s) of your target species
+
+    my $outdir='outfiles';
+    mkdir $outdir;
+
     local_database_search($_[0], $_[2]);
-    parse_local_database_search("tblastn.LocalDatabase");
-    best_hits_to_fasta("Cfin.compinfo", $_[2]);
-    translation("Comphits.fasta", "Cfin.compinfo");
-    deduplicate_fasta("TranslatedCompHits.fasta");
-    parse_decypher2("Cfin.compinfo", "deduplicated.fasta");
+    parse_local_database_search("outfiles/tblastn.LocalDatabase");
+    best_hits_to_fasta("outfiles/Cfin.compinfo", $_[2]);
+    translation("outfiles/Comphits.fasta", "outfiles/Cfin.compinfo");
+    deduplicate_fasta("outfiles/TranslatedCompHits.fasta");
+    parse_decypher2("outfiles/Cfin.compinfo", "outfiles/deduplicated.fasta");
     peptide_extraction("UniqueCompHits.fasta");
     reciprocal_blast("LongestPolypeptide.fasta", $_[3]);
-    parse_blastp("Blastp.outfiles", $_[3]);
-    hmmscan("LongestPolypeptide.fasta", "besthits.fasta", $_[1]);
-    mafft("LongestPolypeptide.fasta", "besthits.fasta", "blastp.besthits");
-    parse_mafft("mafftalignments.outfilenames");
+    parse_blastp("outfiles/Blastp.outfiles", $_[3]);
+    hmmscan("LongestPolypeptide.fasta", "outfiles/besthits.fasta", $_[1]);
+    mafft("LongestPolypeptide.fasta", "outfiles/besthits.fasta", "outfiles/blastp.besthits");
+    parse_mafft("outfiles/mafftalignments.outfilenames");
     vetting("LongestPolypeptide.fasta", $_[4]);
-    parse_vetting("tblastn.ESTout");
+    parse_vetting("outfiles/tblastn.ESTout");
     pfam();
     create_report();
-#my $retVal14							       =  `pdflatex --interaction=nonstopmode ResultReport.tex`;
-#my $retVal15							       =  `pdflatex --interaction=nonstopmode ResultReport.tex`;
 }
-
-#ProteinScreen::ProteinScreen("/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/Fishes_reproduction_embl.fasta", "/home/alj/Dropbox.personal/Dropbox/Pfam/Pfam-A.hmm", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nonredundant_dbv1.fasta", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/nr_bonyfishes", "/home/alj/Dropbox.personal/Dropbox/Programming/2014CopepodHSPs/201408ProgramAdjustable/TestFiles/GuppyESTs.fasta");
 
 1;
 
+## XX Test the entire script now
 
+# Start documenting the code in pod format (see the template that I
+# inserted at the beginning of the file). Look in the book that I
+# bought and here : http://juerd.nl/site.plp/perlpodtut
 
-# Put output in formatted html code with links
 # Put layout CSS in the html code directly
 # XX Check if |M| is used correctly or if I not rather want to find
 # here if the first element is part of an array with a code similar to the following:
@@ -2454,10 +2881,8 @@ sub ProteinScreen {
 #my $look_for = "other";
 #print "'$look_for' exists\n" if exists $hash{$look_for};
 
-# XX Create reports in markdown and then convert it to pdf and html!
 
-#XX Create usage of model in separate script file and use subroutines with NAM::function(args);
-## XX Make an argument for an optional output folder
+
 # XX Export only the ProteinScreen function and make the others inaccessible
 
 # http://www.perlmonks.org/?node_id				       =  304000
