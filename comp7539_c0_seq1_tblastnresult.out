@@ -1,0 +1,77 @@
+TBLASTN 2.2.28+
+
+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro A.
+Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J.
+Lipman (1997), "Gapped BLAST and PSI-BLAST: a new generation of
+protein database search programs", Nucleic Acids Res. 25:3389-3402.
+
+
+
+Database: CfinESTs.fasta
+           11,859 sequences; 7,546,931 total letters
+
+
+
+Query= lcl|comp7539_c0_seq1
+
+Length=103
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gb|ES237532.1|ES237532  CF_WO0_57c09_SP6 Copepod Whole Organism, ...  28.5    0.15 
+gb|EL774146.1|EL774146  CF_WO0_44a01_SP6 Copepod Whole Organism, ...  27.3    0.37 
+
+
+>gb|ES237532.1|ES237532 CF_WO0_57c09_SP6 Copepod Whole Organism, Normalized Calanus finmarchicus 
+cDNA clone CF_WO0_57c09 5' similar to gb|ABN51214.1| 
+glycosyl-phosphatidylinositol-linked carbonic anhydrase. 
+ Score =  136 bits (342), Expect = 1e-30, mRNA sequence
+Length=696
+
+ Score = 28.5 bits (62),  Expect = 0.15, Method: Compositional matrix adjust.
+ Identities = 14/42 (33%), Positives = 21/42 (50%), Gaps = 6/42 (14%)
+ Frame = -1
+
+Query  36   PEKAQNKGLEATVVAVGPG------LRDGSGSFIPLCVAVGD  71
+             +     G +AT+V V  G      +RDG G  + LC ++GD
+Sbjct  696  AQSHHKMGGKATIVTVKVGHVFWEEVRDGEGCHLSLCTSIGD  571
+
+
+>gb|EL774146.1|EL774146 CF_WO0_44a01_SP6 Copepod Whole Organism, Normalized Calanus finmarchicus 
+cDNA clone CF_WO0_44a01 5' similar to ref|YP_920685.1| 
+Ankyrin  - Thermofilum pendens Hrk 5.  Score =  113 bits 
+(282), Expect = 1e-23, mRNA sequence
+Length=734
+
+ Score = 27.3 bits (59),  Expect = 0.37, Method: Compositional matrix adjust.
+ Identities = 15/41 (37%), Positives = 24/41 (59%), Gaps = 3/41 (7%)
+ Frame = +3
+
+Query  53   PGLRDGSGSFIPLCVAV-GDKVLLPEY--GGSKLEMEGEEL  90
+            P + DG+G++   CVA+ GD+V+  +    G+ LE    EL
+Sbjct  189  PQIEDGNGNYPLHCVALGGDQVIAQQLISAGADLEASNHEL  311
+
+
+
+Lambda      K        H        a         alpha
+   0.317    0.138    0.375    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 61959240
+
+
+  Database: CfinESTs.fasta
+    Posted date:  Aug 12, 2014  10:26 PM
+  Number of letters in database: 7,546,931
+  Number of sequences in database:  11,859
+
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Neighboring words threshold: 13
+Window for multiple hits: 40

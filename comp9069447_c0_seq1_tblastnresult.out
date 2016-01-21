@@ -1,0 +1,61 @@
+TBLASTN 2.2.28+
+
+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro A.
+Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J.
+Lipman (1997), "Gapped BLAST and PSI-BLAST: a new generation of
+protein database search programs", Nucleic Acids Res. 25:3389-3402.
+
+
+
+Database: CfinESTs.fasta
+           11,859 sequences; 7,546,931 total letters
+
+
+
+Query= lcl|comp9069447_c0_seq1
+
+Length=90
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gb|EL773801.1|EL773801  CF_WO0_40c08_SP6 Copepod Whole Organism, ...  23.5    5.7  
+
+
+>gb|EL773801.1|EL773801 CF_WO0_40c08_SP6 Copepod Whole Organism, Normalized Calanus finmarchicus 
+cDNA clone CF_WO0_40c08 5' similar to ref|NP_724759.1| 
+CG30344-PA  - Drosophila melanogaster.  Score = 71.6 
+bits (174), Expect = 3e-11, mRNA sequence
+Length=685
+
+ Score = 23.5 bits (49),  Expect = 5.7, Method: Compositional matrix adjust.
+ Identities = 15/48 (31%), Positives = 21/48 (44%), Gaps = 5/48 (10%)
+ Frame = -1
+
+Query  20   VMPATQTAGGIYLPETSQKKEN-----EGEVVSVGKGALNRDGKLVEV  62
+            VMPA +++ G +LP  S+K  +      G   S     LNR    V  
+Sbjct  442  VMPADESSKGTFLPYLSEKGPDIRHRIMGPTCSSKMILLNRSAACVST  299
+
+
+
+Lambda      K        H        a         alpha
+   0.313    0.138    0.384    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 62952326
+
+
+  Database: CfinESTs.fasta
+    Posted date:  Aug 12, 2014  10:26 PM
+  Number of letters in database: 7,546,931
+  Number of sequences in database:  11,859
+
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Neighboring words threshold: 13
+Window for multiple hits: 40

@@ -1,0 +1,130 @@
+TBLASTN 2.2.28+
+
+
+Reference: Stephen F. Altschul, Thomas L. Madden, Alejandro A.
+Schaffer, Jinghui Zhang, Zheng Zhang, Webb Miller, and David J.
+Lipman (1997), "Gapped BLAST and PSI-BLAST: a new generation of
+protein database search programs", Nucleic Acids Res. 25:3389-3402.
+
+
+
+Database: Calanus_206k
+           206,041 sequences; 205,480,538 total letters
+
+
+
+Query= gi|21356029|ref|NP_648622.1| CG11267 [Drosophila melanogaster]
+
+Length=103
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+lcl|comp7539_c0_seq1  len=440 path=[1:0-3 5:4-125 1149:126-127 12...   114    3e-32
+lcl|comp959_c0_seq1  len=581 path=[559:0-373 933:374-422 982:423-...   115    7e-32
+lcl|comp747_c0_seq1  len=527 path=[505:0-105 1197:106-121 627:122...   109    5e-30
+lcl|comp9069447_c0_seq1  len=315 path=[293:0-314]                     75.5    1e-17
+lcl|comp4414439_c0_seq1  len=1934 path=[1:0-1933]                     29.6    1.6  
+
+
+>lcl|comp7539_c0_seq1 len=440 path=[1:0-3 5:4-125 1149:126-127 129:128-167 169:168-228 
+230:229-261 263:262-439]
+Length=440
+
+ Score =  114 bits (286),  Expect = 3e-32, Method: Compositional matrix adjust.
+ Identities = 58/102 (57%), Positives = 81/102 (79%), Gaps = 3/102 (3%)
+ Frame = +2
+
+Query  1    MAAAIKKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVLAVGPGTRNASTGNH  60
+            ++A  K+I+P+ DRI++QRA A TK++GGI++PEKA  K LE TV+AVGPG R+ S G+ 
+Sbjct  38   VSAVAKQILPLFDRIVVQRAAAETKSRGGIIIPEKAQNKGLEATVVAVGPGLRDGS-GSF  214
+
+Query  61   IPIGVKEGDRVLLPEFGGTKVNLEGDQKELFLFRESDILAKL  102
+            IP+ V  GD+VLLPE+GG+K+ +EG+  EL +FRE DI+AKL
+Sbjct  215  IPLCVAVGDKVLLPEYGGSKLEMEGE--ELTIFREQDIVAKL  334
+
+
+>lcl|comp959_c0_seq1 len=581 path=[559:0-373 933:374-422 982:423-485 1045:486-504 
+1064:505-580]
+Length=581
+
+ Score =  115 bits (287),  Expect = 7e-32, Method: Compositional matrix adjust.
+ Identities = 59/103 (57%), Positives = 81/103 (79%), Gaps = 3/103 (3%)
+ Frame = -3
+
+Query  1    MAAAIKKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVLAVGPGTRNASTGNH  60
+            ++A  KKI+P+ DR+LIQR+ A TKTKGG+++PEKA  KV EG V+AVGPG R A +G+ 
+Sbjct  534  VSAVAKKILPLFDRVLIQRSAAETKTKGGLLIPEKAQTKVKEGVVVAVGPGAR-AESGSF  358
+
+Query  61   IPIGVKEGDRVLLPEFGGTKVNLEGDQKELFLFRESDILAKLE  103
+            IP+ V  GD+VLLP+FGG K+ +EG+  E  +FRE+DI+AKL+
+Sbjct  357  IPMSVSVGDKVLLPDFGGGKLEVEGE--EFQIFRETDIVAKLD  235
+
+
+>lcl|comp747_c0_seq1 len=527 path=[505:0-105 1197:106-121 627:122-150 2169:151-174 
+680:175-184 690:185-190 696:191-280 2234:281-285 791:286-286 
+792:287-526]
+Length=527
+
+ Score =  109 bits (273),  Expect = 5e-30, Method: Compositional matrix adjust.
+ Identities = 55/96 (57%), Positives = 76/96 (79%), Gaps = 3/96 (3%)
+ Frame = +3
+
+Query  6    KKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVLAVGPGTRNASTGNHIPIGV  65
+            K+I+P+ DR+LIQRA A T+TKGG+++PEKA  K LE  V+AVGPG R A +G+ IP+ V
+Sbjct  63   KRIMPLFDRVLIQRAAAETRTKGGLLIPEKAQTKGLEAVVVAVGPGAR-AESGDTIPMSV  239
+
+Query  66   KEGDRVLLPEFGGTKVNLEGDQKELFLFRESDILAK  101
+              GD+VLLPE+GG+K+ +EG+  E  +FRE+DI+AK
+Sbjct  240  GVGDKVLLPEYGGSKIEMEGE--EFQMFRETDIVAK  341
+
+
+>lcl|comp9069447_c0_seq1 len=315 path=[293:0-314]
+Length=315
+
+ Score = 75.5 bits (184),  Expect = 1e-17, Method: Compositional matrix adjust.
+ Identities = 42/93 (45%), Positives = 60/93 (65%), Gaps = 3/93 (3%)
+ Frame = -3
+
+Query  1    MAAAIKKIIPMLDRILIQRAEALTKTKGGIVLPEKAVGKVLEGTVLAVGPGTRNASTGNH  60
+            M+   +K+IP+ DRIL++R    T+T GGI LPE +  K  EG V++VG G  N   G  
+Sbjct  271  MSGLARKLIPLGDRILVKRVMPATQTAGGIYLPETSQKKENEGEVVSVGKGALNRD-GKL  95
+
+Query  61   IPIGVKEGDRVLLPEFGGTKVNLEGDQKELFLF  93
+            + + V  GD+VLLPE+GGT V +  + +ELF+F
+Sbjct  94   VEVSVNPGDKVLLPEYGGTPVTI--NDEELFIF  2
+
+
+>lcl|comp4414439_c0_seq1 len=1934 path=[1:0-1933]
+Length=1934
+
+ Score = 29.6 bits (65),  Expect = 1.6, Method: Composition-based stats.
+ Identities = 16/46 (35%), Positives = 24/46 (52%), Gaps = 2/46 (4%)
+ Frame = +2
+
+Query  52   TRNASTGNHIPIG--VKEGDRVLLPEFGGTKVNLEGDQKELFLFRE  95
+            T +  + N++ +G  V E +R  L      K+NL   Q  LF+FRE
+Sbjct  521  TESTQSSNYLTLGWLVLEVNRSFLSTDKANKINLHSIQSSLFVFRE  658
+
+
+
+Lambda      K        H        a         alpha
+   0.317    0.139    0.382    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 1723667232
+
+
+  Database: Calanus_206k
+    Posted date:  Aug 12, 2014 10:22 PM
+  Number of letters in database: 205,480,538
+  Number of sequences in database:  206,041
+
+
+
+Matrix: BLOSUM62
+Gap Penalties: Existence: 11, Extension: 1
+Neighboring words threshold: 13
+Window for multiple hits: 40
