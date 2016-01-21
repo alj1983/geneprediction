@@ -4,6 +4,9 @@
 
 XX Choose BMC bioinformatics as target journal
 
+XX Create css stylesheet for how the output of the functions looks
+XX See how the documentation of this package now looks.
+XX Test this package
 
 =head1 NAME
 
@@ -25,7 +28,23 @@ ProteinScreen - identifying target proteins in de novo transcriptomes
 
 This program works only in a UNIX environment. The user needs to install
 - hmmer http://hmmer.org/download.html
-- BLAST+ applications with the makeblastdb tool http://www.ncbi.nlm.nih.gov/books/NBK279671/
+- BLAST+ applications (makeblastdb, tblastn, blastdbcmd, blastp) http://www.ncbi.nlm.nih.gov/books/NBK279671/
+- XX inform that the user needs to instal the Pfam-A or something. The Pfam-A.hmm database, downloaded
+  from http://pfam.sanger.ac.uk, was formatted for HMMER searches with
+  the command: hmmpress Pfam-A.hmm
+- xx Check if the following Python packages are still required.
+  - Additional Packages: 
+    - List::MoreUtils qw(uniq)
+    - LWP::Simple;
+    - Biopython:
+      - Bio::SeqIO
+      - Bio::Tools::Run::RemoteBlast
+- xx check if the following R packages are still required.
+  - Additional Packages: 
+    - scales
+    - seqinr 
+- xx check if this still needs to be installed MAFFT http://mafft.cbrc.jp/alignment/software/
+- Latex, to create the pdf report file
 
 ==head2 PREPARATIONS
 
@@ -124,79 +143,130 @@ Sequence Tags (ESTs).
 ==head3 Pipeline details This section describes the functions that the
 wrapper function C<ProteinScreen::ProteinScreen> is built on.
 
-The wrapper function C<ProteinScreen::ProteinScreen> 
-
-XX  describe below shortly what all the methods are doing
+The wrapper function C<ProteinScreen::ProteinScreen> executes
+automatically the following functions. What each of these functions is
+doing is described shortly in the following sections.
 
 =over 
 
-=item C<new>
-
-Returns a new My::Module object.
-
 =item C<local_database_search>
 
-Text
+Compares the fasta file of protein sequences (first argument) against a transriptome
+database (second argument) using the tblastn function of NCBI's blast+ package.
 
 =item C<parse_local_database_search>
 
-Text
+Filters the output of the previous function for only the best hits of
+protein queries in the transcriptome databse (hits with an E-value <
+1e-05). A list of tblastn report files from the previous function is
+used as single argument to this function. 
 
 =item C<best_hits_to_fasta>
 
-Text
+Extracts sequences of the unique best contigs hits (first argument,
+output of the previous function) from the transcriptome database (second
+argument) and saves them in a single fasta file.
 
-=item C<translation>
+=item C<translation> 
 
-Text
+A fasta file of nucleotide sequences (first argument) listed as best
+contig hits (second argument) is translated to to protein sequences,
+which are saved in a new fasta file. The reading frame is based on the
+protein blast hits that were detected with the
+C<local_database_search> function.
 
 =item C<deduplicate_fasta>
 
-Text
+Removes potential duplicates in the translated fasta file (the single
+argument to this function) of transcriptome contigs that are related
+to query proteins. Duplicates occur when one contig showed up as best
+blast hit to different protein queries.
 
 =item C<parse_decypher2>
 
-Text
+XX I think that this function is not necessary at all. The output
+(UniqueComphits.fasta) is the same as deduplicated.fasta?!
+XX Try running the script when removing this function
 
 =item C<peptide_extraction>
 
-Text
+Extracts from the fasta file (the function's single argument) of
+translated contigs, related to protein queries, the longest peptide
+sequence that starts with a methionine and ends with a stop codon. The
+longest peptides of each contig are saved to a new fasta file
 
 =item C<reciprocal_blast>
 
-Text
+Peptides extracted with the previous function (first argument) are
+blasted against a protein database (second argument) of taxa related
+to your target species (whose transcriptome you are exploring). The
+function uses the blastp function of NCBI's BLAST+ package. 
 
 =item C<parse_blastp>
 
-Text
+Removes those blast hits from the output files of the previous
+function (first argument) that refer to 'puative', 'predicted',
+'provisional', 'partial', 'unknown', or 'hypothetic' proteins. The
+sequences of the remaining hits are extracted from a protein database
+of taxa related to your target species (second argument) and saved to
+a fasta file. 
 
-=item C<hmmscan>
+=item C<hmmscan> 
 
-Text
+This function runs the program hmmscan to identify protein domains in
+the translated contigs of your target species (fasta file as first
+argument) and in the corresponding best blast hits from the previous
+function (fasta file as second argument). Hmmscan searches the protein
+sequences against Pfam, a large database of protein families (third
+argument).
 
 =item C<mafft>
 
-Text
+The three arguments to this function are: 1) a fasta file with
+translated contigs of your target species that wer used as queries ,
+2) a fasta file with protein sequences of best hits in related
+species, and 3) a file informing on which sequences in these two fasta
+files form a pair. These pairs of protein sequences are then aligned
+against each other with the program mafft. The alignments are saved in
+both text (ClustalW alignment) and fasta files.
 
 =item C<parse_mafft>
 
-Text
+This function goes through a list of ClustalW alignment files
+(argument of the function) and calculates the percent identity and
+percent similarity of the aligned sequences. The percent identity is
+calculated as the number of amino acids that match exactly (indicated
+by '*' in the alignment file) divided by the total number of aligned
+amino acids. The percent similarity is calculated as the number of
+amino acids that match exactly (indicated by '*' ), or show similar
+properties (indicated by '.' and ':' in the alignment file) divided by
+the total number of aligned amino acids.
 
 =item C<vetting>
 
-Text
+uses the program tblastn to blast translated contigs of your target
+species (first argument that was saved in a fasta file by the function
+<peptide_extraction>) against a fasta file of EST sequences of your
+target species (second argument of the function). The file named
+'tblastn.ESTout' which lists all the produced alignment files. The
+alignment files themselves end with ...tblastnresult.out
 
 =item C<parse_vetting>
 
-Text
+Saves a table called Vetting.out in which it stores important
+information fextracted from the tblastn.ESTout files produced by the
+preceding function C<vetting>.
 
 =item C<pfam>
 
-Text
+Uses an R script to plot protein domains along the alignment of the
+translated contigs of your target species and their best hits.
 
 =item C<create_report>
 
-Text
+This function creates six html files that are all accessible via links
+in the single ResultReport.html file. This makes all output
+information of all the previous functions are accessible to the user.
 
 =back
 
@@ -237,7 +307,6 @@ script\n"; }
 
     open (MYOUTFILE, ">outfiles/tblastn\.LocalDatabase"); #open for write - this will contain
     #the filenames of the output files
-    #this script produces
 
     print ("waiting for tblastn against the local transcriptome database...");
     while (my $seqs	=  $seqio->next_seq) {
@@ -328,7 +397,7 @@ script\n"; }
     while (<IN>){
 	chomp;
 	push @files,$_ if not $lines{$_}++;
-	# The if statment emoves duplicate rows
+	# The if statment removes duplicate rows
     }
     close IN;
 
@@ -948,9 +1017,12 @@ sub deduplicate_fasta {
 
 ## parse_decypher2
 sub parse_decypher2 {
-    if ($_[0] eq '' or $_[1] eq '' ) { die "Two input files are needed. First the
-output from Parse_DeCypher.pl and second a fasta file with hits in the
-transcriptome\n"; }
+
+    if ($_[0] eq '' or $_[1] eq '' ) { die "Two input files are
+needed. First the the ousput of the .compinfo file that is produced by
+thParse_local_database_search function, and second the deduplicated
+fasta file of protein sequences (output of the deduplicate_fasta
+function)\n"; }
 
 # open the output file from Parse_DeCypherAndConverge.pl
 
@@ -1195,7 +1267,7 @@ sub parse_blastp {
 the names of blast report files which shall be treated in this
 script\n"; }
 
-    if ($_[1] eq '' ) {die "The protein database (nr) of taxa related to your target species has to be provided as fourth argument to the script\n"; }
+    if ($_[1] eq '' ) {die "The protein database (nr) of taxa related to your target species has to be provided as second argument to the script\n"; }
 
     open(IN, $_[0]) or die "Can not open file $_[0]";
 
@@ -1435,7 +1507,7 @@ script. One contains the contigs of your target species the other contains the s
 script. One contains the contigs of your target species the other contains the sequences of the best blastp hits\n"; }
 
     if ( $_[2] eq '' ) {
-	die "Provide the Pfam path (including the file) as third argument\n",}
+	die "Provide the Pfam path (including the file name) as third argument\n",}
 
 
     open my $fh, '<', $_[0] or die "error opening $_[0]: $!";
@@ -1591,7 +1663,7 @@ sub parse_mafft {
 # check if argument to the script is there.  
     if ( $_[0] eq '' ) {
 	die "A file listing the names of the ClustalW alignment files has to be provided as argument to the
-script. The filename must be of the pattern queryname__besthitname__MAFFTalignment.fasta\n"; }
+script. The filenames must be of the pattern queryname__besthitname__MAFFTalignment.txt\n"; }
 
 
 # Load in the alignment file names
