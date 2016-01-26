@@ -13,49 +13,95 @@ XX Test this package
 ProteinScreen - identifying target proteins in de novo transcriptomes 
 
 =head1 SYNOPSIS
-    use strict;
-    use ProteinScreen;
 
-    my $queries = 'queries.fasta';
-    my $pfam = 'Pfam-A.hmm';
-    my $transcriptome = 'transcriptome.fasta';
-    my $proteindatabase = 'nr_database';
-    my $ests = 'ests.fasta';
+ use strict;
+ use ProteinScreen;
 
-    ProteinScreen::ProteinScreen($queries, $pfam, $transcriptome, $proteindatabase, $ests);
+ my $queries = 'queries.fasta';
+ my $pfam = 'Pfam-A.hmm';
+ my $transcriptome = 'transcriptome.fasta';
+ my $proteindatabase = 'nr_database';
+ my $ests = 'ests.fasta';
+
+ ProteinScreen::ProteinScreen($queries, $pfam, $transcriptome, $proteindatabase, $ests);
 
 =head1 DESCRIPTION
 
-This program works only in a UNIX environment. The user needs to install
-- hmmer http://hmmer.org/download.html
-- BLAST+ applications (makeblastdb, tblastn, blastdbcmd, blastp) http://www.ncbi.nlm.nih.gov/books/NBK279671/
-- XX inform that the user needs to instal the Pfam-A or something. The Pfam-A.hmm database, downloaded
-  from http://pfam.sanger.ac.uk, was formatted for HMMER searches with
-  the command: hmmpress Pfam-A.hmm
-- xx Check if the following Python packages are still required.
-  - Additional Packages: 
-    - List::MoreUtils qw(uniq)
-    - LWP::Simple;
-    - Biopython:
-      - Bio::SeqIO
-      - Bio::Tools::Run::RemoteBlast
-- xx check if the following R packages are still required.
-  - Additional Packages: 
-    - scales
-    - seqinr 
-- xx check if this still needs to be installed MAFFT http://mafft.cbrc.jp/alignment/software/
-- Latex, to create the pdf report file
+=head2 Program and package requirements
 
-==head2 PREPARATIONS
+This program works only in a UNIX environment (Linux and Mac computers). The user needs to install
 
-==head3 Transcriptome
+=over
 
-The transcriptome must be prepared as a database with the following unix command:
-  makeblastdb -in fastafilename.fasta -title fastafilename -name fastafilename -out -parse-seqids -dbtype nucl
-Here, 'fastafilename' needs to be changed to the name of your own
+=item hmmer 
+
+L<http://hmmer.org/download.html>
+
+=item BLAST+ applications 
+
+including makeblastdb, tblastn, blastdbcmd, blastp; 
+L<http://www.ncbi.nlm.nih.gov/books/NBK279671/>
+
+=item The Pfam-A.hmm database
+
+Available from L<http://pfam.sanger.ac.uk>. Has to be formatted for
+HMMER searches with the UNIX command: C<hmmpress Pfam-A.hmm>
+
+- xx Check if the
+  following Perl packages are still required. 
+    
+=item Perl packages, including BioPython packages
+
+=over
+
+=item *
+List::MoreUtils qw(uniq) XX is this correct?
+
+=item *
+LWP::Simple
+
+=item *
+Bio::SeqIO
+
+=item *
+Bio::Tools::Run::RemoteBlast
+
+=back
+
+=item R
+
+Available from L<https://cran.r-project.org/>
+
+=item R packages
+xx check if thefollowing R packages are still required.
+
+=over
+
+=item *
+scales
+
+=item *
+seqinr
+
+=back
+ 
+=item  MAFFT
+Available from L<http://mafft.cbrc.jp/alignment/software/>
+
+=back
+
+=head2 Preparations
+
+=head3 Transcriptome
+
+The transcriptome must be prepared as a database with the following UNIX command:
+
+ makeblastdb -in fastafilename.fasta -title fastafilename -name fastafilename -out -parse-seqids -dbtype nucl
+
+Here, C<fastafilename> needs to be changed to the name of your own
 fastafile.
 
-==head3 Protein database
+=head3 Protein database
 
 A database with protein sequences from species closely related to your target species 
 must be prepared as follows: 
@@ -63,39 +109,50 @@ must be prepared as follows:
 =over
 
 =item *
-Download the nr.gz database from ftp://ftp.ncbi.nih.gov/blast/db/FASTA/
+Download the nr.gz database from L<ftp://ftp.ncbi.nih.gov/blast/db/FASTA/>
 
 =item *
 unpack it with the Unix code
-  gunzip nr.gz
+
+gunzip nr.gz
+
 
 =item *
 format it as blast database on the command line with
-  makeblastdb -dbtype prot -in nr -parse_seqids
 
-=item *
-Search the Entrez Protein database (online) for the wider taxon of your target species (here bony fishes) with the query: I<"bony fishes"[ORGN]>
+makeblastdb -dbtype prot -in nr -parse_seqids
 
-=item *
-Select I<Send to File> and choose format I<GI list> and save it in I<sequence.gi.txt>.
+=item * Search the Entrez Protein database
+(L<http://www.ncbi.nlm.nih.gov/protein>) for the wider taxon of your
+target species (e.g. bony fishes or arthropoda) with the query: I<"bony
+fishes"[ORGN]> or I<"arthropoda"[ORGN]>
+
+=item * Select I<Send to File> and choose format I<GI list> and save
+it in a file I<sequence.gi.txt>.
 
 =item *
 Now, run the Unix command
+
   blastdb_aliastool -gilist sequence.gi.txt -db nt -out nt_bonyfishes -title nt_bonyfishes
-Change bony fishes to the wider taxon name of your own target species. For example, if your tanscriptome belongs to a decapod species, you can choose I<arthropoda> as wider taxon. 
+
+Change bony fishes to the wider taxon name of your own target
+species. For example, if your tanscriptome belongs to a decapod
+species, you can choose I<arthropoda> as wider taxon.
 
 =back
 
-==head3 ESTs
+=head3 ESTs
 
-Download from NCBI all entries for your target species in the EST
-database as fasta file and format it as blast database with the
-command 
- makeblastdb -in fastafilename.fasta -dbtype nucl -parse_seqids
-Here, 'fastafilename' needs to be replaced with the
-name of your own fasta file containing EST sequences.
+Download from the NCBI EST database
+(L<http://www.ncbi.nlm.nih.gov/est>) all entries for your target
+species as fasta file and format it as blast database with the command
 
-==head2 RUNNING THE MAIN FUNCTION
+ makeblastdb -in fastafilename.fasta -dbtype nucl -parse_seqids 
+
+Here, C<fastafilename> needs to be replaced with the name of your own
+fasta file containing EST sequences.
+
+=head2 Running the main function
 
 The ProteinScreen module provides the function
 ProteinScreen::ProteinScreen. This function runs a pipeline to extract
@@ -105,47 +162,47 @@ user needs to provide five arguments:
 
 =over
 
-=item $queries
+=item C<$queries>
 
-Fasta file with peptide sequences of target proteins from related species, including the file ending '.fasta'..
+Fasta file with peptide sequences of target proteins from related species, including the file ending '.fasta'.
 
-=item $pfam
+=item C<$pfam>
 
-Link to the protein database pfam, downloaded from http://pfam.xfam.org/ as Pfam-A.hmm file.
+Link to the protein database pfam, downloaded from L<http://pfam.xfam.org/> as Pfam-A.hmm file.
 
-=item $transcriptome
+=item C<$transcriptome>
 
 Fasta file name of the transcriptome, including the ending '.fasta'.
 
-=item $proteindatabase
+=item $C<proteindatabase>
 
-Name of local non-redundant protein database of the wider taxon of your target species.
+Name of the local non-redundant protein database of the wider taxon of
+your target species.
 
-=item $ests
+=item C<$ests>
 
-Fasta file with EST sequence(s) of your target species, including the ending '.fasta'.
+Fasta file with EST sequences of your target species, including the ending '.fasta'.
 
 =back
 
 
-==head3 Output 
+=head3 Output 
 
 The wrapper function C<ProteinScreen::ProteinScreen> summarizes all
 results in the file ResultReport.html. This file provides a link to
 'Queries', which lists all protein queries that were used, and a link
 to 'Best hits', which lists all the contigs in your target species'
 transcriptome that are closely related to one or several of your
-protein queries. The list of 'Best hits' provides for each contig
-information on best hit in the protein database, as well as links to
-predicted domains, used protein queries, and related Expressed
-Sequence Tags (ESTs).
+protein queries. 'Best hits' list for each contig best hits in the
+protein database, as well as links to predicted domains, used protein
+queries, and related Expressed Sequence Tags (ESTs).
 
-==head3 Pipeline details This section describes the functions that the
-wrapper function C<ProteinScreen::ProteinScreen> is built on.
+=head3 Pipeline details 
 
 The wrapper function C<ProteinScreen::ProteinScreen> executes
-automatically the following functions. What each of these functions is
-doing is described shortly in the following sections.
+automatically the following functions one after another. What each of
+these functions is doing is described shortly in the following
+sections.
 
 =over 
 
@@ -156,11 +213,13 @@ database (second argument) using the tblastn function of NCBI's blast+ package.
 
 =item C<parse_local_database_search>
 
-Filters the output of the previous function for only the best hits of
-protein queries in the transcriptome databse (hits with an E-value <
-1e-05). A list of tblastn report files from the previous function is
-used as single argument to this function. 
+Goes through a list of tblastn report files resulting from the
+previous function (the single argument of this function) and extracts
+for each of them only the best hits (hE-value < 1e-05) of protein
+queries in the transcriptome databse.
 
+
+XX Continue here polishing the documentation
 =item C<best_hits_to_fasta>
 
 Extracts sequences of the unique best contigs hits (first argument,

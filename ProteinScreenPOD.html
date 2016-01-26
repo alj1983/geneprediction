@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@localhost" />
+</head>
+
+<body style="background-color: white">
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#Program-and-package-requirements">Program and package requirements</a></li>
+      <li><a href="#Preparations">Preparations</a>
+        <ul>
+          <li><a href="#Transcriptome">Transcriptome</a></li>
+          <li><a href="#Protein-database">Protein database</a></li>
+          <li><a href="#ESTs">ESTs</a></li>
+        </ul>
+      </li>
+      <li><a href="#Running-the-main-function">Running the main function</a>
+        <ul>
+          <li><a href="#Output">Output</a></li>
+          <li><a href="#Pipeline-details">Pipeline details</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#LICENSE">LICENSE</a></li>
+  <li><a href="#AUTHOR">AUTHOR</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>ProteinScreen - identifying target proteins in de novo transcriptomes</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<pre><code> use strict;
+ use ProteinScreen;
+
+ my $queries = &#39;queries.fasta&#39;;
+ my $pfam = &#39;Pfam-A.hmm&#39;;
+ my $transcriptome = &#39;transcriptome.fasta&#39;;
+ my $proteindatabase = &#39;nr_database&#39;;
+ my $ests = &#39;ests.fasta&#39;;
+
+ ProteinScreen::ProteinScreen($queries, $pfam, $transcriptome, $proteindatabase, $ests);</code></pre>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<h2 id="Program-and-package-requirements">Program and package requirements</h2>
+
+<p>This program works only in a UNIX environment (Linux and Mac computers). The user needs to install</p>
+
+<dl>
+
+<dt id="hmmer">hmmer</dt>
+<dd>
+
+<p><a href="http://hmmer.org/download.html">http://hmmer.org/download.html</a></p>
+
+</dd>
+<dt id="BLAST-applications">BLAST+ applications</dt>
+<dd>
+
+<p>including makeblastdb, tblastn, blastdbcmd, blastp; <a href="http://www.ncbi.nlm.nih.gov/books/NBK279671/">http://www.ncbi.nlm.nih.gov/books/NBK279671/</a></p>
+
+</dd>
+<dt id="The-Pfam-A.hmm-database">The Pfam-A.hmm database</dt>
+<dd>
+
+<p>Available from <a href="http://pfam.sanger.ac.uk">http://pfam.sanger.ac.uk</a>. Has to be formatted for HMMER searches with the UNIX command: <code>hmmpress Pfam-A.hmm</code></p>
+
+<p>- xx Check if the following Perl packages are still required.</p>
+
+</dd>
+<dt id="Perl-packages-including-BioPython-packages">Perl packages, including BioPython packages</dt>
+<dd>
+
+<ul>
+
+<li><p>List::MoreUtils qw(uniq) XX is this correct?</p>
+
+</li>
+<li><p>LWP::Simple</p>
+
+</li>
+<li><p>Bio::SeqIO</p>
+
+</li>
+<li><p>Bio::Tools::Run::RemoteBlast</p>
+
+</li>
+</ul>
+
+</dd>
+<dt id="R">R</dt>
+<dd>
+
+<p>Available from <a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
+
+</dd>
+<dt id="R-packages-xx-check-if-thefollowing-R-packages-are-still-required">R packages xx check if thefollowing R packages are still required.</dt>
+<dd>
+
+<ul>
+
+<li><p>scales</p>
+
+</li>
+<li><p>seqinr</p>
+
+</li>
+</ul>
+
+</dd>
+<dt id="MAFFT-Available-from-http:-mafft.cbrc.jp-alignment-software">MAFFT Available from <a href="http://mafft.cbrc.jp/alignment/software/">http://mafft.cbrc.jp/alignment/software/</a></dt>
+<dd>
+
+</dd>
+</dl>
+
+<h2 id="Preparations">Preparations</h2>
+
+<h3 id="Transcriptome">Transcriptome</h3>
+
+<p>The transcriptome must be prepared as a database with the following UNIX command:</p>
+
+<pre><code> makeblastdb -in fastafilename.fasta -title fastafilename -name fastafilename -out -parse-seqids -dbtype nucl</code></pre>
+
+<p>Here, <code>fastafilename</code> needs to be changed to the name of your own fastafile.</p>
+
+<h3 id="Protein-database">Protein database</h3>
+
+<p>A database with protein sequences from species closely related to your target species must be prepared as follows:</p>
+
+<ul>
+
+<li><p>Download the nr.gz database from <a href="ftp://ftp.ncbi.nih.gov/blast/db/FASTA/">ftp://ftp.ncbi.nih.gov/blast/db/FASTA/</a></p>
+
+</li>
+<li><p>unpack it with the Unix code</p>
+
+<p>gunzip nr.gz</p>
+
+</li>
+<li><p>format it as blast database on the command line with</p>
+
+<p>makeblastdb -dbtype prot -in nr -parse_seqids</p>
+
+</li>
+<li><p>Search the Entrez Protein database (<a href="http://www.ncbi.nlm.nih.gov/protein">http://www.ncbi.nlm.nih.gov/protein</a>) for the wider taxon of your target species (e.g. bony fishes or arthropoda) with the query: <i>&quot;bony fishes&quot;[ORGN]</i> or <i>&quot;arthropoda&quot;[ORGN]</i></p>
+
+</li>
+<li><p>Select <i>Send to File</i> and choose format <i>GI list</i> and save it in a file <i>sequence.gi.txt</i>.</p>
+
+</li>
+<li><p>Now, run the Unix command</p>
+
+<pre><code>  blastdb_aliastool -gilist sequence.gi.txt -db nt -out nt_bonyfishes -title nt_bonyfishes</code></pre>
+
+<p>Change bony fishes to the wider taxon name of your own target species. For example, if your tanscriptome belongs to a decapod species, you can choose <i>arthropoda</i> as wider taxon.</p>
+
+</li>
+</ul>
+
+<h3 id="ESTs">ESTs</h3>
+
+<p>Download from the NCBI EST database (<a href="http://www.ncbi.nlm.nih.gov/est">http://www.ncbi.nlm.nih.gov/est</a>) all entries for your target species as fasta file and format it as blast database with the command</p>
+
+<pre><code> makeblastdb -in fastafilename.fasta -dbtype nucl -parse_seqids </code></pre>
+
+<p>Here, <code>fastafilename</code> needs to be replaced with the name of your own fasta file containing EST sequences.</p>
+
+<h2 id="Running-the-main-function">Running the main function</h2>
+
+<p>The ProteinScreen module provides the function ProteinScreen::ProteinScreen. This function runs a pipeline to extract from a de novo transcriptome those contigs that are closely related to previously selected target proteins, e.g. heat shock proteins. The user needs to provide five arguments:</p>
+
+<dl>
+
+<dt id="queries"><code>$queries</code></dt>
+<dd>
+
+<p>Fasta file with peptide sequences of target proteins from related species, including the file ending &#39;.fasta&#39;.</p>
+
+</dd>
+<dt id="pfam"><code>$pfam</code></dt>
+<dd>
+
+<p>Link to the protein database pfam, downloaded from <a href="http://pfam.xfam.org/">http://pfam.xfam.org/</a> as Pfam-A.hmm file.</p>
+
+</dd>
+<dt id="transcriptome"><code>$transcriptome</code></dt>
+<dd>
+
+<p>Fasta file name of the transcriptome, including the ending &#39;.fasta&#39;.</p>
+
+</dd>
+<dt id="proteindatabase">$<code>proteindatabase</code></dt>
+<dd>
+
+<p>Name of the local non-redundant protein database of the wider taxon of your target species.</p>
+
+</dd>
+<dt id="ests"><code>$ests</code></dt>
+<dd>
+
+<p>Fasta file with EST sequences of your target species, including the ending &#39;.fasta&#39;.</p>
+
+</dd>
+</dl>
+
+<h3 id="Output">Output</h3>
+
+<p>The wrapper function <code>ProteinScreen::ProteinScreen</code> summarizes all results in the file ResultReport.html. This file provides a link to &#39;Queries&#39;, which lists all protein queries that were used, and a link to &#39;Best hits&#39;, which lists all the contigs in your target species&#39; transcriptome that are closely related to one or several of your protein queries. &#39;Best hits&#39; list for each contig best hits in the protein database, as well as links to predicted domains, used protein queries, and related Expressed Sequence Tags (ESTs).</p>
+
+<h3 id="Pipeline-details">Pipeline details</h3>
+
+<p>The wrapper function <code>ProteinScreen::ProteinScreen</code> executes automatically the following functions. What each of these functions is doing is described shortly in the following sections.</p>
+
+<dl>
+
+<dt id="local_database_search"><code>local_database_search</code></dt>
+<dd>
+
+<p>Compares the fasta file of protein sequences (first argument) against a transriptome database (second argument) using the tblastn function of NCBI&#39;s blast+ package.</p>
+
+</dd>
+<dt id="parse_local_database_search"><code>parse_local_database_search</code></dt>
+<dd>
+
+<p>Filters the output of the previous function for only the best hits of protein queries in the transcriptome databse (hits with an E-value &lt; 1e-05). A list of tblastn report files from the previous function is used as single argument to this function.</p>
+
+</dd>
+<dt id="best_hits_to_fasta"><code>best_hits_to_fasta</code></dt>
+<dd>
+
+<p>Extracts sequences of the unique best contigs hits (first argument, output of the previous function) from the transcriptome database (second argument) and saves them in a single fasta file.</p>
+
+</dd>
+<dt id="translation"><code>translation</code></dt>
+<dd>
+
+<p>A fasta file of nucleotide sequences (first argument) listed as best contig hits (second argument) is translated to to protein sequences, which are saved in a new fasta file. The reading frame is based on the protein blast hits that were detected with the <code>local_database_search</code> function.</p>
+
+</dd>
+<dt id="deduplicate_fasta"><code>deduplicate_fasta</code></dt>
+<dd>
+
+<p>Removes potential duplicates in the translated fasta file (the single argument to this function) of transcriptome contigs that are related to query proteins. Duplicates occur when one contig showed up as best blast hit to different protein queries.</p>
+
+</dd>
+<dt id="parse_decypher2"><code>parse_decypher2</code></dt>
+<dd>
+
+<p>XX I think that this function is not necessary at all. The output (UniqueComphits.fasta) is the same as deduplicated.fasta?! XX Try running the script when removing this function</p>
+
+</dd>
+<dt id="peptide_extraction"><code>peptide_extraction</code></dt>
+<dd>
+
+<p>Extracts from the fasta file (the function&#39;s single argument) of translated contigs, related to protein queries, the longest peptide sequence that starts with a methionine and ends with a stop codon. The longest peptides of each contig are saved to a new fasta file</p>
+
+</dd>
+<dt id="reciprocal_blast"><code>reciprocal_blast</code></dt>
+<dd>
+
+<p>Peptides extracted with the previous function (first argument) are blasted against a protein database (second argument) of taxa related to your target species (whose transcriptome you are exploring). The function uses the blastp function of NCBI&#39;s BLAST+ package.</p>
+
+</dd>
+<dt id="parse_blastp"><code>parse_blastp</code></dt>
+<dd>
+
+<p>Removes those blast hits from the output files of the previous function (first argument) that refer to &#39;puative&#39;, &#39;predicted&#39;, &#39;provisional&#39;, &#39;partial&#39;, &#39;unknown&#39;, or &#39;hypothetic&#39; proteins. The sequences of the remaining hits are extracted from a protein database of taxa related to your target species (second argument) and saved to a fasta file.</p>
+
+</dd>
+<dt id="hmmscan"><code>hmmscan</code></dt>
+<dd>
+
+<p>This function runs the program hmmscan to identify protein domains in the translated contigs of your target species (fasta file as first argument) and in the corresponding best blast hits from the previous function (fasta file as second argument). Hmmscan searches the protein sequences against Pfam, a large database of protein families (third argument).</p>
+
+</dd>
+<dt id="mafft"><code>mafft</code></dt>
+<dd>
+
+<p>The three arguments to this function are: 1) a fasta file with translated contigs of your target species that wer used as queries , 2) a fasta file with protein sequences of best hits in related species, and 3) a file informing on which sequences in these two fasta files form a pair. These pairs of protein sequences are then aligned against each other with the program mafft. The alignments are saved in both text (ClustalW alignment) and fasta files.</p>
+
+</dd>
+<dt id="parse_mafft"><code>parse_mafft</code></dt>
+<dd>
+
+<p>This function goes through a list of ClustalW alignment files (argument of the function) and calculates the percent identity and percent similarity of the aligned sequences. The percent identity is calculated as the number of amino acids that match exactly (indicated by &#39;*&#39; in the alignment file) divided by the total number of aligned amino acids. The percent similarity is calculated as the number of amino acids that match exactly (indicated by &#39;*&#39; ), or show similar properties (indicated by &#39;.&#39; and &#39;:&#39; in the alignment file) divided by the total number of aligned amino acids.</p>
+
+</dd>
+<dt id="vetting"><code>vetting</code></dt>
+<dd>
+
+<p>uses the program tblastn to blast translated contigs of your target species (first argument that was saved in a fasta file by the function &lt;peptide_extraction&gt;) against a fasta file of EST sequences of your target species (second argument of the function). The file named &#39;tblastn.ESTout&#39; which lists all the produced alignment files. The alignment files themselves end with ...tblastnresult.out</p>
+
+</dd>
+<dt id="parse_vetting"><code>parse_vetting</code></dt>
+<dd>
+
+<p>Saves a table called Vetting.out in which it stores important information fextracted from the tblastn.ESTout files produced by the preceding function <code>vetting</code>.</p>
+
+</dd>
+<dt id="pfam1"><code>pfam</code></dt>
+<dd>
+
+<p>Uses an R script to plot protein domains along the alignment of the translated contigs of your target species and their best hits.</p>
+
+</dd>
+<dt id="create_report"><code>create_report</code></dt>
+<dd>
+
+<p>This function creates six html files that are all accessible via links in the single ResultReport.html file. This makes all output information of all the previous functions are accessible to the user.</p>
+
+</dd>
+</dl>
+
+<h1 id="LICENSE">LICENSE</h1>
+
+<p>This is released under the Artistic License. See <a>perlartistic</a>.</p>
+
+<h1 id="AUTHOR">AUTHOR</h1>
+
+<p>Alexander Jueterbock - <a href="http://marinetics.org/">http://marinetics.org/</a></p>
+
+
+</body>
+
+</html>
+
+
