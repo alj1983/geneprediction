@@ -38,48 +38,64 @@ DESCRIPTION
     This program works only in a UNIX environment (Linux and Mac
     computers). The user needs to install
 
-    hmmer
-
-      http://hmmer.org/download.html
-
-    BLAST+ applications
-
-      including makeblastdb, tblastn, blastdbcmd, blastp;
-      http://www.ncbi.nlm.nih.gov/books/NBK279671/
-
-    The Pfam-A.hmm database
-
-      Available from
-      ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/. This has to
-      be formatted for HMMER searches with the UNIX command: hmmpress
-      Pfam-A.hmm
-
-    Perl packages, including BioPython packages These are best installed
-    with cpanm
-
-	* List::MoreUtils
-
-	* LWP::Simple
-
-	* Bio::SeqIO
-
-	* List::MoreUtils
-
-	* Statistics::R
-
-	* Text::Markdown
-
-    R
-
-      Available from https://cran.r-project.org/
-
-    R packages XX continue testing from here =over
-
-    * scales
-
-    * seqinr
-
-    MAFFT Available from http://mafft.cbrc.jp/alignment/software/
+       =item hmmer 
+      
+       L<http://hmmer.org/download.html>
+      
+       =item BLAST+ applications 
+      
+       including makeblastdb, tblastn, blastdbcmd, blastp; 
+       L<http://www.ncbi.nlm.nih.gov/books/NBK279671/>
+      
+       =item The Pfam-A.hmm database
+      
+       Available from
+       L<ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/>.  This has
+       to be formatted for HMMER searches with the UNIX command: C<hmmpress
+       Pfam-A.hmm>
+      
+       =item Perl packages, including BioPython packages
+       These are best installed with C<cpanm>
+      
+        =over
+      
+        =item
+        List::MoreUtils
+      
+        =item
+        LWP::Simple
+      
+        =item
+        Bio::SeqIO
+      
+        =item
+        List::MoreUtils
+      
+        =item
+        Statistics::R
+      
+        =item
+        Text::Markdown
+      
+        =back
+      
+       =item R
+       Available from L<https://cran.r-project.org/>
+      
+       =item R packages
+      
+        =over
+      
+        =item
+        scales
+      
+        =item
+        seqinr
+      
+        =back
+       
+       =item  MAFFT
+       Available from L<http://mafft.cbrc.jp/alignment/software/>
 
  Preparations
 
@@ -98,26 +114,25 @@ DESCRIPTION
     A database with protein sequences from species closely related to your
     target species must be prepared as follows:
 
-      * Download the nr.gz database from
-      ftp://ftp.ncbi.nih.gov/blast/db/FASTA/
+    Download the nr.gz database from ftp://ftp.ncbi.nih.gov/blast/db/FASTA/
 
-      * unpack it with the Unix code
+    unpack it with the Unix code
 
        gunzip nr.gz
 
-      * format it as blast database on the command line with
+    format it as blast database on the command line with
 
        makeblastdb -dbtype prot -in nr -parse_seqids
 
-      * Search the Entrez Protein database
-      (http://www.ncbi.nlm.nih.gov/protein) for the wider taxon of your
-      target species (e.g. bony fishes or arthropoda) with the query: "bony
-      fishes"[ORGN] or "arthropoda"[ORGN]
+    Search the Entrez Protein database
+    (http://www.ncbi.nlm.nih.gov/protein) for the wider taxon of your
+    target species (e.g. bony fishes or arthropoda) with the query: "bony
+    fishes"[ORGN] or "arthropoda"[ORGN]
 
-      * Select 'Send to File', choose the format 'GI list' and save it in a
-      file sequence.gi.txt.
+    Select 'Send to File', choose the format 'GI list' and save it in a
+    file sequence.gi.txt.
 
-      * Now, run the Unix command
+    Now, run the Unix command
 
         blastdb_aliastool -gilist sequence.gi.txt -db nt -out nt_bonyfishes -title nt_bonyfishes
 
@@ -314,21 +329,4 @@ LICENSE
 AUTHOR
 
     Alexander Jueterbock - http://marinetics.org/
-
-POD ERRORS
-
-    Hey! The above document had some coding errors, which are explained
-    below:
-
-    Around line 93:
-
-      Expected text after =item, not a bullet
-
-    Around line 96:
-
-      Expected text after =item, not a bullet
-
-    Around line 101:
-
-      '=item' outside of any '=over'
 
